@@ -1,69 +1,294 @@
+import ContactForm from "@/components/common/contact-form";
+import PersonalInformation from "@/components/common/personal-information";
+import RoleTyper from "@/components/common/RoteTyper";
+import { TechStack } from "@/components/common/tech-stack";
+import TryChangeTheme from "@/components/common/try-change-theme";
+import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
+import ComesInGoesOutUnderline from "@/components/fancy/text/underline-comes-in-goes-out";
+import { BriefcaseBusiness, FolderRoot, GraduationCap } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <div className="container max-w-7xl mt-8 space-y-8 mx-auto border rounded-sm p-4">
+      <div>
         <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+          src="/avatar_2.png"
+          alt="Cong Hai"
+          width={2560}
+          height={1440}
+          loading="eager"
+          className="h-[500px] w-full object-cover rounded-xs"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/6 px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/8">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+      </div>
+
+      <div className="flex items-center gap-8 w-full">
+        <div className="relative">
+          <Image
+            src="/avatar_7.jpg"
+            alt="Cong Hai"
+            width={256}
+            height={256}
+            className="rounded-xs object-cover size-[256px] aspect-square"
+          />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+
+        <div className="space-y-4">
+          <h1 className="text-4xl font-bold" id="welcome">
+            <LetterSwapForward
+              label={"<h1> Welcome to Cong Hai's Portfolio </h1>"}
+              reverse={true}
+              className="text-4xl font-bold w-fit"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/8 px-5 transition-colors hover:border-transparent hover:bg-black/4 dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </h1>
+          <RoleTyper />
+          <TryChangeTheme />
         </div>
-      </main>
+      </div>
+
+      <PersonalInformation />
+
+      <div>
+        <h2 id="experience">
+          <LetterSwapForward
+            label="# Experience"
+            reverse={true}
+            className="text-2xl font-semibold w-fit text-primary"
+          />
+        </h2>
+
+        <div className="flex items-start gap-2 text-secondary-foreground mt-4">
+          <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
+            <BriefcaseBusiness className="size-5" />
+          </div>
+          <div>
+            <p className="font-semibold text-lg text-gray-600">
+              <span className="text-primary">Full-Stack Developer</span> at{" "}
+              <span className="text-primary">TMA Solutions</span>
+            </p>
+            <p>12/2025 - 04/2026</p>
+            <p>
+              Developing features and maintaining web applications,
+              collaborating with cross-functional teams to deliver high-quality
+              software solutions.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 id="education">
+          <LetterSwapForward
+            label="# Education"
+            reverse={true}
+            className="text-2xl font-semibold w-fit text-primary"
+          />
+        </h2>
+
+        <div className="flex items-start gap-2 text-secondary-foreground mt-4">
+          <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
+            <GraduationCap className="size-5" />
+          </div>
+          <div>
+            <p className="font-semibold text-gray-600 text-lg">
+              <span className="text-primary">
+                Information Technology, Software Engineering
+              </span>{" "}
+              at{" "}
+              <span className="text-primary">
+                Industrial University of Ho Chi Minh City
+              </span>
+            </p>
+            <p>2022 - 2027 (Expected)</p>
+            <p>GPA: 3.59/4.0 (8.5/10)</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 id="stack">
+          <LetterSwapForward
+            label="# Stack"
+            reverse={true}
+            className="text-2xl font-semibold w-fit text-primary"
+          />
+        </h2>
+
+        <div className="mt-4">
+          <TechStack />
+        </div>
+      </div>
+
+      <div>
+        <h2 id="projects">
+          <LetterSwapForward
+            label="# Projects"
+            reverse={true}
+            className="text-2xl font-semibold w-fit text-primary"
+          />
+        </h2>
+
+        <div className="mt-4 space-y-6">
+          <div className="flex items-start gap-2 text-secondary-foreground">
+            <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
+              <FolderRoot className="size-5" />
+            </div>
+            <div>
+              <p className="font-semibold text-lg">Manga Reader</p>
+              <p>
+                A self-hosted web application for reading mangas by importing
+                your own files and managing your manga library. Features include
+                reading, bookmarking, tracking new chapters from external
+                sources...
+                <Link
+                  href="/projects#manga-reader"
+                  className="text-primary hover:underline"
+                >
+                  <ComesInGoesOutUnderline direction="left">
+                    See more
+                  </ComesInGoesOutUnderline>
+                </Link>
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start gap-2 text-secondary-foreground">
+            <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
+              <FolderRoot className="size-5" />
+            </div>
+            <div>
+              <p className="font-semibold text-lg">D4C Clothing Shop</p>
+              <p>
+                An e-commerce web application is built to learn about
+                microservices architecture, ensure performance, security and
+                consistency in distributed systems...
+                <Link
+                  href="/projects#d4c-clothing-shop"
+                  className="text-primary hover:underline"
+                >
+                  <ComesInGoesOutUnderline direction="left">
+                    See more
+                  </ComesInGoesOutUnderline>
+                </Link>
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start gap-2 text-secondary-foreground">
+            <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
+              <FolderRoot className="size-5" />
+            </div>
+            <div>
+              <p className="font-semibold text-lg">GOAT</p>
+              <p>
+                A social media platform for recruiters and job seekers to
+                connect, featuring low latency real-time messaging, networking,
+                and job posting functionalities...
+                <Link
+                  href="/projects#goat"
+                  className="text-primary hover:underline"
+                >
+                  <ComesInGoesOutUnderline direction="left">
+                    See more
+                  </ComesInGoesOutUnderline>
+                </Link>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 id="contact">
+          <LetterSwapForward
+            label="# Contact"
+            reverse={true}
+            className="text-2xl font-semibold w-fit text-primary"
+          />
+        </h2>
+
+        <div className="space-y-2 mt-4">
+          <p>
+            Feel free to reach out to me via email or connect with me on social
+            media. I am always open to new opportunities and collaborations.
+          </p>
+          <ContactForm />
+        </div>
+      </div>
+
+      <footer className="grid grid-cols-1 md:grid-cols-3 text-sm text-gray-600 mt-40 border-t pt-4">
+        <p>
+          Inspired by{" "}
+          <div className="gap-2 flex">
+            <Link
+              href="https://tiesen.id.vn/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary"
+            >
+              <ComesInGoesOutUnderline direction="left">
+                @tiesen243
+              </ComesInGoesOutUnderline>
+            </Link>
+            <Link
+              href="https://chanhdai.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary"
+            >
+              <ComesInGoesOutUnderline direction="left">
+                @chanhdai
+              </ComesInGoesOutUnderline>
+            </Link>
+            <Link
+              href="https://atuandev.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary"
+            >
+              <ComesInGoesOutUnderline direction="left">
+                @nguyenphananhtuan
+              </ComesInGoesOutUnderline>
+            </Link>
+          </div>
+        </p>
+
+        <p>
+          Designed and built by{" "}
+          <div>
+            <Link href="#" className="hover:text-primary">
+              <ComesInGoesOutUnderline direction="left">
+                @haidev
+              </ComesInGoesOutUnderline>
+            </Link>
+          </div>
+        </p>
+
+        <p>
+          Components and animations by{" "}
+          <div className="gap-2 flex">
+            <Link
+              href="https://chanhdai.com/components"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary"
+            >
+              <ComesInGoesOutUnderline direction="left">
+                @chanhdai
+              </ComesInGoesOutUnderline>
+            </Link>
+            <Link
+              href="https://www.fancycomponents.dev/docs/introduction"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary"
+            >
+              <ComesInGoesOutUnderline direction="left">
+                @fancycomponents
+              </ComesInGoesOutUnderline>
+            </Link>
+          </div>
+        </p>
+      </footer>
     </div>
   );
 }
