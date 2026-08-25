@@ -4,20 +4,21 @@ import { Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 
 const themes = [
-  { name: "light", icon: Sun },
-  { name: "dark", icon: Moon },
-  { name: "system", icon: Monitor },
+  { name: "light", icon: <Sun className="size-4" /> },
+  { name: "dark", icon: <Moon className="size-4" /> },
+  { name: "system", icon: <Monitor className="size-4" /> },
 ] as const;
 
 interface ModeTogglerProps {
   system?: boolean;
-  mode?: "full" | 'icon';
 }
 
-export function ModeToggler({ system = true, mode = 'icon' }: ModeTogglerProps) {
+export function ModeToggler({ system = true }: ModeTogglerProps) {
   const { theme, setTheme } = useTheme();
+   const [mounted, setMounted] = useState(false);
 
   const currentIndex = themes.findIndex((item) => item.name === theme);
   const currentTheme = themes[currentIndex] ?? themes[2];
@@ -33,16 +34,10 @@ export function ModeToggler({ system = true, mode = 'icon' }: ModeTogglerProps) 
     setTheme(themes[nextIndex].name);
   };
 
-  const Icon = currentTheme.icon;
+   // eslint-disable-next-line react-hooks/set-state-in-effect
+   useEffect(() => setMounted(true), []);
 
-  if (mode === "full") {
-    return (
-      <Button variant="outline" size="default" onClick={toggleTheme}>
-        <Icon className="size-4 mr-2" />
-        {currentTheme.name.charAt(0).toUpperCase() + currentTheme.name.slice(1)}
-      </Button>
-    );
-  }
+  if (!mounted) return null;
 
   return (
     <Button
@@ -52,7 +47,7 @@ export function ModeToggler({ system = true, mode = 'icon' }: ModeTogglerProps) 
       aria-label={`Current theme: ${currentTheme.name}`}
       className="text-xl"
     >
-      <Icon className="size-4" />
+      {currentTheme.icon}
     </Button>
   );
 }
