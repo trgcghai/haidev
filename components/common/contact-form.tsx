@@ -39,6 +39,7 @@ const ContactForm = () => {
         placeholder="Your name"
         value={formValues.name}
         onChange={handleInputChange}
+        className="text-base! placeholder:text-base! py-4!"
       />
       <Label htmlFor="email" className="text-sm font-medium">
         Email:
@@ -50,6 +51,7 @@ const ContactForm = () => {
         placeholder="your.email@example.com"
         value={formValues.email}
         onChange={handleInputChange}
+        className="text-base! placeholder:text-base! py-4!"
       />
       <Label htmlFor="message" className="text-sm font-medium">
         Message:
@@ -60,8 +62,9 @@ const ContactForm = () => {
         placeholder="Your message here..."
         value={formValues.message}
         onChange={handleInputChange}
+        className="text-base! placeholder:text-base!"
       />
-      <Button type="submit" className="mt-2" onClick={handleSubmit}>
+      <Button type="submit" className="mt-2 text-base" onClick={handleSubmit}>
         Send
       </Button>
     </div>

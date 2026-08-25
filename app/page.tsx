@@ -135,7 +135,7 @@ export default function Home() {
               <FolderRoot className="size-5" />
             </div>
             <div>
-              <p className="font-semibold text-lg">Manga Reader</p>
+              <p className="font-semibold text-lg text-primary">Manga Reader</p>
               <p>
                 A self-hosted web application for reading mangas by importing
                 your own files and managing your manga library. Features include
@@ -157,7 +157,7 @@ export default function Home() {
               <FolderRoot className="size-5" />
             </div>
             <div>
-              <p className="font-semibold text-lg">D4C Clothing Shop</p>
+              <p className="font-semibold text-lg text-primary">D4C Clothing Shop</p>
               <p>
                 An e-commerce web application is built to learn about
                 microservices architecture, ensure performance, security and
@@ -178,7 +178,7 @@ export default function Home() {
               <FolderRoot className="size-5" />
             </div>
             <div>
-              <p className="font-semibold text-lg">GOAT</p>
+              <p className="font-semibold text-lg text-primary">GOAT</p>
               <p>
                 A social media platform for recruiters and job seekers to
                 connect, featuring low latency real-time messaging, networking,
