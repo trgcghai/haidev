@@ -4,9 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { cn } from "@/lib/utils";
 import { useState } from "react";
 
 const ContactForm = () => {
+  const isMobile = useIsMobile()
   const [formValues, setFormValues] = useState({
     name: "",
     email: "",
@@ -39,7 +42,9 @@ const ContactForm = () => {
         placeholder="Your name"
         value={formValues.name}
         onChange={handleInputChange}
-        className="text-base! placeholder:text-base! py-4!"
+        className={cn(
+          !isMobile && "text-base! placeholder:text-base! py-4!",
+        )}
       />
       <Label htmlFor="email" className="text-sm font-medium">
         Email:
@@ -51,7 +56,9 @@ const ContactForm = () => {
         placeholder="your.email@example.com"
         value={formValues.email}
         onChange={handleInputChange}
-        className="text-base! placeholder:text-base! py-4!"
+        className={cn(
+          !isMobile && "text-base! placeholder:text-base! py-4!",
+        )}
       />
       <Label htmlFor="message" className="text-sm font-medium">
         Message:
@@ -62,9 +69,11 @@ const ContactForm = () => {
         placeholder="Your message here..."
         value={formValues.message}
         onChange={handleInputChange}
-        className="text-base! placeholder:text-base!"
+        className={cn(
+          !isMobile && "text-base! placeholder:text-base!"
+        )}
       />
-      <Button type="submit" className="mt-2 text-base" onClick={handleSubmit}>
+      <Button type="submit" className={cn("mt-2", !isMobile && "text-base")} onClick={handleSubmit}>
         Send
       </Button>
     </div>

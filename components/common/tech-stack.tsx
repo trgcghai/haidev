@@ -9,13 +9,13 @@ export function TechStack() {
         <div className="grid items-start gap-y-2 border-b border-line py-4 last:border-none sm:grid-cols-[var(--col-left-width)_1fr]">
           <div
             id="stack-programing"
-            className="pl-2 text-base/(--badge-height) text-secondary-foreground"
+            className="md:pl-2 text-base/(--badge-height) text-secondary-foreground"
           >
             Programing
           </div>
           <ul
             aria-labelledby="stack-programing"
-            className="flex flex-wrap gap-1.5 px-4"
+            className="flex flex-wrap gap-1.5 md:px-4"
           >
             <li className="flex">
               <p className="flex h-(--badge-height) items-center justify-center gap-1.25 rounded-full bg-zinc-50/80 px-2 font-mono text-xs text-foreground inset-ring-1 inset-ring-border dark:bg-zinc-900/80 [&_svg]:pointer-events-none [&_svg]:size-3.5 [&_svg]:shrink-0 [&_svg]:text-muted-foreground/80">
@@ -60,13 +60,13 @@ export function TechStack() {
         <div className="grid items-start gap-y-2 border-b border-line py-4 last:border-none sm:grid-cols-[var(--col-left-width)_1fr]">
           <div
             id="stack-frontend"
-            className="pl-2 text-base/(--badge-height) text-secondary-foreground"
+            className="md:pl-2 text-base/(--badge-height) text-secondary-foreground"
           >
             Frontend
           </div>
           <ul
             aria-labelledby="stack-frontend"
-            className="flex flex-wrap gap-1.5 px-4"
+            className="flex flex-wrap gap-1.5 md:px-4"
           >
             <li className="flex">
               <p className="flex h-(--badge-height) items-center justify-center gap-1.25 rounded-full bg-zinc-50/80 px-2 font-mono text-xs text-foreground inset-ring-1 inset-ring-border dark:bg-zinc-900/80 [&_svg]:pointer-events-none [&_svg]:size-3.5 [&_svg]:shrink-0 [&_svg]:text-muted-foreground/80">
@@ -158,13 +158,13 @@ export function TechStack() {
         <div className="grid items-start gap-y-2 border-b border-line py-4 last:border-none sm:grid-cols-[var(--col-left-width)_1fr]">
           <div
             id="stack-backend-database"
-            className="pl-2 text-base/(--badge-height) text-secondary-foreground"
+            className="md:pl-2 text-base/(--badge-height) text-secondary-foreground"
           >
             Backend & Database
           </div>
           <ul
             aria-labelledby="stack-backend-database"
-            className="flex flex-wrap gap-1.5 px-4"
+            className="flex flex-wrap gap-1.5 md:px-4"
           >
             <li className="flex">
               <p className="flex h-(--badge-height) items-center justify-center gap-1.25 rounded-full bg-zinc-50/80 px-2 font-mono text-xs text-foreground inset-ring-1 inset-ring-border dark:bg-zinc-900/80 [&_svg]:pointer-events-none [&_svg]:size-3.5 [&_svg]:shrink-0 [&_svg]:text-muted-foreground/80">
@@ -276,13 +276,13 @@ export function TechStack() {
         <div className="grid items-start gap-y-2 border-b border-line py-4 last:border-none sm:grid-cols-[var(--col-left-width)_1fr]">
           <div
             id="stack-workflow-ai"
-            className="pl-2 text-base/(--badge-height) text-secondary-foreground"
+            className="md:pl-2 text-base/(--badge-height) text-secondary-foreground"
           >
             Workflow & AI
           </div>
           <ul
             aria-labelledby="stack-workflow-ai"
-            className="flex flex-wrap gap-1.5 px-4"
+            className="flex flex-wrap gap-1.5 md:px-4"
           >
             <li className="flex">
               <p className="flex h-(--badge-height) items-center justify-center gap-1.25 rounded-full bg-zinc-50/80 px-2 font-mono text-xs text-foreground inset-ring-1 inset-ring-border dark:bg-zinc-900/80 [&_svg]:pointer-events-none [&_svg]:size-3.5 [&_svg]:shrink-0 [&_svg]:text-muted-foreground/80">

@@ -186,15 +186,15 @@ export default function Home() {
         </h2>
 
         <div className="space-y-2 mt-4">
-          <p>
+          <p className="text-secondary-foreground text-sm md:text-base">
             Feel free to reach out to me via email or connect with me on social
-            media. I am always open to new opportunities and collaborations.
+            media. I am always open to new opportunities and collaborations. Or just say hi!
           </p>
           <ContactForm />
         </div>
       </div>
 
-      <footer className="grid grid-cols-1 md:grid-cols-3 text-sm text-gray-600 mt-40 border-t pt-4">
+      <footer className="grid grid-cols-1 gap-4 md:grid-cols-3 text-sm text-gray-600 mt-40 border-t pt-4">
         <p>
           Inspired by{" "}
           <div className="gap-2 flex">
