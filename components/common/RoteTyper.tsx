@@ -2,7 +2,7 @@ import Typewriter from "@/components/fancy/text/typewriter";
 
 const RoleTyper = () => {
   return (
-    <p className="whitespace-pre-wrap text-secondary-foreground text-lg">
+    <p className="whitespace-pre-wrap text-secondary-foreground md:text-lg text-base text-center md:text-left">
       <span>{"I am a "}</span>
       <Typewriter
         text={[

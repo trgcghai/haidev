@@ -71,7 +71,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <TooltipProvider>
             {children}
           </TooltipProvider>
-          <div className="fixed top-1/2 left-0 z-50 -translate-y-1/2 p-2">
+          <div className="fixed top-1/2 left-0 z-50 -translate-y-1/2 p-2 hidden md:block">
             <LineNavProvider />
           </div>
         </ThemeProvider>

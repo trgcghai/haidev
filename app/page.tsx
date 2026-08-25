@@ -1,8 +1,7 @@
 import ContactForm from "@/components/common/contact-form";
+import Hero from "@/components/common/hero";
 import PersonalInformation from "@/components/common/personal-information";
-import RoleTyper from "@/components/common/RoteTyper";
 import { TechStack } from "@/components/common/tech-stack";
-import TryChangeTheme from "@/components/common/try-change-theme";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import ComesInGoesOutUnderline from "@/components/fancy/text/underline-comes-in-goes-out";
 import { BriefcaseBusiness, FolderRoot, GraduationCap } from "lucide-react";
@@ -12,40 +11,18 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="container max-w-7xl mt-8 space-y-8 mx-auto border rounded-sm p-4">
-      <div>
+      <div id="banner">
         <Image
           src="/avatar_2.png"
           alt="Cong Hai"
           width={2560}
           height={1440}
           loading="eager"
-          className="h-[500px] w-full object-cover rounded-xs"
+          className="md:h-[500px] w-full object-cover rounded-xs"
         />
       </div>
 
-      <div className="flex items-center gap-8 w-full">
-        <div className="relative">
-          <Image
-            src="/avatar_7.jpg"
-            alt="Cong Hai"
-            width={256}
-            height={256}
-            className="rounded-xs object-cover size-[256px] aspect-square"
-          />
-        </div>
-
-        <div className="space-y-4">
-          <h1 className="text-4xl font-bold" id="welcome">
-            <LetterSwapForward
-              label={"<h1> Welcome to Cong Hai's Portfolio </h1>"}
-              reverse={true}
-              className="text-4xl font-bold w-fit"
-            />
-          </h1>
-          <RoleTyper />
-          <TryChangeTheme />
-        </div>
-      </div>
+      <Hero />
 
       <PersonalInformation />
 
@@ -54,7 +31,7 @@ export default function Home() {
           <LetterSwapForward
             label="# Experience"
             reverse={true}
-            className="text-2xl font-semibold w-fit text-primary"
+            className="text-lg md:text-2xl font-semibold w-fit text-primary"
           />
         </h2>
 
@@ -82,7 +59,7 @@ export default function Home() {
           <LetterSwapForward
             label="# Education"
             reverse={true}
-            className="text-2xl font-semibold w-fit text-primary"
+            className="text-lg md:text-2xl font-semibold w-fit text-primary"
           />
         </h2>
 
@@ -111,7 +88,7 @@ export default function Home() {
           <LetterSwapForward
             label="# Stack"
             reverse={true}
-            className="text-2xl font-semibold w-fit text-primary"
+            className="text-lg md:text-2xl font-semibold w-fit text-primary"
           />
         </h2>
 
@@ -125,7 +102,7 @@ export default function Home() {
           <LetterSwapForward
             label="# Projects"
             reverse={true}
-            className="text-2xl font-semibold w-fit text-primary"
+            className="text-lg md:text-2xl font-semibold w-fit text-primary"
           />
         </h2>
 
@@ -157,7 +134,9 @@ export default function Home() {
               <FolderRoot className="size-5" />
             </div>
             <div>
-              <p className="font-semibold text-lg text-primary">D4C Clothing Shop</p>
+              <p className="font-semibold text-lg text-primary">
+                D4C Clothing Shop
+              </p>
               <p>
                 An e-commerce web application is built to learn about
                 microservices architecture, ensure performance, security and
@@ -202,7 +181,7 @@ export default function Home() {
           <LetterSwapForward
             label="# Contact"
             reverse={true}
-            className="text-2xl font-semibold w-fit text-primary"
+            className="text-lg md:text-2xl font-semibold w-fit text-primary"
           />
         </h2>
 
