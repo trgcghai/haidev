@@ -1,10 +1,11 @@
 import ContactForm from "@/components/common/contact-form";
 import Hero from "@/components/common/hero";
 import PersonalInformation from "@/components/common/personal-information";
+import Projects from "@/components/common/projects";
 import { TechStack } from "@/components/common/tech-stack";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import ComesInGoesOutUnderline from "@/components/fancy/text/underline-comes-in-goes-out";
-import { BriefcaseBusiness, FolderRoot, GraduationCap } from "lucide-react";
+import { BriefcaseBusiness, GraduationCap } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -106,77 +107,8 @@ export default function Home() {
           />
         </h2>
 
-        <div className="mt-4 grid gap-4 sm:gap-4 md:grid-cols-2 xl:grid-cols-3">
-          <div className="flex h-full items-start gap-3 rounded-sm text-sm text-secondary-foreground sm:p-4 sm:text-base">
-            <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line sm:size-9 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
-              <FolderRoot className="size-5" />
-            </div>
-            <div className="min-w-0 space-y-1">
-              <p className="wrap-break-word text-base font-semibold text-primary sm:text-lg">
-                Manga Reader
-              </p>
-              <p className="leading-relaxed">
-                A self-hosted web application for reading mangas by importing
-                your own files and managing your manga library. Features include
-                reading, bookmarking, tracking new chapters from external
-                sources...
-                <Link
-                  href="/projects#manga-reader"
-                  className="text-primary hover:underline"
-                >
-                  <ComesInGoesOutUnderline direction="left">
-                    See more
-                  </ComesInGoesOutUnderline>
-                </Link>
-              </p>
-            </div>
-          </div>
-          <div className="flex h-full items-start gap-3 rounded-sm text-sm text-secondary-foreground sm:p-4 sm:text-base">
-            <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line sm:size-9 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
-              <FolderRoot className="size-5" />
-            </div>
-            <div className="min-w-0 space-y-1">
-              <p className="wrap-break-word text-base font-semibold text-primary sm:text-lg">
-                D4C Clothing Shop
-              </p>
-              <p className="leading-relaxed">
-                An e-commerce web application is built to learn about
-                microservices architecture, ensure performance, security and
-                consistency in distributed systems...
-                <Link
-                  href="/projects#d4c-clothing-shop"
-                  className="text-primary hover:underline"
-                >
-                  <ComesInGoesOutUnderline direction="left">
-                    See more
-                  </ComesInGoesOutUnderline>
-                </Link>
-              </p>
-            </div>
-          </div>
-          <div className="flex h-full items-start gap-3 rounded-sm text-sm text-secondary-foreground sm:p-4 sm:text-base">
-            <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line sm:size-9 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
-              <FolderRoot className="size-5" />
-            </div>
-            <div className="min-w-0 space-y-1">
-              <p className="wrap-break-word text-base font-semibold text-primary sm:text-lg">
-                GOAT
-              </p>
-              <p className="leading-relaxed">
-                A social media platform for recruiters and job seekers to
-                connect, featuring low latency real-time messaging, networking,
-                and job posting functionalities...
-                <Link
-                  href="/projects#goat"
-                  className="text-primary hover:underline"
-                >
-                  <ComesInGoesOutUnderline direction="left">
-                    See more
-                  </ComesInGoesOutUnderline>
-                </Link>
-              </p>
-            </div>
-          </div>
+        <div className="mt-4 space-y-4">
+          <Projects />
         </div>
       </div>
 
@@ -199,10 +131,10 @@ export default function Home() {
         </div>
       </div>
 
-      <footer className="grid grid-cols-1 gap-4 md:grid-cols-3 text-sm text-gray-600 mt-40 border-t pt-4">
+      <footer className="grid grid-cols-1 gap-4 md:grid-cols-3 text-sm text-gray-600 mt-40 border-t pt-4 md:text-left text-center">
         <p>
           Inspired by{" "}
-          <div className="gap-2 flex">
+          <div className="gap-2 flex justify-center md:justify-start">
             <Link
               href="https://tiesen.id.vn/"
               target="_blank"
@@ -238,7 +170,7 @@ export default function Home() {
 
         <p>
           Designed and built by{" "}
-          <div>
+          <div className="gap-2 flex justify-center md:justify-start">
             <Link href="#" className="hover:text-primary">
               <ComesInGoesOutUnderline direction="left">
                 @haidev
@@ -249,7 +181,7 @@ export default function Home() {
 
         <p>
           Components and animations by{" "}
-          <div className="gap-2 flex">
+          <div className="gap-2 flex justify-center md:justify-start">
             <Link
               href="https://chanhdai.com/components"
               target="_blank"
