@@ -17,7 +17,7 @@ const Hero = () => {
           alt="Cong Hai"
           width={256}
           height={256}
-          className="rounded-xs object-cover size-[256px] aspect-square hidden md:block"
+          className="rounded-xs object-cover size-[256px] h-auto w-auto aspect-square hidden md:block"
         />
       </div>
 
