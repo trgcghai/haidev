@@ -35,17 +35,17 @@ export default function Home() {
           />
         </h2>
 
-        <div className="flex items-start gap-2 text-secondary-foreground mt-4">
-          <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
+        <div className="mt-4 flex items-start gap-3 rounded-sm text-sm text-secondary-foreground sm:p-4 sm:text-base">
+          <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line sm:size-9 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
             <BriefcaseBusiness className="size-5" />
           </div>
-          <div>
-            <p className="font-semibold text-lg text-gray-600">
+          <div className="min-w-0 space-y-1">
+            <p className="wrap-break-word text-base font-semibold text-gray-600 sm:text-lg">
               <span className="text-primary">Full-Stack Developer</span> at{" "}
               <span className="text-primary">TMA Solutions</span>
             </p>
             <p>12/2025 - 04/2026</p>
-            <p>
+            <p className="leading-relaxed">
               Developing features and maintaining web applications,
               collaborating with cross-functional teams to deliver high-quality
               software solutions.
@@ -63,12 +63,12 @@ export default function Home() {
           />
         </h2>
 
-        <div className="flex items-start gap-2 text-secondary-foreground mt-4">
+        <div className="mt-4 flex items-start gap-3 rounded-sm text-sm text-secondary-foreground sm:p-4 sm:text-base">
           <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
             <GraduationCap className="size-5" />
           </div>
           <div>
-            <p className="font-semibold text-gray-600 text-lg">
+            <p className="wrap-break-word text-base font-semibold text-gray-600 sm:text-lg">
               <span className="text-primary">
                 Information Technology, Software Engineering
               </span>{" "}
@@ -106,14 +106,16 @@ export default function Home() {
           />
         </h2>
 
-        <div className="mt-4 space-y-6">
-          <div className="flex items-start gap-2 text-secondary-foreground">
-            <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
+        <div className="mt-4 grid gap-4 sm:gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <div className="flex h-full items-start gap-3 rounded-sm text-sm text-secondary-foreground sm:p-4 sm:text-base">
+            <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line sm:size-9 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
               <FolderRoot className="size-5" />
             </div>
-            <div>
-              <p className="font-semibold text-lg text-primary">Manga Reader</p>
-              <p>
+            <div className="min-w-0 space-y-1">
+              <p className="wrap-break-word text-base font-semibold text-primary sm:text-lg">
+                Manga Reader
+              </p>
+              <p className="leading-relaxed">
                 A self-hosted web application for reading mangas by importing
                 your own files and managing your manga library. Features include
                 reading, bookmarking, tracking new chapters from external
@@ -129,15 +131,15 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="flex items-start gap-2 text-secondary-foreground">
-            <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
+          <div className="flex h-full items-start gap-3 rounded-sm text-sm text-secondary-foreground sm:p-4 sm:text-base">
+            <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line sm:size-9 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
               <FolderRoot className="size-5" />
             </div>
-            <div>
-              <p className="font-semibold text-lg text-primary">
+            <div className="min-w-0 space-y-1">
+              <p className="wrap-break-word text-base font-semibold text-primary sm:text-lg">
                 D4C Clothing Shop
               </p>
-              <p>
+              <p className="leading-relaxed">
                 An e-commerce web application is built to learn about
                 microservices architecture, ensure performance, security and
                 consistency in distributed systems...
@@ -152,13 +154,15 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="flex items-start gap-2 text-secondary-foreground">
-            <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
+          <div className="flex h-full items-start gap-3 rounded-sm text-sm text-secondary-foreground sm:p-4 sm:text-base">
+            <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line sm:size-9 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
               <FolderRoot className="size-5" />
             </div>
-            <div>
-              <p className="font-semibold text-lg text-primary">GOAT</p>
-              <p>
+            <div className="min-w-0 space-y-1">
+              <p className="wrap-break-word text-base font-semibold text-primary sm:text-lg">
+                GOAT
+              </p>
+              <p className="leading-relaxed">
                 A social media platform for recruiters and job seekers to
                 connect, featuring low latency real-time messaging, networking,
                 and job posting functionalities...
@@ -188,7 +192,8 @@ export default function Home() {
         <div className="space-y-2 mt-4">
           <p className="text-secondary-foreground text-sm md:text-base">
             Feel free to reach out to me via email or connect with me on social
-            media. I am always open to new opportunities and collaborations. Or just say hi!
+            media. I am always open to new opportunities and collaborations. Or
+            just say hi!
           </p>
           <ContactForm />
         </div>
