@@ -1,31 +1,20 @@
 "use client";
-
-import { LineNav } from "@/components/line-nav";
-import { useState } from "react";
-
-const ITEMS = [
-  { title: "Welcome", href: "#welcome" },
-  { title: "About me", href: "#about-me" },
-  { title: "Find me online", href: "#find-me-online" },
-  { title: "Experience", href: "#experience" },
-  { title: "Education", href: "#education" },
-  { title: "Stack", href: "#stack" },
-  { title: "Projects", href: "#projects" },
-  { title: "Contact", href: "#contact" },
-];
+import HomeLineNav from "@/components/common/home-line-nav";
+import ProjectLineNav from "@/components/common/project-line-nav";
+import { usePathname } from "next/navigation";
 
 const LineNavProvider = () => {
-  const [activeHref, setActiveHref] = useState("#welcome");
+  const name = usePathname();
 
-  return (
-    <LineNav
-      className="w-60"
-      items={ITEMS}
-      activeHref={activeHref}
-      scrollActiveIntoView={false}
-      onItemClick={(item) => setActiveHref(item.href)}
-    />
-  );
+  if (name.split('/')[1].endsWith('projects')) {
+    return <ProjectLineNav />
+  }
+
+  if (name.split('/')[1].endsWith('blogs')) {
+    return <p>Blog line nav</p>
+  }
+
+  return <HomeLineNav />
 };
 
 export default LineNavProvider;

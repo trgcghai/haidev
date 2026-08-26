@@ -1,234 +1,132 @@
 import ContactForm from "@/components/common/contact-form";
 import Hero from "@/components/common/hero";
-import { ModeToggler } from "@/components/common/mode-toggler";
 import PersonalInformation from "@/components/common/personal-information";
 import Projects from "@/components/common/projects";
 import { TechStack } from "@/components/common/tech-stack";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
-import ComesInGoesOutUnderline from "@/components/fancy/text/underline-comes-in-goes-out";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { BriefcaseBusiness, GraduationCap } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Home() {
   return (
     <>
-      <div className="container max-w-7xl mt-8 mx-auto border rounded-sm px-4 py-2 flex items-center justify-end-safe">
-        <div className="space-x-4">
-          <Button variant="ghost" size="sm">
-            <Link href="/blogs" className="hover:text-primary">
-              Blogs
-            </Link>
-          </Button>
-
-          <Button variant="ghost" size="sm">
-            <Link href="/projects" className="hover:text-primary">
-              Projects
-            </Link>
-          </Button>
-        </div>
-
-        <Separator orientation="vertical" className="mx-4" />
-
-        <ModeToggler />
+      <div id="banner">
+        <Image
+          src="/avatar_2.png"
+          alt="Cong Hai"
+          width={2560}
+          height={1440}
+          loading="eager"
+          className="md:h-[500px] w-full object-cover rounded-xs"
+        />
       </div>
 
-      <div className="container max-w-7xl mt-8 space-y-16 mx-auto border rounded-sm p-4">
-        <div id="banner">
-          <Image
-            src="/avatar_2.png"
-            alt="Cong Hai"
-            width={2560}
-            height={1440}
-            loading="eager"
-            className="md:h-[500px] w-full object-cover rounded-xs"
+      <Hero />
+
+      <PersonalInformation />
+
+      <div>
+        <h2 id="experience">
+          <LetterSwapForward
+            label="# Experience"
+            reverse={true}
+            className="text-lg md:text-2xl font-semibold w-fit text-primary"
           />
-        </div>
+        </h2>
 
-        <Hero />
-
-        <PersonalInformation />
-
-        <div>
-          <h2 id="experience">
-            <LetterSwapForward
-              label="# Experience"
-              reverse={true}
-              className="text-lg md:text-2xl font-semibold w-fit text-primary"
-            />
-          </h2>
-
-          <div className="mt-4 flex items-start gap-3 rounded-sm text-sm text-secondary-foreground sm:p-4 sm:text-base">
-            <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line sm:size-9 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
-              <BriefcaseBusiness className="size-5" />
-            </div>
-            <div className="min-w-0 space-y-1">
-              <p className="wrap-break-word text-base font-semibold text-gray-600 sm:text-lg">
-                <span className="text-primary">Full-Stack Developer</span> at{" "}
-                <span className="text-primary">TMA Solutions</span>
-              </p>
-              <p>12/2025 - 04/2026</p>
-              <p className="leading-relaxed">
-                Developing features and maintaining web applications,
-                collaborating with cross-functional teams to deliver
-                high-quality software solutions.
-              </p>
-            </div>
+        <div className="mt-4 flex items-start gap-3 rounded-sm text-sm text-secondary-foreground sm:p-4 sm:text-base">
+          <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line sm:size-9 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
+            <BriefcaseBusiness className="size-5" />
           </div>
-        </div>
-
-        <div>
-          <h2 id="education">
-            <LetterSwapForward
-              label="# Education"
-              reverse={true}
-              className="text-lg md:text-2xl font-semibold w-fit text-primary"
-            />
-          </h2>
-
-          <div className="mt-4 flex items-start gap-3 rounded-sm text-sm text-secondary-foreground sm:p-4 sm:text-base">
-            <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
-              <GraduationCap className="size-5" />
-            </div>
-            <div>
-              <p className="wrap-break-word text-base font-semibold text-gray-600 sm:text-lg">
-                <span className="text-primary">
-                  Information Technology, Software Engineering
-                </span>{" "}
-                at{" "}
-                <span className="text-primary">
-                  Industrial University of Ho Chi Minh City
-                </span>
-              </p>
-              <p>2022 - 2027 (Expected)</p>
-              <p>GPA: 3.59/4.0 (8.5/10)</p>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <h2 id="stack">
-            <LetterSwapForward
-              label="# Stack"
-              reverse={true}
-              className="text-lg md:text-2xl font-semibold w-fit text-primary"
-            />
-          </h2>
-
-          <div className="mt-4">
-            <TechStack />
-          </div>
-        </div>
-
-        <div>
-          <h2 id="projects">
-            <LetterSwapForward
-              label="# Projects"
-              reverse={true}
-              className="text-lg md:text-2xl font-semibold w-fit text-primary"
-            />
-          </h2>
-
-          <div className="mt-4 space-y-8">
-            <Projects />
-          </div>
-        </div>
-
-        <div>
-          <h2 id="contact">
-            <LetterSwapForward
-              label="# Contact"
-              reverse={true}
-              className="text-lg md:text-2xl font-semibold w-fit text-primary"
-            />
-          </h2>
-
-          <div className="space-y-2 mt-4">
-            <p className="text-secondary-foreground text-sm md:text-base mb-4">
-              Feel free to reach out to me via email or connect with me on
-              social media. I am always open to new opportunities and
-              collaborations. Or just say hi!
+          <div className="min-w-0 space-y-1">
+            <p className="wrap-break-word text-base font-semibold text-gray-600 sm:text-lg">
+              <span className="text-primary">Full-Stack Developer</span> at{" "}
+              <span className="text-primary">TMA Solutions</span>
             </p>
-            <ContactForm />
+            <p>12/2025 - 04/2026</p>
+            <p className="leading-relaxed">
+              Developing features and maintaining web applications,
+              collaborating with cross-functional teams to deliver high-quality
+              software solutions.
+            </p>
           </div>
         </div>
+      </div>
 
-        <footer className="grid grid-cols-1 gap-4 md:grid-cols-3 text-sm text-gray-600 mt-40 border-t pt-4 md:text-left text-center">
-          <div>
-            Inspired by{" "}
-            <div className="gap-2 flex justify-center md:justify-start">
-              <Link
-                href="https://tiesen.id.vn/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-primary"
-              >
-                <ComesInGoesOutUnderline direction="left">
-                  @tiesen243
-                </ComesInGoesOutUnderline>
-              </Link>
-              <Link
-                href="https://chanhdai.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-primary"
-              >
-                <ComesInGoesOutUnderline direction="left">
-                  @chanhdai
-                </ComesInGoesOutUnderline>
-              </Link>
-              <Link
-                href="https://atuandev.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-primary"
-              >
-                <ComesInGoesOutUnderline direction="left">
-                  @nguyenphananhtuan
-                </ComesInGoesOutUnderline>
-              </Link>
-            </div>
-          </div>
+      <div>
+        <h2 id="education">
+          <LetterSwapForward
+            label="# Education"
+            reverse={true}
+            className="text-lg md:text-2xl font-semibold w-fit text-primary"
+          />
+        </h2>
 
-          <div>
-            Designed and built by{" "}
-            <div className="gap-2 flex justify-center md:justify-start">
-              <Link href="#" className="hover:text-primary">
-                <ComesInGoesOutUnderline direction="left">
-                  @haidev
-                </ComesInGoesOutUnderline>
-              </Link>
-            </div>
+        <div className="mt-4 flex items-start gap-3 rounded-sm text-sm text-secondary-foreground sm:p-4 sm:text-base">
+          <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
+            <GraduationCap className="size-5" />
           </div>
+          <div>
+            <p className="wrap-break-word text-base font-semibold text-gray-600 sm:text-lg">
+              <span className="text-primary">
+                Information Technology, Software Engineering
+              </span>{" "}
+              at{" "}
+              <span className="text-primary">
+                Industrial University of Ho Chi Minh City
+              </span>
+            </p>
+            <p>2022 - 2027 (Expected)</p>
+            <p>GPA: 3.59/4.0 (8.5/10)</p>
+          </div>
+        </div>
+      </div>
 
-          <div>
-            Components and animations by{" "}
-            <div className="gap-2 flex justify-center md:justify-start">
-              <Link
-                href="https://chanhdai.com/components"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-primary"
-              >
-                <ComesInGoesOutUnderline direction="left">
-                  @chanhdai
-                </ComesInGoesOutUnderline>
-              </Link>
-              <Link
-                href="https://www.fancycomponents.dev/docs/introduction"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-primary"
-              >
-                <ComesInGoesOutUnderline direction="left">
-                  @fancycomponents
-                </ComesInGoesOutUnderline>
-              </Link>
-            </div>
-          </div>
-        </footer>
+      <div>
+        <h2 id="stack">
+          <LetterSwapForward
+            label="# Stack"
+            reverse={true}
+            className="text-lg md:text-2xl font-semibold w-fit text-primary"
+          />
+        </h2>
+
+        <div className="mt-4">
+          <TechStack />
+        </div>
+      </div>
+
+      <div>
+        <h2 id="projects">
+          <LetterSwapForward
+            label="# Projects"
+            reverse={true}
+            className="text-lg md:text-2xl font-semibold w-fit text-primary"
+          />
+        </h2>
+
+        <div className="mt-4 space-y-8">
+          <Projects />
+        </div>
+      </div>
+
+      <div>
+        <h2 id="contact">
+          <LetterSwapForward
+            label="# Contact"
+            reverse={true}
+            className="text-lg md:text-2xl font-semibold w-fit text-primary"
+          />
+        </h2>
+
+        <div className="space-y-2 mt-4">
+          <p className="text-secondary-foreground text-sm md:text-base mb-4">
+            Feel free to reach out to me via email or connect with me on social
+            media. I am always open to new opportunities and collaborations. Or
+            just say hi!
+          </p>
+          <ContactForm />
+        </div>
       </div>
     </>
   );
