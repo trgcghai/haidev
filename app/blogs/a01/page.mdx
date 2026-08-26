@@ -1,0 +1,58 @@
+# A01: Broken Access Control
+
+## Định nghĩa
+
+Là top 1 trong OWASP 2025, khái niệm này nói về việc truy cập và chỉnh sửa các tài nguyên trong hệ thống một cách bất hợp pháp. Xảy ra do việc hiện thực cơ chế phân quyền không rõ ràng và không đúng đắn.
+
+Hệ thống chỉ thực hiện cơ chế xác thực danh tính (authentication) mà không thực hiện xác thực quyền hạn (authorization) dẫn dến việc người dùng đã xác thực có thể làm thứ mà đáng lẽ không được phép làm.
+
+Việc không có cơ chế phân quyền này có thể xảy ra ở nhiều tầng trong hệ thống, từ UI tới API và DB.
+VD: trong cùng một group chat, không có cơ chế phân quyền nên member có thể kick admin ra khỏi group chat. Hoặc là chỉnh sửa tin nhắn của một người khác.
+
+## Nguyên nhân
+
+Không thực hiện cơ chế phân quyền (authorization) mà chỉ thực hiện cơ chế xác thực (authentication).
+
+Không áp dụng authorization ở một trong các tầng UI, API, DB.
+
+## Hậu quả
+
+Attackers có thể lợi dụng để thực hiện xem và chỉnh sửa các thông tin nhạy cảm của người dùng khác. Ảnh hưởng tới CIA của hệ thống và data.
+
+## Viễn cảnh tấn công
+
+#1 Thiếu hụt ở tầng UI: 
+
+Attackers ghi nhớ được URL truy cập của một roles nào đó. VD: 
+
+www.example.com/admin/dashboard 
+
+và truy cập vào url đó sau khi đã đăng nhập, việc thiếu hụt phân quyền khiến cho attackers có thể truy cập vào page và xem / chỉnh sửa dữ liệu trong dashboard
+
+#2 Thiếu hụt ở tầng API:
+
+Attackers biết được API path để thực hiện xem / chỉnh sửa dữ liệu. VD:
+
+```jsx
+DELETE api.example.com/users/{id}
+```
+
+và lợi dụng nó để xóa tài khoản của một user khác sau khi đã đăng nhập vào hệ thống
+
+#3 Thiếu hụt ở tầng DB:
+
+Khi thực hiện các hành động chỉnh sửa resources trong DB, cần kiểm tra về quyền sở hữu thì chỉ có chủ sở hữu đó mới được hành động hoặc tùy vào nghiệp vụ của hệ thống. VD:
+
+Tin nhắn của một người thì chỉ có người đó mới có thể xóa hoặc chỉnh sửa nội dung tin nhắn
+
+Việc áp dụng authorization ở UI và API có thể ngăn chặn các hình thức vượt quyền, nhưng không thể chặn truy cập trái phép với các resource của các users khác có cùng quyền hạn. Kiểm tra quyền sở hữu ở DB để ngăn chặn việc này.
+
+Attackers có thể lợi dụng cái này để chỉnh sửa resource thuộc về một users khác.
+
+## Cách phòng ngừa
+
+Tạo auth guard để ngăn chặn truy cập trái phép vào các UI không thuộc trong quyền hạn của mình
+
+Thực hiện authorization cho toàn bộ API cần thiết trong hệ thống
+
+Kiểm tra quyền sở hữu resources cho các API chỉnh sửa

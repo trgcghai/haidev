@@ -1,20 +1,23 @@
 "use client";
 import HomeLineNav from "@/components/common/home-line-nav";
-import ProjectLineNav from "@/components/common/project-line-nav";
 import { usePathname } from "next/navigation";
 
 const LineNavProvider = () => {
   const name = usePathname();
 
   if (name.split('/')[1].endsWith('projects')) {
-    return <ProjectLineNav />
+    return null;
   }
 
   if (name.split('/')[1].endsWith('blogs')) {
-    return <p>Blog line nav</p>
+    return null;
   }
 
-  return <HomeLineNav />
+  if (name.split('/')[1].length == 0) {
+    return <HomeLineNav />
+  }
+
+  return null;
 };
 
 export default LineNavProvider;
