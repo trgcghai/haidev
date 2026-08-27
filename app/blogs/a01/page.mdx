@@ -21,15 +21,15 @@ Attackers có thể lợi dụng để thực hiện xem và chỉnh sửa các 
 
 ## Viễn cảnh tấn công
 
-#1 Thiếu hụt ở tầng UI: 
+- 1 Thiếu hụt ở tầng UI:
 
-Attackers ghi nhớ được URL truy cập của một roles nào đó. VD: 
+Attackers ghi nhớ được URL truy cập của một roles nào đó. VD:
 
-www.example.com/admin/dashboard 
+[www.example.com/admin/dashboard]('www.example.com/admin/dashboard')
 
 và truy cập vào url đó sau khi đã đăng nhập, việc thiếu hụt phân quyền khiến cho attackers có thể truy cập vào page và xem / chỉnh sửa dữ liệu trong dashboard
 
-#2 Thiếu hụt ở tầng API:
+- 2 Thiếu hụt ở tầng API:
 
 Attackers biết được API path để thực hiện xem / chỉnh sửa dữ liệu. VD:
 
@@ -39,7 +39,7 @@ DELETE api.example.com/users/{id}
 
 và lợi dụng nó để xóa tài khoản của một user khác sau khi đã đăng nhập vào hệ thống
 
-#3 Thiếu hụt ở tầng DB:
+- 3 Thiếu hụt ở tầng DB:
 
 Khi thực hiện các hành động chỉnh sửa resources trong DB, cần kiểm tra về quyền sở hữu thì chỉ có chủ sở hữu đó mới được hành động hoặc tùy vào nghiệp vụ của hệ thống. VD:
 

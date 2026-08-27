@@ -45,7 +45,7 @@ const aboutMeData: AboutMeItem[] = [
   {
     id: 4,
     icon: <Link2 className="size-4" />,
-    text: "haidev.com",
+    text: "haidev.id.vn",
     canCopy: false,
     isLink: true,
   },
