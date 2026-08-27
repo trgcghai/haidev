@@ -5,12 +5,28 @@ import Hero from "@/components/common/hero";
 import PersonalInformation from "@/components/common/personal-information";
 import Projects from "@/components/common/projects";
 import Stack from "@/components/common/stack";
+import { Metadata } from "next";
 import Image from "next/image";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Portfolio - Công Hải",
+    description: "Welcome to my portfolio!",
+    alternates: {
+      canonical: `https://haidev.id.vn`,
+    },
+    openGraph: {
+      title: "Portfolio - Công Hải",
+      description: "Welcome to my portfolio!",
+      url: `https://haidev.id.vn`,
+    },
+  };
+}
 
 export default function Home() {
   return (
     <>
-      <div id="banner">
+      <section id="banner">
         <Image
           src="/avatar_2.png"
           alt="Cong Hai"
@@ -19,7 +35,7 @@ export default function Home() {
           loading="eager"
           className="md:h-[500px] w-full object-cover rounded-xs"
         />
-      </div>
+      </section>
 
       <Hero />
 

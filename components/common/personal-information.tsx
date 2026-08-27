@@ -105,7 +105,7 @@ const findMeOnlineData: FindMeOnlineItem[] = [
 
 const PersonalInformation = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <section className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
       <div className="space-y-4">
         <h2 id="about-me">
           <LetterSwapForward
@@ -189,7 +189,7 @@ const PersonalInformation = () => {
           );
         })}
       </div>
-    </div>
+    </section>
   );
 };
 
