@@ -3,16 +3,11 @@ import { Metadata } from "next";
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Projects - Công Hải",
-    description:
-      "Explore my projects that showcase my skills and expertise in web development.",
     alternates: {
-      canonical: `https://haidev.id.vn`,
+      canonical: `https://haidev.id.vn/projects`,
     },
     openGraph: {
-      title: "Portfolio - Công Hải",
-      description:
-        "Explore my projects that showcase my skills and expertise in web development.",
-      url: `https://haidev.id.vn`,
+      url: `https://haidev.id.vn/projects`,
     },
   };
 }

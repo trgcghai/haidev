@@ -12,7 +12,7 @@ const TryChangeTheme = ({ className }: { className?: string }) => {
 
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
+  if (!mounted) return <p className="text-transparent">Loading...</p>;
 
   return (
     <section

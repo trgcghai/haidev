@@ -13,9 +13,11 @@ export const CONFIG = {
       "Full-Stack Developer",
       "Web Developer Enthusiast",
     ],
+    description:
+      "Portfolio of Công Hải, a passionate software engineer specializing in full-stack web development. Explore my projects, skills, and experience in building modern web applications.",
     address: "Ho Chi Minh City, Vietnam",
     website: "https://haidev.id.vn",
-    avatar: "/avatar_7.png",
+    avatar: "/avatar_7.jpg",
     banner: "/avatar_2.png",
     keywords: [
       "Công Hải",
@@ -57,13 +59,15 @@ export const CONFIG = {
     },
     phone: "+84 909 739 714",
     email: "conghai.tpma@gmail.com",
+    locale: "vi-VN",
+    timezone: "Asia/Ho_Chi_Minh",
   },
   SITE: {
     name: "Công Hải",
     title: "Portfolio - Công Hải",
     url: "https://haidev.id.vn",
     description:
-      "Personal portfolio of Công Hải, a passionate software engineer.",
+      "Portfolio of Công Hải, a passionate software engineer specializing in full-stack web development. Explore my projects, skills, and experience in building modern web applications.",
     applicationName: "Công Hải Portfolio",
     alternates: {
       canonical: "https://haidev.id.vn",

@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
 import LineNavProvider from "@/components/providers/line-nav-provider";
+import { CONFIG } from "@/constants/config";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -21,74 +22,33 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio - Công Hải",
-  description:
-    "Portfolio of Công Hải, a passionate software engineer specializing in full-stack web development. Explore my projects, skills, and experience in building modern web applications.",
-  applicationName: "Công Hải Portfolio",
-  keywords: [
-    "Công Hải",
-    "Software Engineer",
-    "Portfolio",
-    "Full-Stack Developer",
-    "Web Development",
-    "React",
-    "Next.js",
-    "JavaScript",
-    "TypeScript",
-    "Frontend Development",
-    "Backend Development",
-    "Node.js",
-    "Express",
-    "MongoDB",
-    "SQL",
-    "HTML",
-    "CSS",
-    "Tailwind CSS",
-    "GitHub",
-    "Projects",
-  ],
-  alternates: {
-    canonical: "https://haidev.id.vn",
-  },
-  icons: {
-    icon: [
-      {
-        url: "/favicon.png",
-        type: "image/png",
-        sizes: "any",
-      },
-      {
-        url: "/favicon16.png",
-        type: "image/png",
-        sizes: "16x16",
-      },
-      {
-        url: "/favicon32.png",
-        type: "image/png",
-        sizes: "32x32",
-      },
-      {
-        url: "/favicon48.png",
-        type: "image/png",
-        sizes: "48x48",
-      },
-      {
-        url: "/favicon180.png",
-        type: "image/png",
-        sizes: "180x180",
-      },
-      {
-        url: "/favicon192.png",
-        type: "image/png",
-        sizes: "192x192",
-      },
-      {
-        url: "/favicon512.png",
-        type: "image/png",
-        sizes: "512x512",
-      },
+  title: CONFIG.USER.displayName,
+  description: CONFIG.USER.description,
+  applicationName: CONFIG.SITE.title,
+  metadataBase: new URL(CONFIG.SITE.url),
+  openGraph: {
+    title: CONFIG.SITE.title,
+    description: CONFIG.USER.description,
+    url: CONFIG.SITE.url,
+    authors: CONFIG.SITE.authors.map((author) => author.name),
+    countryName: CONFIG.USER.address,
+    firstName: CONFIG.USER.firstName,
+    lastName: CONFIG.USER.lastName,
+    username: CONFIG.USER.username,
+    siteName: CONFIG.SITE.name,
+    locale: CONFIG.USER.locale,
+    publishedTime: new Date().toISOString(),
+    images: [
+      new URL(CONFIG.USER.avatar, CONFIG.SITE.url).toString(),
+      new URL(CONFIG.USER.banner, CONFIG.SITE.url).toString(),
     ],
   },
+  keywords: CONFIG.USER.keywords,
+  alternates: CONFIG.SITE.alternates,
+  icons: CONFIG.SITE.icons,
+  authors: CONFIG.SITE.authors,
+  creator: CONFIG.SITE.creator,
+  publisher: CONFIG.SITE.publisher,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
