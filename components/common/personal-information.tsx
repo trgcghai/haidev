@@ -119,7 +119,7 @@ const PersonalInformation = () => {
           return (
             <div
               key={item.id}
-              className="flex items-center gap-2 text-secondary-foreground"
+              className="flex items-center gap-2 text-secondary-foreground group"
             >
               <div className="flex size-6 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
                 {item.icon}
@@ -165,7 +165,10 @@ const PersonalInformation = () => {
 
         {findMeOnlineData.map((item) => {
           return (
-            <div key={item.id} className="flex items-center gap-2 text-secondary-foreground">
+            <div
+              key={item.id}
+              className="flex items-center gap-2 text-secondary-foreground"
+            >
               <div className="flex size-6 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
                 {item.icon}
               </div>
@@ -175,7 +178,10 @@ const PersonalInformation = () => {
                 rel={item.isExternal ? "noopener noreferrer" : undefined}
                 className="hover:text-primary"
               >
-                <ComesInGoesOutUnderline direction="left" className="text-sm md:text-base">
+                <ComesInGoesOutUnderline
+                  direction="left"
+                  className="text-sm md:text-base"
+                >
                   {item.text}
                 </ComesInGoesOutUnderline>
               </Link>
