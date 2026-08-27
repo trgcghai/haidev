@@ -35,7 +35,7 @@ const Header = () => {
               Portfolio
             </Link>
           </Button>
-          
+
           <Button variant="ghost" size="sm">
             <Link href="/blogs" className="hover:text-primary">
               Blogs
@@ -51,7 +51,7 @@ const Header = () => {
 
         <Separator orientation="vertical" className="mx-4 hidden md:block" />
 
-        <ModeToggler />
+        <ModeToggler system={false} />
       </div>
     </div>
   );

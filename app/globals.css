@@ -209,3 +209,17 @@
   scrollbar-width: thin;
   scrollbar-color: var(--color-border) transparent;
 }
+
+@keyframes stripes {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 40px 40px;
+  }
+}
+
+.animate-stripes {
+  animation: stripes 1s linear infinite;
+}

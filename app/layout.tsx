@@ -21,12 +21,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cong Hai - Software Engineer",
+  title: "Portfolio - Công Hải",
   description:
-    "Personal website and portfolio of Cong Hai, a software engineer, full-stack developer.",
-  applicationName: "Cong Hai Portfolio",
+    "Portfolio of Công Hải, a passionate software engineer specializing in full-stack web development. Explore my projects, skills, and experience in building modern web applications.",
+  applicationName: "Công Hải Portfolio",
   keywords: [
-    "Cong Hai",
+    "Công Hải",
     "Software Engineer",
     "Portfolio",
     "Full-Stack Developer",
@@ -47,6 +47,48 @@ export const metadata: Metadata = {
     "GitHub",
     "Projects",
   ],
+  alternates: {
+    canonical: "https://haidev.id.vn",
+  },
+  icons: {
+    icon: [
+      {
+        url: "/favicon.png",
+        type: "image/png",
+        sizes: "any",
+      },
+      {
+        url: "/favicon16.png",
+        type: "image/png",
+        sizes: "16x16",
+      },
+      {
+        url: "/favicon32.png",
+        type: "image/png",
+        sizes: "32x32",
+      },
+      {
+        url: "/favicon48.png",
+        type: "image/png",
+        sizes: "48x48",
+      },
+      {
+        url: "/favicon180.png",
+        type: "image/png",
+        sizes: "180x180",
+      },
+      {
+        url: "/favicon192.png",
+        type: "image/png",
+        sizes: "192x192",
+      },
+      {
+        url: "/favicon512.png",
+        type: "image/png",
+        sizes: "512x512",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -63,7 +105,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       )}
       suppressHydrationWarning
     >
-      <body className="relative flex min-h-dvh flex-col bg-background px-4 pb-8 font-mono text-foreground antialiased bg-[linear-gradient(135deg,color-mix(in_oklch,var(--color-border)_var(--alpha),transparent)_25%,transparent_25%,transparent_50%,color-mix(in_oklch,var(--color-border)_var(--alpha),transparent)_50%,color-mix(in_oklch,var(--color-border)_var(--alpha),transparent)_75%,transparent_75%,transparent)] bg-size-[40px_40px] [--alpha:24%] dark:[--alpha:12%]">
+      <body
+        className="
+          relative flex min-h-dvh flex-col
+          bg-background px-4 pb-8
+          font-mono text-foreground antialiased
+          bg-[linear-gradient(135deg,color-mix(in_oklch,var(--color-border)_var(--alpha),transparent)_25%,transparent_25%,transparent_50%,color-mix(in_oklch,var(--color-border)_var(--alpha),transparent)_50%,color-mix(in_oklch,var(--color-border)_var(--alpha),transparent)_75%,transparent_75%)]
+          bg-size-[40px_40px]
+          [--alpha:24%]
+          dark:[--alpha:12%]
+          animate-stripes
+        "
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
