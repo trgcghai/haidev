@@ -2,6 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Home, Mail } from "lucide-react";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Page Not Found",
+}
+
 export default function NotFound() {
   return (
     <div className="relative h-[330px] md:h-[500px]">
