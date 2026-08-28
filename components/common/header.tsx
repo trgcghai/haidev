@@ -14,7 +14,7 @@ const Header = () => {
 
   return (
     <div
-      className="container max-w-7xl mt-8 mx-auto border rounded-sm px-4 py-2 flex items-center justify-end md:justify-between"
+      className="container max-w-7xl mt-8 mx-auto border rounded-sm px-4 py-2 flex items-center justify-end md:justify-between bg-neutral-50/40 dark:bg-neutral-800/40"
       onMouseEnter={() => ref.current?.start()}
     >
       <div className="hidden md:block">

@@ -4,6 +4,16 @@ import createMDX from "@next/mdx";
 const nextConfig: NextConfig = {
   /* config options here */
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "assets.chanhdai.com",
+        port: "",
+        pathname: "/registry/images/**",
+      },
+    ],
+  },
 };
 
 const withMDX = createMDX({

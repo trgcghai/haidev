@@ -2,7 +2,7 @@ import Education from "@/components/common/education";
 import Experience from "@/components/common/experience";
 import Hero from "@/components/common/hero";
 import PersonalInformation from "@/components/common/personal-information";
-import Projects from "@/components/common/projects";
+import FeaturedProjects from "@/components/common/featured-projects";
 import Stack from "@/components/common/stack";
 import { JsonLdScript } from "@/components/JsonLdScript";
 import { CONFIG } from "@/constants/config";
@@ -33,7 +33,7 @@ export default function Home() {
 
       <Stack />
 
-      <Projects />
+      <FeaturedProjects />
 
       <JsonLdScript data={rootPageJsonLd} />
     </>

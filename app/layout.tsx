@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   title: CONFIG.USER.displayName,
   description: CONFIG.USER.description,
   applicationName: CONFIG.SITE.title,
-  metadataBase: new URL(CONFIG.SITE.url),
+  metadataBase: new URL(CONFIG.SITE.url!),
   openGraph: {
     title: CONFIG.SITE.title,
     description: CONFIG.USER.description,
@@ -88,7 +88,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <TooltipProvider>
             <Header />
 
-            <div className="container max-w-7xl mt-8 space-y-16 mx-auto border rounded-sm p-4">
+            <div className="container max-w-7xl mt-8 space-y-16 mx-auto border rounded-sm p-4 bg-neutral-50/40 dark:bg-neutral-800/40">
               {children}
 
               <Footer />

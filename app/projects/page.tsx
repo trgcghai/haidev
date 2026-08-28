@@ -1,15 +1,11 @@
 import { Metadata } from "next";
-import { Folder } from "lucide-react";
-import {
-  Empty,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from "@/components/ui/empty";
-import { ROUTES } from "@/constants/config";
+import { CONFIG, ROUTES } from "@/constants/config";
 import { JsonLdScript } from "@/components/JsonLdScript";
 import { projectsPageJsonLd } from "@/constants/json-ld";
+import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
+import { ProjectItem } from "@/components/projects/project-item";
+import { generateSlugFromTitle } from "@/lib/slug";
+import { PROJECTS } from "@/constants/projects";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -25,24 +21,36 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const ProjectsListPage = () => {
   return (
-    <div>
-      <Empty>
-        <EmptyHeader>
-          <EmptyMedia variant="icon">
-            <Folder />
-          </EmptyMedia>
-          <EmptyTitle className="text-lg font-semibold">
-            No Projects Yet
-          </EmptyTitle>
-          <EmptyDescription className="text-sm text-muted-foreground">
-            I am currently working on this section, and it will be available
-            soon. Stay tuned for updates!
-          </EmptyDescription>
-        </EmptyHeader>
-      </Empty>
+    <>
+      <div className="">
+        <h2 id="projects">
+          <LetterSwapForward
+            label="# Projects"
+            reverse={true}
+            className="text-lg md:text-2xl font-semibold w-fit text-primary"
+          />
+        </h2>
+        <p className="my-4 text-base text-balance text-muted-foreground">
+          Check out my projects, where I showcase my work and demonstrate my
+          skills in web development, design, and problem-solving.
+        </p>
+        <div className="screen-line-top relative py-4 -mx-1">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+            {PROJECTS.map((project) => (
+              <ProjectItem
+                key={project.id}
+                coverUrl={null}
+                description={project.description}
+                url={`${CONFIG.SITE.url}/${ROUTES.PROJECTS.slug}/${generateSlugFromTitle(project.name)}`}
+                name={project.name}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
 
       <JsonLdScript data={projectsPageJsonLd} />
-    </div>
+    </>
   );
 };
 

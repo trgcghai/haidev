@@ -13,9 +13,11 @@ const UserAvatar = () => {
   useEffect(() => setMounted(true), []);
   if (!mounted) {
     return (
-      <div className="relative flex items-center justify-center">
-        <div className="size-[256px] aspect-square hidden md:block rounded-xs bg-gray-200 dark:bg-gray-700 animate-pulse text-center dark:ring-0 ring-1 ring-primary">
-          Alt Image for {CONFIG.USER.displayName}
+      <div className="relative flex items-center justify-center size-[256px]">
+        <div className="size-[256px] aspect-square hidden md:block rounded-xs bg-gray-200 dark:bg-muted animate-pulse text-center dark:ring-0 ring-1 ring-primary">
+          <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            Alt Image for {CONFIG.USER.displayName}
+          </p>
         </div>
       </div>
     );
