@@ -28,7 +28,7 @@ export function TryThisArrow({
           fontSize="50.40000000000001px"
           fill={color}
           textAnchor="start"
-          style={{ "whiteSpace": "pre" } as React.CSSProperties}
+          style={{ whiteSpace: "pre" } as React.CSSProperties}
           direction="ltr"
           dominantBaseline="alphabetic"
         >

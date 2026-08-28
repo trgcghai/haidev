@@ -1,7 +1,7 @@
 "use client";
 
 import { ModeToggler } from "@/components/common/mode-toggler";
-import { TryThisArrow } from "@/components/common/TryThisArrow";
+import { TryThisArrow } from "@/components/common/try-this-arrow";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
@@ -26,7 +26,7 @@ const TryChangeTheme = ({ className }: { className?: string }) => {
       <section
         className={cn(
           "absolute -top-5 scale-40 hidden md:block",
-          theme == "light" ? "right-[300px]" : "right-[310px]",
+          theme == "light" ? "left-12" : "left-10",
         )}
       >
         <TryThisArrow color="var(--secondary-foreground)" />

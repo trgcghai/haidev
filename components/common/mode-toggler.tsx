@@ -5,6 +5,11 @@ import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const themes = [
   { name: "light", icon: <Sun className="size-4" /> },
@@ -18,7 +23,7 @@ interface ModeTogglerProps {
 
 export function ModeToggler({ system = true }: ModeTogglerProps) {
   const { theme, setTheme } = useTheme();
-   const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   const currentIndex = themes.findIndex((item) => item.name === theme);
   const currentTheme = themes[currentIndex] ?? themes[2];
@@ -34,20 +39,29 @@ export function ModeToggler({ system = true }: ModeTogglerProps) {
     setTheme(themes[nextIndex].name);
   };
 
-   // eslint-disable-next-line react-hooks/set-state-in-effect
-   useEffect(() => setMounted(true), []);
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => setMounted(true), []);
 
   if (!mounted) return null;
 
   return (
-    <Button
-      variant="outline"
-      size="icon"
-      onClick={toggleTheme}
-      aria-label={`Current theme: ${currentTheme.name}`}
-      className="text-xl"
-    >
-      {currentTheme.icon}
-    </Button>
+    <Tooltip>
+      <TooltipTrigger
+        render={
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={toggleTheme}
+            aria-label={`Current theme: ${currentTheme.name}`}
+            className="text-xl"
+          >
+            {currentTheme.icon}
+          </Button>
+        }
+      />
+      <TooltipContent>
+        <p>{currentTheme.name}</p>
+      </TooltipContent>
+    </Tooltip>
   );
 }
