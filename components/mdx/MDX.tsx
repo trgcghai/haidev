@@ -54,11 +54,11 @@ export const components: MDXRemoteProps["components"] = {
   },
   pre: (props) => (
     <pre
-      className="rounded-xl border bg-gray-300 dark:bg-gray-900 dark:text-secondary-foreground p-4 mb-6"
+      className="rounded-xl border bg-gray-300 dark:bg-gray-900 dark:text-secondary-foreground p-4 mb-6 overflow-x-scroll w-full"
       {...props}
     />
   ),
-  code: Code,
+  code: (props) => <Code className="overflow-x-scroll" {...props} />,
   table: Table,
   thead: TableHeader,
   tbody: TableBody,
