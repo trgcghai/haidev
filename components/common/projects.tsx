@@ -20,21 +20,21 @@ const PROJECTS: Project[] = [
     name: "Manga Reader",
     description:
       "A self-hosted web application for reading mangas by importing your own files and managing your manga library.",
-    link: "/projects#manga-reader",
+    link: "/projects/manga-reader",
   },
   {
     id: 2,
     name: "D4C Clothing Shop",
     description:
       "An e-commerce web application is built to learn about microservices architecture, ensure performance, security and consistency in distributed systems.",
-    link: "/projects#d4c-clothing-shop",
+    link: "/projects/d4c-clothing-shop",
   },
   {
     id: 3,
     name: "GOAT",
     description:
       "A social media platform for recruiters and job seekers to connect, featuring low latency real-time messaging, networking, and job posting functionalities.",
-    link: "/projects#goat",
+    link: "/projects/goat",
   },
 ];
 
