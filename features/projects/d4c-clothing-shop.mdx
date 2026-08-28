@@ -1,0 +1,104 @@
+---
+title: "D4C Clothing Shop"
+description: "Introduction to the D4C Clothing Shop microservices e-commerce platform."
+featured: true
+createdAt: "2026-08-28"
+updatedAt: "2026-08-28"
+---
+
+# D4C Clothing Shop
+
+## Overview
+
+D4C Clothing Shop is a microservices-based e-commerce platform for clothing retail. The project combines a React frontend, a Spring Cloud API Gateway, Eureka service discovery, Java Spring Boot services, Node.js services, and supporting infrastructure for persistence, messaging, caching, and search.
+
+The system is designed to run locally with Docker Compose, while each service can also be developed independently. Client-facing traffic goes through the API Gateway at `http://localhost:8080/api/**`, and services register with Eureka for service discovery.
+
+## Features
+
+- Product browsing and product data management.
+- User authentication and user profile APIs.
+- Cart, order, and payment service boundaries for checkout workflows.
+- Notification delivery through RabbitMQ-backed messaging.
+- Recommendation and AI service integration for personalized shopping experiences.
+- Search service support with Typesense and Elasticsearch-related infrastructure.
+- Centralized routing through Spring Cloud Gateway.
+- Service discovery through Eureka.
+- Docker Compose orchestration for local full-stack development.
+
+## Stack
+
+- Frontend: React 19, TypeScript, Vite, Tailwind CSS, shadcn/ui, Radix UI, Zustand, TanStack Query.
+- API Gateway: Spring Cloud Gateway.
+- Service Registry: Spring Boot Eureka Discovery Server.
+- Java services: Spring Boot 3.x, Java 21, Maven or Gradle depending on the service.
+- Node.js services: Express.js with ES modules.
+- Databases and storage: MariaDB, Redis, AWS DynamoDB, AWS S3.
+- Messaging: RabbitMQ.
+- Search: Typesense, Elasticsearch, Kibana.
+- Containerization: Docker and Docker Compose.
+
+## Architecture
+
+The application is organized as a microservices monorepo. The frontend calls the API Gateway, and the gateway routes `/api/**` requests to service instances discovered through Eureka.
+
+Core application services include:
+
+- `UserService`: authentication and user management.
+- `ProductService`: product, category, variant, and media-related APIs.
+- `CartService`: shopping cart operations with Redis support.
+- `OrderService`: order lifecycle management.
+- `PaymentService`: payment processing integration.
+- `NotificationService`: notification handling with RabbitMQ.
+- `RecommendationService`: product recommendation APIs.
+- `AIService`: AI-assisted application features.
+- `SearchService`: search indexing and query support.
+
+Infrastructure services include MariaDB, Redis, RabbitMQ, Elasticsearch, Kibana, and Typesense. The root `docker-compose.yml` is the source of truth for local orchestration.
+
+## How to run
+
+Run the full stack in Docker:
+
+```bash
+docker compose up --build -d
+```
+
+Run the development stack with frontend and selected Node.js hot reload support plus Java debug ports:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+```
+
+Stop the stack:
+
+```bash
+docker compose down
+```
+
+Useful local URLs:
+
+- Frontend: `http://localhost:5173`
+- API Gateway: `http://localhost:8080`
+- Eureka Dashboard: `http://localhost:8761`
+- RabbitMQ Management UI: `http://localhost:15672`
+- Kibana: `http://localhost:5601`
+- Elasticsearch: `http://localhost:9200`
+- Typesense: `http://localhost:8108`
+
+Quick verification after startup:
+
+```bash
+docker compose ps
+curl http://localhost:8761
+curl http://localhost:8080/actuator/health
+curl http://localhost:8080/api/products
+```
+
+## Contributors
+
+- Truong Cong Hai - 22692311
+- Dang Tran Tan Phat - 22649051
+- Huynh Anh Hung - 22645171
+- Le Huynh Cong Tiep - 22692271
+- Le Minh Tuan - 22697621

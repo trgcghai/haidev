@@ -1,0 +1,91 @@
+---
+title: "Goat Job Hunter Project Introduction"
+description: "Overview, features, stack, architecture, run instructions, and contributor information for the Goat job hunting platform."
+featured: true
+createdAt: "2026-08-28"
+updatedAt: "2026-08-28"
+---
+
+## Overview
+
+Goat Job Hunter is a job search and recruitment platform built for applicants, recruiters, companies, and administrators. The workspace contains a Spring Boot backend API, a Next.js web frontend, and an Expo React Native mobile frontend.
+
+The platform supports the main job marketplace flow: users can browse jobs and companies, manage profiles and resumes, apply for roles, communicate through chat, schedule interviews, and use supporting social and AI-assisted features.
+
+## Features
+
+- Job browsing, filtering, and job detail pages.
+- Company discovery and company profile pages.
+- Applicant profile, resume, and saved/applied job management.
+- Recruiter and company registration flows.
+- Authentication, OTP, password reset, and role-based access areas.
+- Admin dashboard for accounts, roles, permissions, jobs, blogs, skills, and careers.
+- Chat, messaging, presence, friendship, notifications, and social hub features.
+- Interview support with real-time and video-call integrations.
+- AI chat and assistant-oriented backend endpoints.
+- Blog, legal, and community policy content areas.
+- Cross-platform mobile app for job, company, chat, call, blog, invite, and profile flows.
+
+## Stack
+
+- Backend: Java 21, Spring Boot 3.5, Spring Security, Spring Data JPA, WebSocket, Validation, Mail, Actuator, Thymeleaf, OpenAPI, Liquibase, Redis, PostgreSQL, AWS SDK, Cloudinary, Google GenAI, Agora token support.
+- Web frontend: Next.js 16, React 19, TypeScript, Tailwind CSS 4, Radix UI, Ant Design, Redux Toolkit, Redux Persist, React Hook Form, Zod, Axios, STOMP/SockJS, Agora RTC Web SDK, Recharts, Framer Motion.
+- Mobile frontend: Expo 54, React Native 0.81, React 19, Expo Router, TypeScript, Redux Toolkit, Redux Persist, React Hook Form, Zod, Axios, STOMP/SockJS, React Native Agora, React Native Paper, Reanimated, Gesture Handler.
+- Tooling: Gradle Kotlin DSL, npm, ESLint, Jest for the mobile project, Dockerfile for backend packaging.
+
+## Architecture
+
+The project is organized as three main applications:
+
+- `DHKTPM18CTT_Nhom07_WebsiteTimKiemViecLam`: Spring Boot backend service. It exposes REST APIs and WebSocket endpoints, manages domain logic, persistence, security, notifications, chat, interview, AI, and integration services.
+- `DHKTPM18CTT_Nhom07_WebsiteTimKiemViecLam_Fe`: Next.js web application. It provides public job discovery, authentication, applicant workflows, recruiter/company flows, chat, AI chat, social features, and admin screens.
+- `Goat-JobHunter-Mobile-FE`: Expo React Native mobile application. It provides mobile access to job search, company pages, chat, calls, blog, invites, authentication, and profile features.
+
+At runtime, the web and mobile clients communicate with the backend API over HTTP through Axios-based service layers. Real-time experiences use WebSocket/STOMP and SockJS. Video or voice call flows use Agora integrations, while persistence and infrastructure-facing concerns are handled by PostgreSQL, Redis, Liquibase migrations, Cloudinary, AWS services, and mail delivery.
+
+## How to run
+
+Backend:
+
+```bash
+cd DHKTPM18CTT_Nhom07_WebsiteTimKiemViecLam
+./gradlew bootRun
+```
+
+On Windows PowerShell or Command Prompt:
+
+```bash
+cd DHKTPM18CTT_Nhom07_WebsiteTimKiemViecLam
+gradlew.bat bootRun
+```
+
+Web frontend:
+
+```bash
+cd DHKTPM18CTT_Nhom07_WebsiteTimKiemViecLam_Fe
+npm install
+npm run dev
+```
+
+Open `http://localhost:3000` after the web development server starts.
+
+Mobile frontend:
+
+```bash
+cd Goat-JobHunter-Mobile-FE
+npm install
+npm run start
+```
+
+Use Expo to open the app on Android, iOS, or web. Native Android builds can be started with:
+
+```bash
+npm run android
+```
+
+Before running the full system, configure each app's required environment variables for API URLs, database, Redis, mail, Cloudinary, AWS, Agora, and other integration credentials.
+
+## Contributors
+
+- DHKTPM18CTT Nhom07 project team.
+- Backend, web frontend, and mobile frontend contributors for the Goat Job Hunter platform.
