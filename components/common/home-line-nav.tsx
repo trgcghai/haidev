@@ -1,4 +1,4 @@
-import { LineNav } from "@/components/line-nav";
+import { LineNav } from "@/components/common/line-nav";
 import { useState } from "react";
 
 const ITEMS = [
@@ -9,7 +9,6 @@ const ITEMS = [
   { title: "Education", href: "#education" },
   { title: "Stack", href: "#stack" },
   { title: "Projects", href: "#projects" },
-  { title: "Contact", href: "#contact" },
 ];
 
 const HomeLineNav = () => {

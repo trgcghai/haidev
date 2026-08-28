@@ -1,35 +1,35 @@
-"use client"
+"use client";
 
-import { memo, useEffect, useRef } from "react"
-import { motion } from "motion/react"
+import { memo, useEffect, useRef } from "react";
+import { motion } from "motion/react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 const lineVariants = {
   normal: { width: 15 },
   active: { width: 20 },
   hover: { width: 20 },
-}
+};
 
 export type LineNavItem = {
-  title: string
-  href: string
-}
+  title: string;
+  href: string;
+};
 
 export type LineNavProps = {
-  className?: string
+  className?: string;
   /** @fumadocsHref #linenavitem */
-  items: LineNavItem[]
+  items: LineNavItem[];
   /** Href of the active item. */
-  activeHref?: string
+  activeHref?: string;
   /** Scroll the active item into view on mount. */
-  scrollActiveIntoView?: boolean
+  scrollActiveIntoView?: boolean;
   /** Called when an item is clicked. */
   onItemClick?: (
     item: LineNavItem,
-    event: React.MouseEvent<HTMLAnchorElement>
-  ) => void
-}
+    event: React.MouseEvent<HTMLAnchorElement>,
+  ) => void;
+};
 
 export function LineNav({
   className,
@@ -38,13 +38,13 @@ export function LineNav({
   scrollActiveIntoView = true,
   onItemClick,
 }: LineNavProps) {
-  const activeItemRef = useRef<HTMLAnchorElement | null>(null)
+  const activeItemRef = useRef<HTMLAnchorElement | null>(null);
 
   useEffect(() => {
     if (scrollActiveIntoView) {
-      activeItemRef.current?.scrollIntoView({ block: "center" })
+      activeItemRef.current?.scrollIntoView({ block: "center" });
     }
-  }, [scrollActiveIntoView])
+  }, [scrollActiveIntoView]);
 
   return (
     <nav
@@ -56,7 +56,7 @@ export function LineNav({
       }
     >
       {items.map((item, index) => {
-        const isActive = item.href === activeHref
+        const isActive = item.href === activeHref;
 
         return (
           <LineNavItem
@@ -70,10 +70,10 @@ export function LineNav({
               onItemClick ? (event) => onItemClick(item, event) : undefined
             }
           />
-        )
+        );
       })}
     </nav>
-  )
+  );
 }
 
 const LineNavItem = memo(function LineNavItem({
@@ -84,12 +84,12 @@ const LineNavItem = memo(function LineNavItem({
   isLast = false,
   onClick,
 }: {
-  ref?: React.Ref<HTMLAnchorElement>
-  title: string
-  href: string
-  active?: boolean
-  isLast?: boolean
-  onClick?: React.MouseEventHandler<HTMLAnchorElement>
+  ref?: React.Ref<HTMLAnchorElement>;
+  title: string;
+  href: string;
+  active?: boolean;
+  isLast?: boolean;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }) {
   return (
     <>
@@ -125,5 +125,5 @@ const LineNavItem = memo(function LineNavItem({
         </>
       )}
     </>
-  )
-})
+  );
+});

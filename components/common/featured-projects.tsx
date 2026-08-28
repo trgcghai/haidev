@@ -1,17 +1,13 @@
-"use client";
-
 import ComesInGoesOutUnderline from "@/components/fancy/text/underline-comes-in-goes-out";
 import { FolderRoot } from "lucide-react";
 import Link from "next/link";
 import { truncate } from "lodash";
-import { useIsMobile } from "@/hooks/use-mobile";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
-import { CONFIG, ROUTES } from "@/constants/config";
-import { generateSlugFromTitle } from "@/lib/slug";
-import { PROJECTS } from "@/constants/projects";
+import { ROUTES } from "@/constants/config";
+import { getFeaturedProjects } from "@/lib/documents";
 
 const FeaturedProjects = () => {
-  const isMobile = useIsMobile();
+  const featuredProjects = getFeaturedProjects();
 
   return (
     <div>
@@ -24,10 +20,10 @@ const FeaturedProjects = () => {
       </h2>
 
       <div className="mt-4 space-y-8">
-        {PROJECTS.map((project) => {
+        {featuredProjects.map((project) => {
           return (
             <div
-              key={project.id}
+              key={project.slug}
               className="flex h-full items-start gap-3 rounded-sm text-sm text-secondary-foreground sm:text-base"
             >
               <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line sm:size-9 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
@@ -35,14 +31,12 @@ const FeaturedProjects = () => {
               </div>
               <div className="min-w-0 space-y-1">
                 <p className="wrap-break-word text-base font-semibold text-primary sm:text-lg">
-                  {project.name}
+                  {project.metadata.title}
                 </p>
                 <p className="leading-relaxed">
-                  {isMobile
-                    ? truncate(project.description, { length: 90 })
-                    : project.description + ".."}
+                  {truncate(project.metadata.description, { length: 110 })}
                   <Link
-                    href={`${CONFIG.SITE.url}/${ROUTES.PROJECTS.slug}/${generateSlugFromTitle(project.name)}`}
+                    href={`/${ROUTES.PROJECTS.slug}/${project.slug}`}
                     className="text-primary hover:underline"
                   >
                     <ComesInGoesOutUnderline direction="left">

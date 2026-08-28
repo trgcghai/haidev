@@ -1,27 +1,76 @@
 import { Metadata } from "next";
-import { CONFIG, ROUTES } from "@/constants/config";
-import { JsonLdScript } from "@/components/JsonLdScript";
-import { blogsPageJsonLd } from "@/constants/json-ld";
-import { ArticleItem } from "@/components/blogs/article-item";
+import { ROUTES } from "@/constants/config";
+import {
+  jsonLdBreadcrumbList,
+  JsonLdScript,
+} from "@/components/providers/JsonLdScript";
+import { JSON_LD_ID } from "@/constants/json-ld";
+import { BlogItem } from "@/components/blogs/blog-item";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
-import { generateSlugFromTitle } from "@/lib/slug";
-import { ARTICLES } from "@/constants/blogs";
+import { getBlogPosts } from "@/lib/documents";
+import { Blog, WithContext } from "schema-dts";
+import { absoluteUrl } from "@/lib/utils";
+import { Doc } from "@/types/document";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Blogs - Công Hải",
+    description:
+      "Explore my blogs, where I share my thoughts, experiences, and insights on various topics.",
     alternates: {
       canonical: ROUTES.BLOGS.url,
     },
     openGraph: {
       url: ROUTES.BLOGS.url,
+      type: "website",
     },
   };
 }
 
+function getBlogJsonLd(posts: Doc[]): WithContext<Blog> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": absoluteUrl("/blog"),
+    name: "Blogs - Công Hải",
+    description:
+      "Explore my blogs, where I share my thoughts, experiences, and insights on various topics.",
+    url: absoluteUrl("/blog"),
+    isPartOf: { "@id": JSON_LD_ID.website },
+    mainEntityOfPage: {
+      "@id": JSON_LD_ID.website,
+    },
+    blogPost: posts.map((post) => ({
+      "@type": "BlogPosting",
+      "@id": absoluteUrl(`/blog/${post.slug}`),
+      headline: post.metadata.title,
+      url: absoluteUrl(`/blog/${post.slug}`),
+      datePublished: new Date(post.metadata.createdAt).toISOString(),
+      description: post.metadata.description,
+    })),
+  };
+}
+
 const BlogListPage = () => {
+  const blogs = getBlogPosts();
+
   return (
     <>
+      <JsonLdScript data={getBlogJsonLd(blogs)} />
+
+      <JsonLdScript
+        data={jsonLdBreadcrumbList([
+          {
+            name: "Home",
+            href: "/",
+          },
+          {
+            name: "Blog",
+            href: "/blog",
+          },
+        ])}
+      />
+
       <div className="">
         <h2 id="blogs">
           <LetterSwapForward
@@ -36,20 +85,18 @@ const BlogListPage = () => {
         </p>
         <div className="screen-line-top relative py-4 -mx-1">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {ARTICLES.map((article) => (
-              <ArticleItem
-                key={article.id}
-                url={`${CONFIG.SITE.url}/${ROUTES.BLOGS.slug}/${generateSlugFromTitle(article.title)}`}
-                title={article.title}
-                coverUrl={article.coverUrl}
-                createdAt={article.createdAt}
+            {blogs.map((blog) => (
+              <BlogItem
+                key={blog.slug}
+                url={`/${ROUTES.BLOGS.slug}/${blog.slug}`}
+                title={blog.metadata.title}
+                coverUrl={blog.metadata.image}
+                createdAt={blog.metadata.createdAt}
               />
             ))}
           </div>
         </div>
       </div>
-
-      <JsonLdScript data={blogsPageJsonLd} />
     </>
   );
 };
