@@ -81,7 +81,11 @@ export function getBlogPosts() {
   return getDocsByCategory(BLOGS_CATEGORY);
 }
 
-/** Component docs — docs under the `components/` content folder. */
-export function getComponentDocs() {
+/** Project docs — docs under the `projects/` content folder. */
+export function getProjectPosts() {
   return getDocsByCategory(PROJECTS_CATEGORY);
+}
+
+export function getFeaturedProjects() {
+  return getProjectPosts().filter((doc) => doc.metadata.featured);
 }

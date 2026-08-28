@@ -10,6 +10,7 @@ import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim"
 import { getBlogPosts } from "@/lib/documents";
 import { Blog, WithContext } from "schema-dts";
 import { absoluteUrl } from "@/lib/utils";
+import { Doc } from "@/types/document";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -26,9 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-function getBlogJsonLd(
-  posts: { slug: string; metadata: { title: string; createdAt: string } }[],
-): WithContext<Blog> {
+function getBlogJsonLd(posts: Doc[]): WithContext<Blog> {
   return {
     "@context": "https://schema.org",
     "@type": "Blog",
@@ -47,6 +46,7 @@ function getBlogJsonLd(
       headline: post.metadata.title,
       url: absoluteUrl(`/blog/${post.slug}`),
       datePublished: new Date(post.metadata.createdAt).toISOString(),
+      description: post.metadata.description,
     })),
   };
 }

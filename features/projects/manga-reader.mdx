@@ -1,0 +1,72 @@
+---
+title: "Manga Reader Introduction"
+description: "A high-level introduction to the local-first Manga Reader project, its goals, architecture, and development workflow."
+featured: true
+createdAt: "2026-08-28"
+updatedAt: "2026-08-28"
+---
+
+# Manga Reader
+
+Manga Reader is a full-stack, offline-focused application for organizing and reading a personal manga library. The project is designed for local use, with the user's manga files kept under their own control rather than synced to a cloud service.
+
+## Project Goals
+
+The main goal is to provide a reliable local reading experience for manga collections. The application should make it easy to discover library content, browse series and chapters, open pages quickly, and preserve reading progress across sessions.
+
+Key product principles:
+
+- Keep the app local-only by default.
+- Avoid authentication, telemetry, cloud sync, or internet-backed behavior unless the product scope changes.
+- Keep user manga files outside the repository.
+- Prefer predictable metadata and file discovery workflows over opaque imports.
+
+## Architecture Overview
+
+The repository is split into a backend API, a frontend web app, and a Docker Compose environment for local development.
+
+| Area                 | Purpose                                      |
+| -------------------- | -------------------------------------------- |
+| `backend/`           | NestJS and TypeScript API server.            |
+| `frontend/`          | TanStack Start, Vite, and React application. |
+| `docker-compose.yml` | Local full-stack development entrypoint.     |
+| `docs/`              | Project documentation and supporting notes.  |
+| `tasks/`             | Planning and implementation task records.    |
+
+## Backend
+
+The backend lives in `backend/` and uses NestJS with TypeScript. It is the API layer for future library scanning, metadata parsing, reader progress, and storage integrations.
+
+At this stage, the backend is still close to a starter NestJS application. The local Compose setup includes supporting services for future work, but the application code does not depend on every service yet.
+
+## Frontend
+
+The frontend lives in `frontend/` and uses TanStack Start with Vite and React. It is responsible for the reading interface, library browsing flows, route structure, and user-facing interactions.
+
+Route definitions are kept under `frontend/src/routes/`. The generated route tree at `frontend/src/routeTree.gen.ts` should be regenerated with the route generation command rather than edited by hand.
+
+## Local Development
+
+The recommended way to start the full stack is Docker Compose:
+
+```bash
+docker compose up --build
+```
+
+This starts the local development environment with hot reload enabled for the backend and frontend. Manual development is also supported from each package directory with the relevant `npm` scripts.
+
+## Development Priorities
+
+Near-term development should focus on small, fixture-backed improvements that make the manga library more useful and dependable.
+
+Good candidates include:
+
+- File discovery for local manga folders and archives.
+- Metadata parsing for series, chapters, language, and translator information.
+- Reader progress persistence.
+- Fast library browsing and chapter navigation.
+- Tests for file layouts, metadata edge cases, and reading-state behavior.
+
+## Scope Boundaries
+
+Manga Reader is intended to stay local-first. Features that require remote accounts, centralized hosting, telemetry, cloud sync, or internet-backed catalogs should be treated as out of scope unless the project direction explicitly changes.

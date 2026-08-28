@@ -7,9 +7,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { TOCItemType } from "@/types/fumadocs-core";
 
-const BlogToc = ({ items }: { items: LineNavItem[] }) => {
-  const [activeHref, setActiveHref] = useState<string>(items[0]?.href);
+const Toc = ({ items }: { items: TOCItemType[] }) => {
+  const [activeHref, setActiveHref] = useState<string>(items[0].url);
   return (
     <>
       <Accordion defaultValue={["toc"]}>
@@ -19,7 +20,14 @@ const BlogToc = ({ items }: { items: LineNavItem[] }) => {
           </AccordionTrigger>
           <AccordionContent className="[&_span]:text-base [&_a]:no-underline [&_a]:underline-offset-0 [&_a]:hover:text-foreground">
             <LineNav
-              items={items}
+              items={items.map(
+                (item) =>
+                  ({
+                    href: `${item.url}`,
+                    label: item.title,
+                    title: item.title,
+                  }) as LineNavItem,
+              )}
               activeHref={activeHref}
               scrollActiveIntoView={false}
               onItemClick={(item) => setActiveHref(item.href)}
@@ -31,4 +39,4 @@ const BlogToc = ({ items }: { items: LineNavItem[] }) => {
   );
 };
 
-export default BlogToc;
+export default Toc;

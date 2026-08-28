@@ -12,6 +12,7 @@ import { Heading } from "@/components/ui/heading";
 import { Code } from "@/components/ui/typography";
 import Link from "next/link";
 import { remarkHeading } from "fumadocs-core/mdx-plugins";
+import remarkGfm from "remark-gfm";
 
 export const components: MDXRemoteProps["components"] = {
   h1: (props: React.ComponentProps<"h1">) => (
@@ -33,7 +34,7 @@ export const components: MDXRemoteProps["components"] = {
     <Heading as="h6" className="text-sm font-semibold mb-2" {...props} />
   ),
   p: (props) => (
-    <p className="md:text-base text-secondary-foreground mb-4" {...props}>
+    <p className="md:text-base text-secondary-foreground/80 mb-6" {...props}>
       {props.children}
     </p>
   ),
@@ -53,7 +54,7 @@ export const components: MDXRemoteProps["components"] = {
   },
   pre: (props) => (
     <pre
-      className="rounded-xl border bg-gray-300 dark:bg-gray-900 dark:text-secondary-foreground p-4 mb-2"
+      className="rounded-xl border bg-gray-300 dark:bg-gray-900 dark:text-secondary-foreground p-4 mb-6"
       {...props}
     />
   ),
@@ -62,22 +63,34 @@ export const components: MDXRemoteProps["components"] = {
   thead: TableHeader,
   tbody: TableBody,
   tr: TableRow,
-  th: TableHead,
-  td: TableCell,
+  th: (props) => (
+    <TableHead {...props}>
+      <p className="text-secondary-foreground font-semibold md:text-base">
+        {props.children}
+      </p>
+    </TableHead>
+  ),
+  td: (props) => (
+    <TableCell {...props}>
+      <p className="text-secondary-foreground/80 md:text-base">
+        {props.children}
+      </p>
+    </TableCell>
+  ),
   a: (props) => (
     <Link
       {...props}
       className="hover:text-primary hover:underline underline-offset-2"
     />
   ),
-  ul: (props) => <ul className="list-disc list-inside mb-2" {...props} />,
-  ol: (props) => <ol className="list-decimal list-inside mb-2" {...props} />,
-  li: (props) => <li className="text-secondary-foreground mb-1" {...props} />,
+  ul: (props) => <ul className="list-disc list-inside mb-6" {...props} />,
+  ol: (props) => <ol className="list-decimal list-inside mb-6" {...props} />,
+  li: (props) => <li className="text-secondary-foreground mb-2" {...props} />,
 };
 
 const options: MDXRemoteProps["options"] = {
   mdxOptions: {
-    remarkPlugins: [remarkHeading],
+    remarkPlugins: [remarkGfm, remarkHeading],
   },
 };
 

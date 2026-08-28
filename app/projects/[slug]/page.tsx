@@ -1,31 +1,30 @@
+import Toc from "@/components/common/toc";
+import MDX from "@/components/mdx/MDX";
 import {
   jsonLdBreadcrumbList,
   JsonLdScript,
 } from "@/components/providers/JsonLdScript";
-import MDX from "@/components/mdx/MDX";
+import { Button } from "@/components/ui/button";
 import { JSON_LD_ID } from "@/constants/json-ld";
-import { getBlogPosts, getDocBySlug } from "@/lib/documents";
+import { getDocBySlug, getProjectPosts } from "@/lib/documents";
 import { absoluteUrl } from "@/lib/utils";
 import { Doc } from "@/types/document";
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { BlogPosting, WithContext } from "schema-dts";
-import { getTableOfContents } from "fumadocs-core/content/toc";
 import { format } from "date-fns";
-import Toc from "@/components/common/toc";
-import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { getTableOfContents } from "fumadocs-core/content/toc";
 import { ArrowLeftIcon } from "lucide-react";
+import { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { CollectionPage, WithContext } from "schema-dts";
 
 export async function generateStaticParams() {
-  const docs = getBlogPosts();
+  const docs = getProjectPosts();
   return docs.map((doc) => ({ slug: doc.slug }));
 }
 
 export async function generateMetadata({
   params,
-}: PageProps<"/blogs/[slug]">): Promise<Metadata> {
+}: PageProps<"/projects/[slug]">): Promise<Metadata> {
   const slug = (await params).slug;
   const doc = getDocBySlug(slug);
 
@@ -35,7 +34,7 @@ export async function generateMetadata({
 
   const { title, description, createdAt, updatedAt } = doc.metadata;
 
-  const postUrl = `/blogs/${doc.slug}`;
+  const postUrl = `/projects/${doc.slug}`;
 
   return {
     title,
@@ -52,31 +51,30 @@ export async function generateMetadata({
   };
 }
 
-function getPageJsonLd(doc: Doc): WithContext<BlogPosting> {
-  const postUrl = `/blog/${doc.slug}`;
+function getPageJsonLd(doc: Doc): WithContext<CollectionPage> {
+  const projectUrl = `/projects/${doc.slug}`;
 
   return {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "@id": absoluteUrl(postUrl),
-    headline: doc.metadata.title,
+    "@type": "CollectionPage",
+    "@id": absoluteUrl(projectUrl),
+    name: doc.metadata.title,
     description: doc.metadata.description,
-    image: doc.metadata.image,
-    url: absoluteUrl(postUrl),
+    url: absoluteUrl(projectUrl),
     datePublished: new Date(doc.metadata.createdAt).toISOString(),
     dateModified: new Date(doc.metadata.updatedAt).toISOString(),
     author: { "@id": JSON_LD_ID.person },
-    mainEntityOfPage: absoluteUrl(postUrl),
+    mainEntityOfPage: absoluteUrl(projectUrl),
     isPartOf: {
-      "@type": "Blog",
-      "@id": absoluteUrl("/blog"),
-      name: "Blog",
-      url: absoluteUrl("/blog"),
+      "@type": "CollectionPage",
+      "@id": absoluteUrl("/projects"),
+      name: "projects",
+      url: absoluteUrl("/projects"),
     },
   };
 }
 
-const Page = async ({ params }: PageProps<"/blogs/[slug]">) => {
+const Page = async ({ params }: PageProps<"/projects/[slug]">) => {
   const slug = (await params).slug;
   const doc = getDocBySlug(slug);
 
@@ -97,12 +95,12 @@ const Page = async ({ params }: PageProps<"/blogs/[slug]">) => {
             href: "/",
           },
           {
-            name: "Blog",
-            href: "/blog",
+            name: "Projects",
+            href: "/projects",
           },
           {
             name: doc.metadata.title,
-            href: `/blog/${slug}`,
+            href: `/projects/${slug}`,
           },
         ])}
       />
@@ -114,9 +112,9 @@ const Page = async ({ params }: PageProps<"/blogs/[slug]">) => {
           size="sm"
           nativeButton={false}
           render={
-            <Link href="/blogs">
+            <Link href="/projects">
               <ArrowLeftIcon />
-              Back to Blogs
+              Back to Projects
             </Link>
           }
         />
@@ -129,8 +127,6 @@ const Page = async ({ params }: PageProps<"/blogs/[slug]">) => {
         >
           {doc.metadata.title}
         </h1>
-
-        <Separator />
 
         <p className="text-base text-muted-foreground">
           {doc.metadata.description}
