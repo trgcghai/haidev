@@ -4,13 +4,14 @@ import createMDX from "@next/mdx";
 const nextConfig: NextConfig = {
   /* config options here */
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  transpilePackages: ["next-mdx-remote"],
   images: {
     remotePatterns: [
       {
         protocol: "https",
         hostname: "assets.chanhdai.com",
         port: "",
-        pathname: "/registry/images/**",
+        pathname: "/**/*",
       },
     ],
   },

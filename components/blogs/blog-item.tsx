@@ -3,20 +3,16 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { ImageIcon } from "lucide-react";
 
-export type ArticleItemProps = {
+export type BlogItemProps = {
   url: string;
   title: string;
-  coverUrl: string;
+  coverUrl: string | null | undefined;
   createdAt: string;
 };
 
-export function ArticleItem({
-  url,
-  title,
-  coverUrl,
-  createdAt,
-}: ArticleItemProps) {
+export function BlogItem({ url, title, coverUrl, createdAt }: BlogItemProps) {
   return (
     <Link
       href={url}
@@ -28,14 +24,21 @@ export function ArticleItem({
       )}
     >
       <div className="relative aspect-video">
-        <Image
-          src={coverUrl}
-          alt={title}
-          className="size-full rounded-xl object-cover"
-          fill
-          sizes="auto"
-          loading="eager"
-        />
+        {coverUrl && (
+          <Image
+            src={coverUrl}
+            alt={title}
+            className="size-full rounded-xl object-cover"
+            fill
+            sizes="auto"
+            loading="eager"
+          />
+        )}
+        {!coverUrl && (
+          <div className="flex h-full w-full items-center justify-center rounded-xl bg-muted text-muted-foreground">
+            <ImageIcon className="size-8" />
+          </div>
+        )}
         <div className="pointer-events-none absolute inset-0 rounded-xl inset-ring-1 inset-ring-black/10 dark:inset-ring-white/10" />
       </div>
 
