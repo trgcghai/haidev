@@ -21,7 +21,7 @@ export const personJsonLd: Person = {
   identifier: CONFIG.USER.username,
   image: CONFIG.USER.avatar,
   url: CONFIG.SITE.url,
-  sameAs: SOCIAL_LINKS.map((link) => link.href),
+  sameAs: SOCIAL_LINKS.filter((link) => link.sameAs).map((link) => link.href),
 };
 
 export const websiteJsonLd: WithContext<WebSite> = {

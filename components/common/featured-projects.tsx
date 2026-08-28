@@ -6,39 +6,11 @@ import Link from "next/link";
 import { truncate } from "lodash";
 import { useIsMobile } from "@/hooks/use-mobile";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
+import { CONFIG, ROUTES } from "@/constants/config";
+import { generateSlugFromTitle } from "@/lib/slug";
+import { PROJECTS } from "@/constants/projects";
 
-interface Project {
-  id: number;
-  name: string;
-  description: string;
-  link: string;
-}
-
-const PROJECTS: Project[] = [
-  {
-    id: 1,
-    name: "Manga Reader",
-    description:
-      "A self-hosted web application for reading mangas by importing your own files and managing your manga library.",
-    link: "/projects/manga-reader",
-  },
-  {
-    id: 2,
-    name: "D4C Clothing Shop",
-    description:
-      "An e-commerce web application is built to learn about microservices architecture, ensure performance, security and consistency in distributed systems.",
-    link: "/projects/d4c-clothing-shop",
-  },
-  {
-    id: 3,
-    name: "GOAT",
-    description:
-      "A social media platform for recruiters and job seekers to connect, featuring low latency real-time messaging, networking, and job posting functionalities.",
-    link: "/projects/goat",
-  },
-];
-
-const Projects = () => {
+const FeaturedProjects = () => {
   const isMobile = useIsMobile();
 
   return (
@@ -70,7 +42,7 @@ const Projects = () => {
                     ? truncate(project.description, { length: 90 })
                     : project.description + ".."}
                   <Link
-                    href={project.link}
+                    href={`${CONFIG.SITE.url}/${ROUTES.PROJECTS.slug}/${generateSlugFromTitle(project.name)}`}
                     className="text-primary hover:underline"
                   >
                     <ComesInGoesOutUnderline direction="left">
@@ -87,4 +59,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default FeaturedProjects;

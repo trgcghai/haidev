@@ -16,7 +16,7 @@ export const CONFIG = {
     description:
       "Portfolio of Công Hải, a passionate software engineer specializing in full-stack web development. Explore my projects, skills, and experience in building modern web applications.",
     address: "Ho Chi Minh City, Vietnam",
-    website: "https://haidev.id.vn",
+    website: process.env.NEXT_PUBLIC_APP_URL,
     avatar: "/avatar_7.jpg",
     banner: "/avatar_2.png",
     keywords: [
@@ -40,21 +40,25 @@ export const CONFIG = {
         title: "GitHub",
         handle: "trgcghai",
         href: "https://github.com/trgcghai",
+        sameAs: true,
       },
       linkedin: {
         title: "LinkedIn",
         handle: "Truong Cong Hai",
         href: "https://www.linkedin.com/in/truong-cong-hai/",
+        sameAs: true,
       },
       youtube: {
         title: "YouTube",
         handle: "haitruongcong916",
         href: "https://www.youtube.com/@haitruongcong916",
+        sameAs: true,
       },
       website: {
         title: "Website",
         handle: "haidev.id.vn",
-        href: "https://haidev.id.vn",
+        href: process.env.NEXT_PUBLIC_APP_URL,
+        sameAs: true,
       },
     },
     phone: "+84 909 739 714",
@@ -65,12 +69,12 @@ export const CONFIG = {
   SITE: {
     name: "Công Hải",
     title: "Portfolio - Công Hải",
-    url: "https://haidev.id.vn",
+    url: process.env.NEXT_PUBLIC_APP_URL,
     description:
       "Portfolio of Công Hải, a passionate software engineer specializing in full-stack web development. Explore my projects, skills, and experience in building modern web applications.",
     applicationName: "Công Hải Portfolio",
     alternates: {
-      canonical: "https://haidev.id.vn",
+      canonical: process.env.NEXT_PUBLIC_APP_URL,
     },
     icons: {
       icon: [
@@ -113,7 +117,7 @@ export const CONFIG = {
     },
     creator: "Công Hải",
     publisher: "Công Hải",
-    authors: [{ name: "Công Hải", url: "https://haidev.id.vn" }],
+    authors: [{ name: "Công Hải", url: process.env.NEXT_PUBLIC_APP_URL }],
     routes: [
       {
         url: "/",
@@ -156,6 +160,17 @@ export const ROUTES = {
   PROJECTS: getRoute("projects"),
 };
 
-export const SOCIAL_LINKS = Object.entries(CONFIG.USER.socials).map(
-  ([k, v]) => ({ name: k, ...v }),
-);
+export type SocialName = keyof typeof CONFIG.USER.socials;
+
+export type SocialProfile = {
+  title: string;
+  handle: string;
+  href: string;
+  sameAs?: boolean;
+};
+
+export type SocialLink = SocialProfile & { name: SocialName };
+
+export const SOCIAL_LINKS: SocialLink[] = (
+  Object.entries(CONFIG.USER.socials) as [SocialName, SocialProfile][]
+).map(([name, profile]) => ({ name, ...profile }));
