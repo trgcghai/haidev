@@ -137,31 +137,25 @@ export const CONFIG = {
   },
 };
 
+const getRoute = (slug: string) => {
+  const result = CONFIG.SITE.routes.find((route) => route.slug === slug);
+  if (!result) {
+    return {
+      url: "/",
+      slug: "home",
+      title: "Home",
+      description: "Welcome to Công Hải's personal portfolio website.",
+    };
+  }
+  return result;
+};
+
+export const ROUTES = {
+  HOME: getRoute("home"),
+  BLOGS: getRoute("blogs"),
+  PROJECTS: getRoute("projects"),
+};
+
 export const SOCIAL_LINKS = Object.entries(CONFIG.USER.socials).map(
   ([k, v]) => ({ name: k, ...v }),
 );
-
-export const JSON_LD_ID = {
-  website: `${CONFIG.SITE.url}/#website`,
-  person: `${CONFIG.SITE.url}/#person`,
-} as const;
-
-export const personJsonLd = {
-  "@type": "Person",
-  "@id": JSON_LD_ID.person,
-  name: CONFIG.USER.displayName,
-  alternateName: [CONFIG.USER.username],
-  identifier: CONFIG.USER.username,
-  image: CONFIG.USER.avatar,
-  url: CONFIG.SITE.url,
-  sameAs: SOCIAL_LINKS.map((link) => link.href),
-};
-
-export const websiteJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": JSON_LD_ID.website,
-  name: CONFIG.SITE.name,
-  url: CONFIG.SITE.url,
-  author: personJsonLd,
-};

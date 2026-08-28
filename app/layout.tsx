@@ -8,6 +8,8 @@ import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
 import LineNavProvider from "@/components/providers/line-nav-provider";
 import { CONFIG } from "@/constants/config";
+import { JsonLdScript } from "@/components/JsonLdScript";
+import { websiteJsonLd } from "@/constants/json-ld";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -97,6 +99,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </div>
         </ThemeProvider>
       </body>
+
+      <JsonLdScript data={websiteJsonLd} />
     </html>
   );
 }

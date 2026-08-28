@@ -1,11 +1,12 @@
-import Contact from "@/components/common/contact";
 import Education from "@/components/common/education";
 import Experience from "@/components/common/experience";
 import Hero from "@/components/common/hero";
 import PersonalInformation from "@/components/common/personal-information";
 import Projects from "@/components/common/projects";
 import Stack from "@/components/common/stack";
+import { JsonLdScript } from "@/components/JsonLdScript";
 import { CONFIG } from "@/constants/config";
+import { rootPageJsonLd } from "@/constants/json-ld";
 import Image from "next/image";
 
 export default function Home() {
@@ -34,7 +35,7 @@ export default function Home() {
 
       <Projects />
 
-      <Contact />
+      <JsonLdScript data={rootPageJsonLd} />
     </>
   );
 }
