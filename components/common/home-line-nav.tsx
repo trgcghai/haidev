@@ -1,4 +1,4 @@
-import { LineNav } from "@/components/line-nav";
+import { LineNav } from "@/components/common/line-nav";
 import { useState } from "react";
 
 const ITEMS = [

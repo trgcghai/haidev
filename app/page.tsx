@@ -4,7 +4,7 @@ import Hero from "@/components/common/hero";
 import PersonalInformation from "@/components/common/personal-information";
 import FeaturedProjects from "@/components/common/featured-projects";
 import Stack from "@/components/common/stack";
-import { JsonLdScript } from "@/components/JsonLdScript";
+import { JsonLdScript } from "@/components/providers/JsonLdScript";
 import { CONFIG } from "@/constants/config";
 import { rootPageJsonLd } from "@/constants/json-ld";
 import Image from "next/image";

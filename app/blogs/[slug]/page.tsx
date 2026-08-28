@@ -1,4 +1,7 @@
-import { jsonLdBreadcrumbList, JsonLdScript } from "@/components/JsonLdScript";
+import {
+  jsonLdBreadcrumbList,
+  JsonLdScript,
+} from "@/components/providers/JsonLdScript";
 import MDX from "@/components/mdx/MDX";
 import { JSON_LD_ID } from "@/constants/json-ld";
 import { getBlogPosts, getDocBySlug } from "@/lib/documents";
@@ -8,7 +11,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlogPosting, WithContext } from "schema-dts";
 import { getTableOfContents } from "fumadocs-core/content/toc";
-import { LineNavItem } from "@/components/line-nav";
+import { LineNavItem } from "@/components/common/line-nav";
 import BlogToc from "@/components/blogs/blog-toc";
 import { format } from "date-fns";
 

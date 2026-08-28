@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { CONFIG, ROUTES } from "@/constants/config";
-import { JsonLdScript } from "@/components/JsonLdScript";
+import { JsonLdScript } from "@/components/providers/JsonLdScript";
 import { projectsPageJsonLd } from "@/constants/json-ld";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import { ProjectItem } from "@/components/projects/project-item";

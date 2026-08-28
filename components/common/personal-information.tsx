@@ -1,6 +1,7 @@
-import { CopyButton } from "@/components/copy-button";
+import { CopyButton } from "@/components/common/copy-button";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import ComesInGoesOutUnderline from "@/components/fancy/text/underline-comes-in-goes-out";
+import { CONFIG } from "@/constants/config";
 import { Feather, Link2, Mails, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 
@@ -24,28 +25,28 @@ const aboutMeData: AboutMeItem[] = [
   {
     id: 1,
     icon: <MapPin className="size-4" />,
-    text: "Ho Chi Minh City, Vietnam",
+    text: CONFIG.USER.address,
     canCopy: false,
     isLink: false,
   },
   {
     id: 2,
     icon: <Phone className="size-4" />,
-    text: "+84 909 739 714",
+    text: CONFIG.USER.phone,
     canCopy: true,
     isLink: false,
   },
   {
     id: 3,
     icon: <Mails className="size-4" />,
-    text: "conghai.tpma@gmail.com",
+    text: CONFIG.USER.email,
     canCopy: true,
     isLink: false,
   },
   {
     id: 4,
     icon: <Link2 className="size-4" />,
-    text: "haidev.id.vn",
+    text: CONFIG.USER.website!,
     canCopy: false,
     isLink: true,
   },

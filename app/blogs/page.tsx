@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { ROUTES } from "@/constants/config";
-import { JsonLdScript } from "@/components/JsonLdScript";
+import { JsonLdScript } from "@/components/providers/JsonLdScript";
 import { blogsPageJsonLd } from "@/constants/json-ld";
 import { BlogItem } from "@/components/blogs/blog-item";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";

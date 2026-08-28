@@ -1,5 +1,5 @@
 "use client";
-import { LineNav, LineNavItem } from "@/components/line-nav";
+import { LineNav, LineNavItem } from "@/components/common/line-nav";
 import { useState } from "react";
 import {
   Accordion,
