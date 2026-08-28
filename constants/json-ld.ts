@@ -1,12 +1,5 @@
-import { CONFIG, ROUTES, SOCIAL_LINKS } from "@/constants/config";
-import type {
-  BlogPosting,
-  CollectionPage,
-  Person,
-  ProfilePage,
-  WebSite,
-  WithContext,
-} from "schema-dts";
+import { CONFIG, SOCIAL_LINKS } from "@/constants/config";
+import type { Person, ProfilePage, WebSite, WithContext } from "schema-dts";
 
 export const JSON_LD_ID = {
   website: `${CONFIG.SITE.url}/#website`,
@@ -40,25 +33,5 @@ export const rootPageJsonLd: WithContext<ProfilePage> = {
   name: CONFIG.SITE.name,
   mainEntity: {
     "@id": JSON_LD_ID.person,
-  },
-};
-
-export const blogsPageJsonLd: WithContext<BlogPosting> = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "@id": ROUTES.BLOGS.url,
-  name: "Blogs - Công Hải",
-  mainEntityOfPage: {
-    "@id": JSON_LD_ID.website,
-  },
-};
-
-export const projectsPageJsonLd: WithContext<CollectionPage> = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "@id": ROUTES.PROJECTS.url,
-  name: "Projects - Công Hải",
-  mainEntityOfPage: {
-    "@id": JSON_LD_ID.website,
   },
 };

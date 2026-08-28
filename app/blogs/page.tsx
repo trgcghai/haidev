@@ -1,20 +1,53 @@
 import { Metadata } from "next";
 import { ROUTES } from "@/constants/config";
-import { JsonLdScript } from "@/components/providers/JsonLdScript";
-import { blogsPageJsonLd } from "@/constants/json-ld";
+import {
+  jsonLdBreadcrumbList,
+  JsonLdScript,
+} from "@/components/providers/JsonLdScript";
+import { JSON_LD_ID } from "@/constants/json-ld";
 import { BlogItem } from "@/components/blogs/blog-item";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import { getBlogPosts } from "@/lib/documents";
+import { Blog, WithContext } from "schema-dts";
+import { absoluteUrl } from "@/lib/utils";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Blogs - Công Hải",
+    description:
+      "Explore my blogs, where I share my thoughts, experiences, and insights on various topics.",
     alternates: {
       canonical: ROUTES.BLOGS.url,
     },
     openGraph: {
       url: ROUTES.BLOGS.url,
+      type: "website",
     },
+  };
+}
+
+function getBlogJsonLd(
+  posts: { slug: string; metadata: { title: string; createdAt: string } }[],
+): WithContext<Blog> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": absoluteUrl("/blog"),
+    name: "Blogs - Công Hải",
+    description:
+      "Explore my blogs, where I share my thoughts, experiences, and insights on various topics.",
+    url: absoluteUrl("/blog"),
+    isPartOf: { "@id": JSON_LD_ID.website },
+    mainEntityOfPage: {
+      "@id": JSON_LD_ID.website,
+    },
+    blogPost: posts.map((post) => ({
+      "@type": "BlogPosting",
+      "@id": absoluteUrl(`/blog/${post.slug}`),
+      headline: post.metadata.title,
+      url: absoluteUrl(`/blog/${post.slug}`),
+      datePublished: new Date(post.metadata.createdAt).toISOString(),
+    })),
   };
 }
 
@@ -23,6 +56,21 @@ const BlogListPage = () => {
 
   return (
     <>
+      <JsonLdScript data={getBlogJsonLd(blogs)} />
+
+      <JsonLdScript
+        data={jsonLdBreadcrumbList([
+          {
+            name: "Home",
+            href: "/",
+          },
+          {
+            name: "Blog",
+            href: "/blog",
+          },
+        ])}
+      />
+
       <div className="">
         <h2 id="blogs">
           <LetterSwapForward
@@ -49,8 +97,6 @@ const BlogListPage = () => {
           </div>
         </div>
       </div>
-
-      <JsonLdScript data={blogsPageJsonLd} />
     </>
   );
 };

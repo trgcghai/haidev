@@ -1,20 +1,44 @@
 import { Metadata } from "next";
 import { CONFIG, ROUTES } from "@/constants/config";
-import { JsonLdScript } from "@/components/providers/JsonLdScript";
-import { projectsPageJsonLd } from "@/constants/json-ld";
+import {
+  jsonLdBreadcrumbList,
+  JsonLdScript,
+} from "@/components/providers/JsonLdScript";
+import { JSON_LD_ID } from "@/constants/json-ld";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import { ProjectItem } from "@/components/projects/project-item";
 import { generateSlugFromTitle } from "@/lib/slug";
 import { PROJECTS } from "@/constants/projects";
+import { absoluteUrl } from "@/lib/utils";
+import { CollectionPage, WithContext } from "schema-dts";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Projects - Công Hải",
+    description:
+      "Check out my projects, where I showcase my work and demonstrate my skills in web development, design, and problem-solving.",
     alternates: {
       canonical: ROUTES.PROJECTS.url,
     },
     openGraph: {
       url: ROUTES.PROJECTS.url,
+      type: "website",
+    },
+  };
+}
+
+function getProjectsJsonLd(): WithContext<CollectionPage> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": absoluteUrl("/projects"),
+    name: "Projects - Công Hải",
+    description:
+      "Check out my projects, where I showcase my work and demonstrate my skills in web development, design, and problem-solving.",
+    url: absoluteUrl("/projects"),
+    isPartOf: { "@id": JSON_LD_ID.website },
+    mainEntityOfPage: {
+      "@id": JSON_LD_ID.website,
     },
   };
 }
@@ -22,6 +46,21 @@ export async function generateMetadata(): Promise<Metadata> {
 const ProjectsListPage = () => {
   return (
     <>
+      <JsonLdScript data={getProjectsJsonLd()} />
+
+      <JsonLdScript
+        data={jsonLdBreadcrumbList([
+          {
+            name: "Home",
+            href: "/",
+          },
+          {
+            name: "Projects",
+            href: "/projects",
+          },
+        ])}
+      />
+
       <div className="">
         <h2 id="projects">
           <LetterSwapForward
@@ -48,8 +87,6 @@ const ProjectsListPage = () => {
           </div>
         </div>
       </div>
-
-      <JsonLdScript data={projectsPageJsonLd} />
     </>
   );
 };
