@@ -1,9 +1,11 @@
 "use client";
 
-import RoleTyper from "@/components/common/RoteTyper";
+import RoleTyper from "@/components/common/role-typer";
 import TryChangeTheme from "@/components/common/try-change-theme";
+import TryStopBackgroundAnimation from "@/components/common/try-stop-background-animation";
 import UserAvatar from "@/components/common/user-avatar";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
+import { Separator } from "@/components/ui/separator";
 
 const Hero = () => {
   return (
@@ -19,7 +21,11 @@ const Hero = () => {
           />
         </h1>
         <RoleTyper />
-        <TryChangeTheme />
+        <div className="flex items-center gap-4 flex-col md:flex-row">
+          <TryChangeTheme />
+          <Separator orientation="vertical" className="hidden md:block" />
+          <TryStopBackgroundAnimation />
+        </div>
       </div>
     </section>
   );

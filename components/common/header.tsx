@@ -8,6 +8,7 @@ import ScrambleIn, {
   ScrambleInHandle,
 } from "@/components/fancy/text/scramble-in";
 import { useRef } from "react";
+import { AnimationToggle } from "@/components/common/animation-toggle";
 
 const Header = () => {
   const ref = useRef<ScrambleInHandle>(null);
@@ -52,6 +53,8 @@ const Header = () => {
         <Separator orientation="vertical" className="mx-4 hidden md:block" />
 
         <ModeToggler system={false} />
+
+        <AnimationToggle />
       </div>
     </div>
   );
