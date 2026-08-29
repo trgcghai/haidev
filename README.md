@@ -2,7 +2,7 @@
 
 This is where you can find something about me and my projects. If you are having interest, feel free to make contact.
 
-→ Live site at [haidev.id.vn](https://www.haidev.id.vn/)
+→ Live site at [haidev.id.vn](https://haidev.id.vn/)
 
 ## Overview
 
