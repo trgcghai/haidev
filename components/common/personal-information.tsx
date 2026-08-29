@@ -2,7 +2,7 @@ import { CopyButton } from "@/components/common/copy-button";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import ComesInGoesOutUnderline from "@/components/fancy/text/underline-comes-in-goes-out";
 import { CONFIG } from "@/constants/config";
-import { Feather, Link2, Mails, MapPin, Phone } from "lucide-react";
+import { Link2, Mails, MapPin } from "lucide-react";
 import Link from "next/link";
 
 interface AboutMeItem {
@@ -31,20 +31,13 @@ const aboutMeData: AboutMeItem[] = [
   },
   {
     id: 2,
-    icon: <Phone className="size-4" />,
-    text: CONFIG.USER.phone,
-    canCopy: true,
-    isLink: false,
-  },
-  {
-    id: 3,
     icon: <Mails className="size-4" />,
     text: CONFIG.USER.email,
     canCopy: true,
     isLink: false,
   },
   {
-    id: 4,
+    id: 3,
     icon: <Link2 className="size-4" />,
     text: CONFIG.USER.website!,
     canCopy: false,
@@ -94,13 +87,6 @@ const findMeOnlineData: FindMeOnlineItem[] = [
     text: "Github",
     url: "https://github.com/trgcghai",
     isExternal: true,
-  },
-  {
-    id: 8,
-    icon: <Feather className="size-4" />,
-    text: "Blogs",
-    url: "/blogs",
-    isExternal: false,
   },
 ];
 

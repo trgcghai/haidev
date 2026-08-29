@@ -15,6 +15,7 @@ const Header = () => {
             alt="Logo"
             width={50}
             height={50}
+            className="aspect-square"
           />
         </Link>
       </div>

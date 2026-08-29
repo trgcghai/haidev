@@ -61,7 +61,6 @@ export const CONFIG = {
         sameAs: true,
       },
     },
-    phone: "+84 909 739 714",
     email: "conghai.tpma@gmail.com",
     locale: "vi-VN",
     timezone: "Asia/Ho_Chi_Minh",
