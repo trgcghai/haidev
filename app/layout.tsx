@@ -10,6 +10,7 @@ import LineNavProvider from "@/components/providers/line-nav-provider";
 import { CONFIG } from "@/constants/config";
 import { JsonLdScript } from "@/components/providers/JsonLdScript";
 import { websiteJsonLd } from "@/constants/json-ld";
+import { Toaster } from "@/components/ui/toast";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -97,6 +98,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <div className="fixed top-1/2 left-0 z-50 -translate-y-1/2 p-2 hidden md:block">
             <LineNavProvider />
           </div>
+          <Toaster position="top-center" />
         </ThemeProvider>
       </body>
 
