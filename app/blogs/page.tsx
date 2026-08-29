@@ -59,6 +59,9 @@ function getBlogJsonLd(posts: Doc[]): WithContext<Blog> {
 const BlogListPage = () => {
   const blogs = getBlogPosts();
 
+  const pinned = blogs.filter((b) => b.metadata.pinned);
+  const notPinned = blogs.filter((b) => !b.metadata.pinned);
+
   return (
     <>
       <JsonLdScript data={getBlogJsonLd(blogs)} />
@@ -88,18 +91,33 @@ const BlogListPage = () => {
           Explore my blogs, where I share my thoughts, experiences, and insights
           on various topics.
         </p>
+
         <div className="screen-line-top relative py-4 -mx-1">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {blogs.map((blog) => (
+            {pinned.map((blog) => (
               <BlogItem
                 key={blog.slug}
                 url={`/${ROUTES.BLOGS.slug}/${blog.slug}`}
                 title={blog.metadata.title}
+                createdAt={blog.metadata.createdAt}
+                pinned={blog.metadata.pinned}
                 coverUrl={
                   blog.metadata.image ||
                   `/images?title=${encodeURIComponent(blog.metadata.title)}&description=${encodeURIComponent(blog.metadata.description)}`
                 }
+              />
+            ))}
+            {notPinned.map((blog) => (
+              <BlogItem
+                key={blog.slug}
+                url={`/${ROUTES.BLOGS.slug}/${blog.slug}`}
+                title={blog.metadata.title}
+                pinned={blog.metadata.pinned}
                 createdAt={blog.metadata.createdAt}
+                coverUrl={
+                  blog.metadata.image ||
+                  `/images?title=${encodeURIComponent(blog.metadata.title)}&description=${encodeURIComponent(blog.metadata.description)}`
+                }
               />
             ))}
           </div>
