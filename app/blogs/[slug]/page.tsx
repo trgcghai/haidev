@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeftIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import DocActions from "@/components/common/doc-actions";
 
 export async function generateStaticParams() {
   const docs = getBlogPosts();
@@ -117,9 +118,9 @@ const Page = async ({ params }: PageProps<"/blogs/[slug]">) => {
         ])}
       />
 
-      <div className="mb-4 space-y-2">
+      <div className="mb-4 flex items-center justify-between gap-4">
         <Button
-          className="h-7 gap-2 border-none px-0 tracking-wider text-muted-foreground hover:text-foreground hover:no-underline text-sm"
+          className="h-7 gap-2 border-none px-0 tracking-wider text-muted-foreground hover:text-primary hover:no-underline text-sm"
           variant="link"
           size="sm"
           nativeButton={false}
@@ -130,12 +131,14 @@ const Page = async ({ params }: PageProps<"/blogs/[slug]">) => {
             </Link>
           }
         />
+
+        <DocActions doc={doc} />
       </div>
 
       <section className="mb-4 space-y-4">
         <h1
           data-slot="doc-title"
-          className="screen-line-bottom text-3xl font-semibold"
+          className="screen-line-bottom text-3xl font-semibold text-primary"
         >
           {doc.metadata.title}
         </h1>
