@@ -3,16 +3,23 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { ImageIcon } from "lucide-react";
+import { PinIcon } from "lucide-react";
 
 export type BlogItemProps = {
   url: string;
   title: string;
-  coverUrl: string | null | undefined;
+  coverUrl: string;
   createdAt: string;
+  pinned: boolean | null | undefined;
 };
 
-export function BlogItem({ url, title, coverUrl, createdAt }: BlogItemProps) {
+export function BlogItem({
+  url,
+  title,
+  coverUrl,
+  createdAt,
+  pinned,
+}: BlogItemProps) {
   return (
     <Link
       href={url}
@@ -34,15 +41,10 @@ export function BlogItem({ url, title, coverUrl, createdAt }: BlogItemProps) {
             loading="eager"
           />
         )}
-        {!coverUrl && (
-          <div className="flex h-full w-full items-center justify-center rounded-xl bg-muted text-muted-foreground">
-            <ImageIcon className="size-8" />
-          </div>
-        )}
         <div className="pointer-events-none absolute inset-0 rounded-xl inset-ring-1 inset-ring-black/10 dark:inset-ring-white/10" />
       </div>
 
-      <div className="flex flex-col gap-2 p-2">
+      <div className="flex flex-col gap-2 p-2 relative">
         <h3 className="text-lg leading-tight font-medium text-balance">
           {title}
         </h3>
@@ -55,6 +57,12 @@ export function BlogItem({ url, title, coverUrl, createdAt }: BlogItemProps) {
             </time>
           </dd>
         </dl>
+
+        {pinned && (
+          <div className="absolute top-2 right-2 flex items-center justify-center rounded-full bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
+            <PinIcon className="size-5 text-primary" />
+          </div>
+        )}
       </div>
     </Link>
   );

@@ -59,6 +59,9 @@ function getCollectionPageJsonLd(docs: Doc[]): WithContext<CollectionPage> {
 const ProjectsListPage = () => {
   const projects = getProjectPosts();
 
+  const pinned = projects.filter((b) => b.metadata.pinned);
+  const notPinned = projects.filter((b) => !b.metadata.pinned);
+
   return (
     <>
       <JsonLdScript data={getCollectionPageJsonLd(projects)} />
@@ -90,16 +93,30 @@ const ProjectsListPage = () => {
         </p>
         <div className="screen-line-top relative py-4 -mx-1">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {projects.map((project) => (
+            {pinned.map((project) => (
               <ProjectItem
                 key={project.slug}
+                description={project.metadata.description}
+                url={`/${ROUTES.PROJECTS.slug}/${project.slug}`}
+                name={project.metadata.title}
+                pinned={project.metadata.pinned}
                 coverUrl={
                   project.metadata.image ||
                   `/images?title=${encodeURIComponent(project.metadata.title)}&description=${encodeURIComponent(project.metadata.description)}`
                 }
+              />
+            ))}
+            {notPinned.map((project) => (
+              <ProjectItem
+                key={project.slug}
                 description={project.metadata.description}
                 url={`/${ROUTES.PROJECTS.slug}/${project.slug}`}
                 name={project.metadata.title}
+                pinned={project.metadata.pinned}
+                coverUrl={
+                  project.metadata.image ||
+                  `/images?title=${encodeURIComponent(project.metadata.title)}&description=${encodeURIComponent(project.metadata.description)}`
+                }
               />
             ))}
           </div>
