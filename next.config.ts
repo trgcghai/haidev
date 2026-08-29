@@ -6,12 +6,18 @@ const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   transpilePackages: ["next-mdx-remote"],
   images: {
+    localPatterns: [
+      {
+        pathname: "/**/*",
+      },
+      {
+        pathname: "/*",
+      },
+    ],
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "assets.chanhdai.com",
-        port: "",
-        pathname: "/**/*",
+        protocol: "http",
+        hostname: "localhost",
       },
     ],
   },

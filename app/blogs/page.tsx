@@ -47,6 +47,11 @@ function getBlogJsonLd(posts: Doc[]): WithContext<Blog> {
       url: absoluteUrl(`/blog/${post.slug}`),
       datePublished: new Date(post.metadata.createdAt).toISOString(),
       description: post.metadata.description,
+      image:
+        post.metadata.image ||
+        absoluteUrl(
+          `/images?title=${encodeURIComponent(post.metadata.title)}&description=${encodeURIComponent(post.metadata.description)}`,
+        ),
     })),
   };
 }
@@ -90,7 +95,10 @@ const BlogListPage = () => {
                 key={blog.slug}
                 url={`/${ROUTES.BLOGS.slug}/${blog.slug}`}
                 title={blog.metadata.title}
-                coverUrl={blog.metadata.image}
+                coverUrl={
+                  blog.metadata.image ||
+                  `/images?title=${encodeURIComponent(blog.metadata.title)}&description=${encodeURIComponent(blog.metadata.description)}`
+                }
                 createdAt={blog.metadata.createdAt}
               />
             ))}
