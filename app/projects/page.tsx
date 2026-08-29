@@ -46,6 +46,11 @@ function getCollectionPageJsonLd(docs: Doc[]): WithContext<CollectionPage> {
         url: absoluteUrl(`/projects/${doc.slug}`),
         description: doc.metadata.description,
         name: doc.metadata.title,
+        image:
+          doc.metadata.image ||
+          absoluteUrl(
+            `/images?title=${encodeURIComponent(doc.metadata.title)}&description=${encodeURIComponent(doc.metadata.description)}`,
+          ),
       })),
     },
   };
@@ -88,7 +93,10 @@ const ProjectsListPage = () => {
             {projects.map((project) => (
               <ProjectItem
                 key={project.slug}
-                coverUrl={null}
+                coverUrl={
+                  project.metadata.image ||
+                  `/images?title=${encodeURIComponent(project.metadata.title)}&description=${encodeURIComponent(project.metadata.description)}`
+                }
                 description={project.metadata.description}
                 url={`/${ROUTES.PROJECTS.slug}/${project.slug}`}
                 name={project.metadata.title}

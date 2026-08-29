@@ -13,10 +13,10 @@ import { BlogPosting, WithContext } from "schema-dts";
 import { getTableOfContents } from "fumadocs-core/content/toc";
 import { format } from "date-fns";
 import Toc from "@/components/common/toc";
-import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeftIcon } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 export async function generateStaticParams() {
   const docs = getBlogPosts();
@@ -49,6 +49,9 @@ export async function generateMetadata({
       publishedTime: new Date(createdAt).toISOString(),
       modifiedTime: new Date(updatedAt).toISOString(),
     },
+    keywords: doc.metadata.keywords
+      ?.split(",")
+      .map((keyword) => keyword.trim()),
   };
 }
 
@@ -61,12 +64,19 @@ function getPageJsonLd(doc: Doc): WithContext<BlogPosting> {
     "@id": absoluteUrl(postUrl),
     headline: doc.metadata.title,
     description: doc.metadata.description,
-    image: doc.metadata.image,
+    image:
+      doc.metadata.image ||
+      absoluteUrl(
+        `/images?title=${encodeURIComponent(doc.metadata.title)}&description=${encodeURIComponent(doc.metadata.description)}`,
+      ),
     url: absoluteUrl(postUrl),
     datePublished: new Date(doc.metadata.createdAt).toISOString(),
     dateModified: new Date(doc.metadata.updatedAt).toISOString(),
     author: { "@id": JSON_LD_ID.person },
     mainEntityOfPage: absoluteUrl(postUrl),
+    keywords: doc.metadata.keywords
+      ?.split(",")
+      .map((keyword) => keyword.trim()),
     isPartOf: {
       "@type": "Blog",
       "@id": absoluteUrl("/blog"),
@@ -122,7 +132,7 @@ const Page = async ({ params }: PageProps<"/blogs/[slug]">) => {
         />
       </div>
 
-      <div className="mb-4 space-y-2">
+      <section className="mb-4 space-y-4">
         <h1
           data-slot="doc-title"
           className="screen-line-bottom text-3xl font-semibold"
@@ -130,7 +140,19 @@ const Page = async ({ params }: PageProps<"/blogs/[slug]">) => {
           {doc.metadata.title}
         </h1>
 
-        <Separator />
+        <section>
+          <p className="text-base text-muted-foreground flex items-center gap-2 flex-wrap">
+            {doc.metadata.tags?.split(",").map((tag) => (
+              <Badge
+                key={tag}
+                variant="outline"
+                className="text-base! text-muted-foreground capitalize"
+              >
+                # {tag.trim()}
+              </Badge>
+            ))}
+          </p>
+        </section>
 
         <p className="text-base text-muted-foreground">
           {doc.metadata.description}
@@ -138,7 +160,7 @@ const Page = async ({ params }: PageProps<"/blogs/[slug]">) => {
         <p className="text-sm text-muted-foreground">
           {format(doc.metadata.createdAt, "MMMM d, yyyy")}
         </p>
-      </div>
+      </section>
 
       <div className="mb-4">
         <Toc items={toc} />

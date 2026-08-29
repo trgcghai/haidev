@@ -4,6 +4,7 @@ import {
   jsonLdBreadcrumbList,
   JsonLdScript,
 } from "@/components/providers/JsonLdScript";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { JSON_LD_ID } from "@/constants/json-ld";
 import { getDocBySlug, getProjectPosts } from "@/lib/documents";
@@ -48,6 +49,9 @@ export async function generateMetadata({
       publishedTime: new Date(createdAt).toISOString(),
       modifiedTime: new Date(updatedAt).toISOString(),
     },
+    keywords: doc.metadata.keywords
+      ?.split(",")
+      .map((keyword) => keyword.trim()),
   };
 }
 
@@ -63,6 +67,14 @@ function getPageJsonLd(doc: Doc): WithContext<CollectionPage> {
     url: absoluteUrl(projectUrl),
     datePublished: new Date(doc.metadata.createdAt).toISOString(),
     dateModified: new Date(doc.metadata.updatedAt).toISOString(),
+    keywords: doc.metadata.keywords
+      ?.split(",")
+      .map((keyword) => keyword.trim()),
+    image:
+      doc.metadata.image ||
+      absoluteUrl(
+        `/images?title=${encodeURIComponent(doc.metadata.title)}&description=${encodeURIComponent(doc.metadata.description)}`,
+      ),
     author: { "@id": JSON_LD_ID.person },
     mainEntityOfPage: absoluteUrl(projectUrl),
     isPartOf: {
@@ -120,7 +132,7 @@ const Page = async ({ params }: PageProps<"/projects/[slug]">) => {
         />
       </div>
 
-      <div className="mb-4 space-y-2">
+      <section className="mb-4 space-y-4">
         <h1
           data-slot="doc-title"
           className="screen-line-bottom text-3xl font-semibold"
@@ -128,17 +140,31 @@ const Page = async ({ params }: PageProps<"/projects/[slug]">) => {
           {doc.metadata.title}
         </h1>
 
+        <section>
+          <p className="text-base text-muted-foreground flex items-center gap-2 flex-wrap">
+            {doc.metadata.tags?.split(",").map((tag) => (
+              <Badge
+                key={tag}
+                variant="outline"
+                className="text-base! text-muted-foreground capitalize"
+              >
+                # {tag.trim()}
+              </Badge>
+            ))}
+          </p>
+        </section>
+
         <p className="text-base text-muted-foreground">
           {doc.metadata.description}
         </p>
         <p className="text-sm text-muted-foreground">
           {format(doc.metadata.createdAt, "MMMM d, yyyy")}
         </p>
-      </div>
+      </section>
 
-      <div className="mb-4">
+      <section className="mb-4">
         <Toc items={toc} />
-      </div>
+      </section>
 
       <MDX code={doc.content} />
     </>

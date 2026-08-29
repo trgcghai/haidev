@@ -26,6 +26,14 @@ export type DocMetadata = {
    */
   featured?: boolean;
   /**
+   * Optional list of keywords for the post. Used for SEO and filtering.
+   */
+  keywords?: string;
+  /**
+   * Optional list of keywords for the post. Used for SEO and filtering.
+   */
+  tags?: string;
+  /**
    * Post creation date as an ISO date string (e.g. YYYY-MM-DD). Used for sorting.
    */
   createdAt: string;
