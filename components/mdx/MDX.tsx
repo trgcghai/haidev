@@ -16,22 +16,46 @@ import remarkGfm from "remark-gfm";
 
 export const components: MDXRemoteProps["components"] = {
   h1: (props: React.ComponentProps<"h1">) => (
-    <Heading as="h1" className="text-3xl font-extrabold mb-6" {...props} />
+    <Heading
+      as="h1"
+      className="text-primary text-3xl font-extrabold mb-6"
+      {...props}
+    />
   ),
   h2: (props: React.ComponentProps<"h2">) => (
-    <Heading as="h2" className="text-2xl font-semibold mb-4" {...props} />
+    <Heading
+      as="h2"
+      className="text-primary text-2xl font-semibold mb-4"
+      {...props}
+    />
   ),
   h3: (props: React.ComponentProps<"h3">) => (
-    <Heading as="h3" className="text-xl font-semibold mb-3" {...props} />
+    <Heading
+      as="h3"
+      className="text-primary text-xl font-semibold mb-3"
+      {...props}
+    />
   ),
   h4: (props: React.ComponentProps<"h4">) => (
-    <Heading as="h4" className="text-base font-semibold mb-3" {...props} />
+    <Heading
+      as="h4"
+      className="text-primary text-base font-semibold mb-3"
+      {...props}
+    />
   ),
   h5: (props: React.ComponentProps<"h5">) => (
-    <Heading as="h5" className="text-base font-semibold mb-2" {...props} />
+    <Heading
+      as="h5"
+      className="text-primary text-base font-semibold mb-2"
+      {...props}
+    />
   ),
   h6: (props: React.ComponentProps<"h6">) => (
-    <Heading as="h6" className="text-sm font-semibold mb-2" {...props} />
+    <Heading
+      as="h6"
+      className="text-primary text-sm font-semibold mb-2"
+      {...props}
+    />
   ),
   p: (props) => (
     <p className="md:text-base text-secondary-foreground/80 mb-6" {...props}>
@@ -80,12 +104,14 @@ export const components: MDXRemoteProps["components"] = {
   a: (props) => (
     <Link
       {...props}
-      className="hover:text-primary hover:underline underline-offset-2"
+      className="hover:text-primary hover:underline underline-offset-4"
     />
   ),
   ul: (props) => <ul className="list-disc list-inside mb-6" {...props} />,
   ol: (props) => <ol className="list-decimal list-inside mb-6" {...props} />,
-  li: (props) => <li className="text-secondary-foreground mb-2" {...props} />,
+  li: (props) => (
+    <li className="text-secondary-foreground/80 mb-2" {...props} />
+  ),
 };
 
 const options: MDXRemoteProps["options"] = {
