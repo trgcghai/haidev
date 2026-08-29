@@ -1,11 +1,11 @@
 import { cn } from "@/lib/utils";
-import { ImageIcon, PinIcon } from "lucide-react";
+import { PinIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export type ProjectItemProps = {
   url: string;
-  coverUrl: string | null | undefined;
+  coverUrl: string;
   name: string;
   description: string;
   pinned: boolean | null | undefined;
@@ -39,13 +39,6 @@ export function ProjectItem({
             loading="eager"
           />
         )}
-
-        {!coverUrl && (
-          <div className="flex h-full w-full items-center justify-center rounded-xl bg-muted text-muted-foreground">
-            <ImageIcon className="size-8" />
-          </div>
-        )}
-
         <div className="pointer-events-none absolute inset-0 rounded-xl inset-ring-1 inset-ring-black/10 dark:inset-ring-white/10" />
       </div>
 
