@@ -41,10 +41,7 @@ export const metadata: Metadata = {
     siteName: CONFIG.SITE.name,
     locale: CONFIG.USER.locale,
     publishedTime: new Date().toISOString(),
-    images: [
-      new URL(CONFIG.USER.avatar, CONFIG.SITE.url).toString(),
-      new URL(CONFIG.USER.banner, CONFIG.SITE.url).toString(),
-    ],
+    images: [new URL(CONFIG.USER.banner, CONFIG.SITE.url).toString()],
   },
   keywords: CONFIG.USER.keywords,
   alternates: CONFIG.SITE.alternates,
