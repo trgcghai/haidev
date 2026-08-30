@@ -35,7 +35,7 @@ export function BlogItem({
       </div>
 
       <div className="flex flex-col gap-2 p-2 relative">
-        <h3 className="text-lg leading-tight font-medium text-balance">
+        <h3 className="text-lg leading-tight font-medium text-balance line-clamp-1 text-ellipsis">
           {title}
         </h3>
 
@@ -49,7 +49,7 @@ export function BlogItem({
         </dl>
 
         {pinned && (
-          <div className="absolute top-2 right-2 flex items-center justify-center rounded-full bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
+          <div className="absolute md:top-2 bottom-2 right-2 flex items-center justify-center rounded-full text-muted-foreground">
             <PinIcon className="size-5 text-primary" />
           </div>
         )}

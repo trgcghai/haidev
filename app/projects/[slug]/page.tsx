@@ -127,7 +127,7 @@ const Page = async ({ params }: PageProps<"/projects/[slug]">) => {
           render={
             <Link href="/projects">
               <ArrowLeftIcon />
-              Back to Projects
+              Projects
             </Link>
           }
         />
@@ -138,7 +138,7 @@ const Page = async ({ params }: PageProps<"/projects/[slug]">) => {
       <section className="mb-4 space-y-4">
         <h1
           data-slot="doc-title"
-          className="screen-line-bottom text-3xl font-semibold text-primary"
+          className="screen-line-bottom text-3xl font-semibold text-primary line-clamp-2 text-ellipsis"
         >
           {doc.metadata.title}
         </h1>
@@ -157,7 +157,7 @@ const Page = async ({ params }: PageProps<"/projects/[slug]">) => {
           </p>
         </section>
 
-        <p className="text-base text-muted-foreground">
+        <p className="text-base text-muted-foreground wrap-break-word text-wrap tracking-wide break-all">
           {doc.metadata.description}
         </p>
         <p className="text-sm text-muted-foreground">

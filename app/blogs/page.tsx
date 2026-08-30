@@ -87,7 +87,7 @@ const BlogListPage = () => {
             className="text-lg md:text-2xl font-semibold w-fit text-primary"
           />
         </h2>
-        <p className="my-4 text-base text-balance text-muted-foreground">
+        <p className="my-4 text-base text-muted-foreground wrap-break-word text-wrap tracking-wide">
           Explore my blogs, where I share my thoughts, experiences, and insights
           on various topics.
         </p>
