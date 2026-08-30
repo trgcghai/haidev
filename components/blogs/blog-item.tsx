@@ -1,9 +1,8 @@
 import { format } from "date-fns";
-
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import Link from "next/link";
 import { PinIcon } from "lucide-react";
+import Image from "@/components/common/Image";
 
 export type BlogItemProps = {
   url: string;
@@ -31,16 +30,7 @@ export function BlogItem({
       )}
     >
       <div className="relative aspect-video">
-        {coverUrl && (
-          <Image
-            src={coverUrl}
-            alt={title}
-            className="size-full rounded-xl object-cover"
-            fill
-            sizes="auto"
-            loading="eager"
-          />
-        )}
+        <Image src={coverUrl} alt={title} />
         <div className="pointer-events-none absolute inset-0 rounded-xl inset-ring-1 inset-ring-black/10 dark:inset-ring-white/10" />
       </div>
 
