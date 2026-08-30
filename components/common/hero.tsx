@@ -1,18 +1,16 @@
-"use client";
-
 import RoleTyper from "@/components/common/role-typer";
 import TryChangeTheme from "@/components/common/try-change-theme";
 import TryStopBackgroundAnimation from "@/components/common/try-stop-background-animation";
-import UserAvatar from "@/components/common/user-avatar";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import { Separator } from "@/components/ui/separator";
 
 const Hero = () => {
   return (
-    <section id="hero" className="md:flex items-center gap-8 w-full">
-      <UserAvatar />
-
-      <div className="space-y-4">
+    <section
+      id="hero"
+      className="md:flex items-center gap-8 w-full mb-12 md:mb-24"
+    >
+      <div className="space-y-4 flex items-center justify-center flex-col w-full">
         <h1 className="text-4xl font-bold" id="welcome">
           <LetterSwapForward
             label={"Welcome to Cong Hai's Portfolio"}

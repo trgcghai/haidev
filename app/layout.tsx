@@ -41,10 +41,7 @@ export const metadata: Metadata = {
     siteName: CONFIG.SITE.name,
     locale: CONFIG.USER.locale,
     publishedTime: new Date().toISOString(),
-    images: [
-      new URL(CONFIG.USER.avatar, CONFIG.SITE.url).toString(),
-      new URL(CONFIG.USER.banner, CONFIG.SITE.url).toString(),
-    ],
+    images: [new URL(CONFIG.USER.banner, CONFIG.SITE.url).toString()],
   },
   keywords: CONFIG.USER.keywords,
   alternates: CONFIG.SITE.alternates,
@@ -89,13 +86,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <TooltipProvider>
             <Header />
 
-            <div className="container max-w-7xl mt-8 space-y-16 mx-auto border rounded-sm p-4 bg-neutral-50/40 dark:bg-neutral-800/40">
+            <div className="container max-w-7xl mt-8 space-y-12 md:space-y-16 mx-auto border rounded-sm p-4 bg-neutral-50/40 dark:bg-neutral-800/40">
               {children}
 
               <Footer />
             </div>
           </TooltipProvider>
-          <div className="fixed top-1/2 left-0 z-50 -translate-y-1/2 p-2 hidden md:block">
+          <div className="fixed top-1/2 left-0 z-50 -translate-y-1/2 p-2 hidden xl:block">
             <LineNavProvider />
           </div>
           <Toaster position="top-center" />

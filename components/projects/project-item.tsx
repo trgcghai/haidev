@@ -1,7 +1,6 @@
 import Image from "@/components/common/Image";
 import { cn } from "@/lib/utils";
 import { PinIcon } from "lucide-react";
-// import Image from "next/image";
 import Link from "next/link";
 
 export type ProjectItemProps = {
@@ -35,16 +34,18 @@ export function ProjectItem({
       </div>
 
       <div className="flex flex-col gap-2 p-2 relative">
-        <h3 className="text-lg leading-tight font-medium text-balance">
+        <h3 className="text-lg leading-tight font-medium text-balance text-ellipsis line-clamp-1">
           {name}
         </h3>
 
         <dl>
-          <dd className="text-sm text-muted-foreground">{description}</dd>
+          <dd className="text-sm text-muted-foreground text-ellipsis line-clamp-2">
+            {description}
+          </dd>
         </dl>
 
         {pinned && (
-          <div className="absolute top-2 right-2 flex items-center justify-center rounded-full bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
+          <div className="absolute md:top-2 bottom-2 right-2 flex items-center justify-center rounded-full text-muted-foreground">
             <PinIcon className="size-5 text-primary" />
           </div>
         )}

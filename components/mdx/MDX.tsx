@@ -12,6 +12,8 @@ import { Heading } from "@/components/ui/heading";
 import { Code } from "@/components/ui/typography";
 import Link from "next/link";
 import { remarkHeading } from "fumadocs-core/mdx-plugins";
+import rehypeExternalLinks from "rehype-external-links";
+import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 
 export const components: MDXRemoteProps["components"] = {
@@ -58,7 +60,10 @@ export const components: MDXRemoteProps["components"] = {
     />
   ),
   p: (props) => (
-    <p className="md:text-base text-secondary-foreground/80 mb-6" {...props}>
+    <p
+      className="md:text-base text-secondary-foreground/80 mb-6 text-wrap tracking-wide wrap-normal"
+      {...props}
+    >
       {props.children}
     </p>
   ),
@@ -110,13 +115,21 @@ export const components: MDXRemoteProps["components"] = {
   ul: (props) => <ul className="list-disc list-inside mb-6" {...props} />,
   ol: (props) => <ol className="list-decimal list-inside mb-6" {...props} />,
   li: (props) => (
-    <li className="text-secondary-foreground/80 mb-2" {...props} />
+    <li className="text-secondary-foreground/80 mb-2" {...props}>
+      <span className="md:text-base wrap-break-word text-wrap tracking-wide">
+        {props.children}
+      </span>
+    </li>
   ),
 };
 
 const options: MDXRemoteProps["options"] = {
   mdxOptions: {
     remarkPlugins: [remarkGfm, remarkHeading],
+    rehypePlugins: [
+      [rehypeExternalLinks, { target: "_blank", rel: "nofollow noopener" }],
+      rehypeSlug,
+    ],
   },
 };
 

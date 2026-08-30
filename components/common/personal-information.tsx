@@ -39,7 +39,7 @@ const aboutMeData: AboutMeItem[] = [
   {
     id: 3,
     icon: <Link2 className="size-4" />,
-    text: CONFIG.USER.website!,
+    text: CONFIG.USER.socials.website.handle,
     canCopy: false,
     isLink: true,
   },
@@ -92,7 +92,7 @@ const findMeOnlineData: FindMeOnlineItem[] = [
 
 const PersonalInformation = () => {
   return (
-    <section className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <section className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-4">
       <div className="space-y-4">
         <h2 id="about-me">
           <LetterSwapForward

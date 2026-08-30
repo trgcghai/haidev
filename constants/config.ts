@@ -17,7 +17,6 @@ export const CONFIG = {
       "Portfolio of Công Hải, a passionate software engineer specializing in full-stack web development. Explore my projects, skills, and experience in building modern web applications.",
     address: "Ho Chi Minh City, Vietnam",
     website: process.env.NEXT_PUBLIC_APP_URL,
-    avatar: "/avatar.jpg",
     banner: "/banner.png",
     keywords: [
       "Công Hải",

@@ -12,7 +12,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      <section id="banner">
+      <section id="banner" className="mb-12 md:mb-12">
         <Image
           src={CONFIG.USER.banner}
           alt={`Banner of ${CONFIG.USER.displayName}`}

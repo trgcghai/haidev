@@ -12,7 +12,7 @@ export const personJsonLd: Person = {
   name: CONFIG.USER.displayName,
   alternateName: [CONFIG.USER.username],
   identifier: CONFIG.USER.username,
-  image: CONFIG.USER.avatar,
+  image: CONFIG.USER.banner,
   url: CONFIG.SITE.url,
   sameAs: SOCIAL_LINKS.filter((link) => link.sameAs).map((link) => link.href),
 };

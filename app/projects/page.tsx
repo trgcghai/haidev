@@ -87,7 +87,7 @@ const ProjectsListPage = () => {
             className="text-lg md:text-2xl font-semibold w-fit text-primary"
           />
         </h2>
-        <p className="my-4 text-base text-balance text-muted-foreground">
+        <p className="my-4 text-base text-muted-foreground w-full wrap-break-word text-wrap tracking-wide">
           Check out my projects, where I showcase my work and demonstrate my
           skills in web development, design, and problem-solving.
         </p>
