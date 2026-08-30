@@ -39,7 +39,7 @@ const aboutMeData: AboutMeItem[] = [
   {
     id: 3,
     icon: <Link2 className="size-4" />,
-    text: CONFIG.USER.website!,
+    text: CONFIG.USER.socials.website.handle,
     canCopy: false,
     isLink: true,
   },

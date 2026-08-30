@@ -92,7 +92,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <Footer />
             </div>
           </TooltipProvider>
-          <div className="fixed top-1/2 left-0 z-50 -translate-y-1/2 p-2 hidden md:block">
+          <div className="fixed top-1/2 left-0 z-50 -translate-y-1/2 p-2 hidden xl:block">
             <LineNavProvider />
           </div>
           <Toaster position="top-center" />

@@ -10,7 +10,7 @@ const Hero = () => {
       id="hero"
       className="md:flex items-center gap-8 w-full mb-12 md:mb-24"
     >
-      <div className="space-y-4">
+      <div className="space-y-4 flex items-center justify-center flex-col w-full">
         <h1 className="text-4xl font-bold" id="welcome">
           <LetterSwapForward
             label={"Welcome to Cong Hai's Portfolio"}
