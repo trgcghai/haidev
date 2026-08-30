@@ -1,6 +1,7 @@
+import Image from "@/components/common/Image";
 import { cn } from "@/lib/utils";
 import { PinIcon } from "lucide-react";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 
 export type ProjectItemProps = {
@@ -29,16 +30,7 @@ export function ProjectItem({
       )}
     >
       <div className="relative aspect-video">
-        {coverUrl && (
-          <Image
-            src={coverUrl}
-            alt={name}
-            className="size-full rounded-xl object-cover"
-            fill
-            sizes="auto"
-            loading="eager"
-          />
-        )}
+        <Image src={coverUrl} alt={name} />
         <div className="pointer-events-none absolute inset-0 rounded-xl inset-ring-1 inset-ring-black/10 dark:inset-ring-white/10" />
       </div>
 
