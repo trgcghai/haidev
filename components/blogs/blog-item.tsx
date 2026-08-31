@@ -30,7 +30,7 @@ export function BlogItem({
       )}
     >
       <div className="relative aspect-video">
-        <Image src={coverUrl} alt={title} />
+        <Image src={coverUrl} alt={title} unoptimized={true} />
         <div className="pointer-events-none absolute inset-0 rounded-xl inset-ring-1 inset-ring-black/10 dark:inset-ring-white/10" />
       </div>
 

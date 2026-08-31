@@ -6,9 +6,10 @@ import { useState } from "react";
 interface ImageProps {
   src: string;
   alt: string;
+  unoptimized?: boolean;
 }
 
-const Image = ({ src, alt }: ImageProps) => {
+const Image = ({ src, alt, unoptimized = false }: ImageProps) => {
   const [isError, setIsError] = useState(false);
 
   if (isError) {
@@ -27,6 +28,7 @@ const Image = ({ src, alt }: ImageProps) => {
       fill
       sizes="auto"
       loading="eager"
+      unoptimized={unoptimized}
       onError={() => setIsError(true)}
     />
   );
