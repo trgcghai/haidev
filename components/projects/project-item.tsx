@@ -9,6 +9,7 @@ export type ProjectItemProps = {
   name: string;
   description: string;
   pinned: boolean | null | undefined;
+  index: number;
 };
 
 export function ProjectItem({
@@ -17,6 +18,7 @@ export function ProjectItem({
   name,
   description,
   pinned,
+  index,
 }: ProjectItemProps) {
   return (
     <Link
@@ -29,7 +31,12 @@ export function ProjectItem({
       )}
     >
       <div className="relative aspect-video">
-        <Image src={coverUrl} alt={name} unoptimized={true} />
+        <Image
+          src={coverUrl}
+          alt={name}
+          unoptimized={true}
+          imageLoading={index <= 6 ? "eager" : "lazy"}
+        />
         <div className="pointer-events-none absolute inset-0 rounded-xl inset-ring-1 inset-ring-black/10 dark:inset-ring-white/10" />
       </div>
 

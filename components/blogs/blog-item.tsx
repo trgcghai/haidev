@@ -10,6 +10,7 @@ export type BlogItemProps = {
   coverUrl: string;
   createdAt: string;
   pinned: boolean | null | undefined;
+  index: number;
 };
 
 export function BlogItem({
@@ -18,6 +19,7 @@ export function BlogItem({
   coverUrl,
   createdAt,
   pinned,
+  index,
 }: BlogItemProps) {
   return (
     <Link
@@ -30,7 +32,12 @@ export function BlogItem({
       )}
     >
       <div className="relative aspect-video">
-        <Image src={coverUrl} alt={title} unoptimized={true} />
+        <Image
+          src={coverUrl}
+          alt={title}
+          unoptimized={true}
+          imageLoading={index <= 6 ? "eager" : "lazy"}
+        />
         <div className="pointer-events-none absolute inset-0 rounded-xl inset-ring-1 inset-ring-black/10 dark:inset-ring-white/10" />
       </div>
 
