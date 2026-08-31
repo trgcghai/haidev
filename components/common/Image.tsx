@@ -1,14 +1,17 @@
 "use client";
 import { ImageOff } from "lucide-react";
+import type { ImageProps as NextImageProps } from "next/image";
 import { default as NextImage } from "next/image";
 import { useState } from "react";
 
 interface ImageProps {
   src: string;
   alt: string;
+  unoptimized?: boolean;
+  imageLoading?: NextImageProps["loading"];
 }
 
-const Image = ({ src, alt }: ImageProps) => {
+const Image = ({ src, alt, unoptimized = false, imageLoading }: ImageProps) => {
   const [isError, setIsError] = useState(false);
 
   if (isError) {
@@ -26,7 +29,9 @@ const Image = ({ src, alt }: ImageProps) => {
       className="size-full rounded-xl object-cover"
       fill
       sizes="auto"
-      loading="eager"
+      loading={imageLoading}
+      unoptimized={unoptimized}
+      quality={100}
       onError={() => setIsError(true)}
     />
   );

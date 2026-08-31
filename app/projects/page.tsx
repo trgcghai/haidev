@@ -93,9 +93,10 @@ const ProjectsListPage = () => {
         </p>
         <div className="screen-line-top relative py-4 -mx-1">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {pinned.map((project) => (
+            {pinned.map((project, index) => (
               <ProjectItem
                 key={project.slug}
+                index={index}
                 description={project.metadata.description}
                 url={`/${ROUTES.PROJECTS.slug}/${project.slug}`}
                 name={project.metadata.title}
@@ -106,9 +107,10 @@ const ProjectsListPage = () => {
                 }
               />
             ))}
-            {notPinned.map((project) => (
+            {notPinned.map((project, index) => (
               <ProjectItem
                 key={project.slug}
+                index={index}
                 description={project.metadata.description}
                 url={`/${ROUTES.PROJECTS.slug}/${project.slug}`}
                 name={project.metadata.title}

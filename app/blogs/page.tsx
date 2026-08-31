@@ -94,9 +94,10 @@ const BlogListPage = () => {
 
         <div className="screen-line-top relative py-4 -mx-1">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {pinned.map((blog) => (
+            {pinned.map((blog, index) => (
               <BlogItem
                 key={blog.slug}
+                index={index}
                 url={`/${ROUTES.BLOGS.slug}/${blog.slug}`}
                 title={blog.metadata.title}
                 createdAt={blog.metadata.createdAt}
@@ -107,9 +108,10 @@ const BlogListPage = () => {
                 }
               />
             ))}
-            {notPinned.map((blog) => (
+            {notPinned.map((blog, index) => (
               <BlogItem
                 key={blog.slug}
+                index={index}
                 url={`/${ROUTES.BLOGS.slug}/${blog.slug}`}
                 title={blog.metadata.title}
                 pinned={blog.metadata.pinned}
