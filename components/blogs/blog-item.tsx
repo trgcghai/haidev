@@ -56,7 +56,7 @@ export function BlogItem({
         </dl>
 
         {pinned && (
-          <div className="absolute md:top-2 bottom-2 right-2 flex items-center justify-center rounded-full text-muted-foreground">
+          <div className="absolute md:top-2 bottom-2 right-2 flex items-center justify-center rounded-full text-muted-foreground h-fit">
             <PinIcon className="size-5 text-primary" />
           </div>
         )}
