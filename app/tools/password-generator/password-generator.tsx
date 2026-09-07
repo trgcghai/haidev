@@ -15,7 +15,15 @@ const UPPERCASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const DIGITS = "0123456789";
 const SPECIAL = "!@#$%^&*()_+-=[]{}|;:,.<>?";
 
-export default function PasswordGenerator() {
+interface PasswordGeneratorProps {
+  title: string;
+  description: string;
+}
+
+export default function PasswordGenerator({
+  description,
+  title,
+}: PasswordGeneratorProps) {
   const [length, setLength] = useState(12);
   const [includeDigit, setIncludeDigit] = useState(true);
   const [includeUppercase, setIncludeUppercase] = useState(true);
@@ -54,10 +62,13 @@ export default function PasswordGenerator() {
   return (
     <main className="flex w-full flex-col gap-8">
       <div>
-        <h1 className="text-3xl font-bold">Password Generator</h1>
-        <p className="mt-2 text-muted-foreground">
-          Generate a secure random password with customizable options.
-        </p>
+        <h1
+          data-slot="doc-title"
+          className="screen-line-bottom text-3xl font-semibold text-primary line-clamp-2 text-ellipsis"
+        >
+          {title}
+        </h1>
+        <p className="mt-2 text-muted-foreground">{description}</p>
       </div>
 
       <div className="flex gap-2">
