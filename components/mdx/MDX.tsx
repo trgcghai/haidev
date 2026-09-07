@@ -15,6 +15,7 @@ import { remarkHeading } from "fumadocs-core/mdx-plugins";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
+import LinkGithubButton from "@/components/projects/link-github-button";
 
 export const components: MDXRemoteProps["components"] = {
   h1: (props: React.ComponentProps<"h1">) => (
@@ -126,6 +127,7 @@ export const components: MDXRemoteProps["components"] = {
       </span>
     </li>
   ),
+  LinkGithubButton,
 };
 
 const options: MDXRemoteProps["options"] = {
