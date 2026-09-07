@@ -37,7 +37,7 @@ export async function generateMetadata({
 
   const { title, description, createdAt, updatedAt } = doc.metadata;
 
-  const postUrl = ROUTES.BLOGS.slug + "/" + doc.slug;
+  const postUrl = "/" + ROUTES.BLOGS.slug + "/" + doc.slug;
 
   return {
     title,
@@ -63,7 +63,7 @@ export async function generateMetadata({
 }
 
 function getPageJsonLd(doc: Doc): WithContext<BlogPosting> {
-  const postUrl = ROUTES.BLOGS.slug + "/" + doc.slug;
+  const postUrl = "/" + ROUTES.BLOGS.slug + "/" + doc.slug;
 
   return {
     "@context": "https://schema.org",

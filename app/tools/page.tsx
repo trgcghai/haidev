@@ -4,13 +4,14 @@ import {
 } from "@/components/providers/JsonLdScript";
 import { CONFIG, ROUTES } from "@/constants/config";
 import { JSON_LD_ID } from "@/constants/json-ld";
-import { absoluteUrl } from "@/lib/utils";
+import { absoluteUrl, cn } from "@/lib/utils";
 import { toolRegistries } from "@/registry/tools";
 import { Tool } from "@/types/tool";
 import { Metadata } from "next";
 import { CollectionPage, WithContext } from "schema-dts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
+import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 
 const DESCRIPTION = "Discover useful tools and utilities by Công Hải.";
 
@@ -88,24 +89,48 @@ const Page = () => {
         ])}
       />
 
-      <div className="grid grid-cols-3 md:grid-cols-4 gap-6 items-stretch">
-        {toolRegistries.map((tool) => (
-          <Link href={`${ROUTES.TOOLS.slug}/${tool.slug}`} key={tool.slug}>
-            <Card className="h-full!">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <tool.icon className="size-5 text-primary" />
-                  <p>{tool.name}</p>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground line-clamp-3 text-ellipsis">
-                  {tool.description}
-                </p>
-              </CardContent>
-            </Card>
-          </Link>
-        ))}
+      <div className="">
+        <h2 id="tools">
+          <LetterSwapForward
+            label="# Tools"
+            reverse={true}
+            className="text-lg md:text-2xl font-semibold w-fit text-primary"
+          />
+        </h2>
+        <p className="my-4 text-base text-muted-foreground w-full wrap-break-word text-wrap tracking-wide">
+          Explore a collection of useful tools and utilities designed to enhance
+          your productivity and simplify your tasks.
+        </p>
+        <div className="screen-line-top relative py-4 -mx-1">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 items-stretch">
+            {toolRegistries.map((tool) => (
+              <Link
+                href={`/${ROUTES.TOOLS.slug}/${tool.slug}`}
+                key={tool.slug}
+                className={cn(
+                  "flex flex-col gap-2 p-2 transition-[background-color] ease-out hover:bg-accent/30 rounded-xl",
+                  "max-sm:screen-line-top max-sm:screen-line-bottom",
+                  "sm:max-md:nth-[2n+1]:screen-line-top sm:max-md:nth-[2n+1]:screen-line-bottom",
+                  "md:nth-[3n+1]:screen-line-top md:nth-[3n+1]:screen-line-bottom",
+                )}
+              >
+                <Card className="h-full!">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <tool.icon className="size-5 text-primary" />
+                      <p>{tool.name}</p>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground line-clamp-3 text-ellipsis">
+                      {tool.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );
