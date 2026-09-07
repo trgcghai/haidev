@@ -7,7 +7,7 @@ import {
 } from "@/components/providers/JsonLdScript";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { CONFIG } from "@/constants/config";
+import { CONFIG, ROUTES } from "@/constants/config";
 import { JSON_LD_ID } from "@/constants/json-ld";
 import { getDocBySlug, getProjectPosts } from "@/lib/documents";
 import { absoluteUrl } from "@/lib/utils";
@@ -18,7 +18,7 @@ import { ArrowLeftIcon } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { WebApplication, WithContext } from "schema-dts";
+import { SoftwareApplication, WithContext } from "schema-dts";
 
 export async function generateStaticParams() {
   const docs = getProjectPosts();
@@ -37,7 +37,7 @@ export async function generateMetadata({
 
   const { title, description, createdAt, updatedAt } = doc.metadata;
 
-  const postUrl = `/projects/${doc.slug}`;
+  const postUrl = ROUTES.PROJECTS.slug + "/" + doc.slug;
 
   return {
     title,
@@ -62,12 +62,12 @@ export async function generateMetadata({
   };
 }
 
-function getPageJsonLd(doc: Doc): WithContext<WebApplication> {
-  const projectUrl = `/projects/${doc.slug}`;
+function getPageJsonLd(doc: Doc): WithContext<SoftwareApplication> {
+  const projectUrl = ROUTES.PROJECTS.slug + "/" + doc.slug;
 
   return {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
+    "@type": "SoftwareApplication",
     "@id": absoluteUrl(projectUrl),
     name: doc.metadata.title,
     description: doc.metadata.description,
@@ -80,7 +80,8 @@ function getPageJsonLd(doc: Doc): WithContext<WebApplication> {
     keywords: doc.metadata.keywords
       ?.split(",")
       .map((keyword) => keyword.trim())
-      .concat(CONFIG.USER.keywords),
+      .concat(CONFIG.USER.keywords)
+      .join(","),
     image:
       doc.metadata.image ||
       absoluteUrl(

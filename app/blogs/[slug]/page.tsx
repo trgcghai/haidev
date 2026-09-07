@@ -18,7 +18,7 @@ import Link from "next/link";
 import { ArrowLeftIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import DocActions from "@/components/common/doc-actions";
-import { CONFIG } from "@/constants/config";
+import { CONFIG, ROUTES } from "@/constants/config";
 
 export async function generateStaticParams() {
   const docs = getBlogPosts();
@@ -37,7 +37,7 @@ export async function generateMetadata({
 
   const { title, description, createdAt, updatedAt } = doc.metadata;
 
-  const postUrl = `/blogs/${doc.slug}`;
+  const postUrl = ROUTES.BLOGS.slug + "/" + doc.slug;
 
   return {
     title,
@@ -63,7 +63,7 @@ export async function generateMetadata({
 }
 
 function getPageJsonLd(doc: Doc): WithContext<BlogPosting> {
-  const postUrl = `/blog/${doc.slug}`;
+  const postUrl = ROUTES.BLOGS.slug + "/" + doc.slug;
 
   return {
     "@context": "https://schema.org",
@@ -89,7 +89,8 @@ function getPageJsonLd(doc: Doc): WithContext<BlogPosting> {
     keywords: doc.metadata.keywords
       ?.split(",")
       .map((keyword) => keyword.trim())
-      .concat(CONFIG.USER.keywords),
+      .concat(CONFIG.USER.keywords)
+      .join(","),
     isPartOf: {
       "@type": "Blog",
       "@id": absoluteUrl("/blog"),
