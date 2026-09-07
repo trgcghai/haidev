@@ -15,7 +15,7 @@ const Hero = () => {
           <LetterSwapForward
             label={"Welcome to Cong Hai's Portfolio"}
             reverse={true}
-            className="md:text-4xl font-bold md:w-fit text-[19px] w-full"
+            className="md:text-4xl font-bold md:w-fit text-[16px] w-full"
           />
         </h1>
         <RoleTyper />

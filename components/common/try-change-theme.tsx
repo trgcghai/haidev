@@ -17,7 +17,7 @@ const TryChangeTheme = ({ className }: { className?: string }) => {
   return (
     <section
       className={cn(
-        "flex items-center justify-center md:justify-start gap-2 text-secondary-foreground relative md:text-base text-sm",
+        "flex items-center justify-center md:justify-start gap-2 text-secondary-foreground relative md:text-base sm:text-sm text-xs",
         className,
       )}
     >

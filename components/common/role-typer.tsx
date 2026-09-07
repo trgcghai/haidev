@@ -3,7 +3,7 @@ import { CONFIG } from "@/constants/config";
 
 const RoleTyper = () => {
   return (
-    <p className="whitespace-pre-wrap text-secondary-foreground md:text-lg text-base text-center md:text-left">
+    <p className="whitespace-pre-wrap text-secondary-foreground md:text-lg sm:text-base text-sm text-center md:text-left">
       <span>{"I am a "}</span>
       <Typewriter
         text={CONFIG.USER.roles}
