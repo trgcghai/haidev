@@ -6,6 +6,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
 type ComparisonResult = {
   index: number;
@@ -25,13 +32,25 @@ export default function StringComparator({
 }: StringComparatorProps) {
   const [firstString, setFirstString] = useState("");
   const [secondString, setSecondString] = useState("");
+  const [trimWhitespace, setTrimWhitespace] = useState(false);
 
   const results = useMemo<ComparisonResult[]>(() => {
-    const maxLength = Math.max(firstString.length, secondString.length);
+    let firstStringToCompare = firstString;
+    let secondStringToCompare = secondString;
+
+    if (trimWhitespace) {
+      firstStringToCompare = firstStringToCompare.trim();
+      secondStringToCompare = secondStringToCompare.trim();
+    }
+
+    const maxLength = Math.max(
+      firstStringToCompare.length,
+      secondStringToCompare.length,
+    );
 
     return Array.from({ length: maxLength }, (_, index) => {
-      const first = firstString[index] ?? "";
-      const second = secondString[index] ?? "";
+      const first = firstStringToCompare[index] ?? "";
+      const second = secondStringToCompare[index] ?? "";
 
       return {
         index,
@@ -40,7 +59,7 @@ export default function StringComparator({
         same: first === second,
       };
     });
-  }, [firstString, secondString]);
+  }, [firstString, secondString, trimWhitespace]);
 
   const sameCount = results.filter((result) => result.same).length;
   const differenceCount = results.length - sameCount;
@@ -51,7 +70,7 @@ export default function StringComparator({
   };
 
   return (
-    <main className="flex w-full flex-col gap-4">
+    <main className="flex w-full flex-col gap-8">
       <div>
         <h1
           data-slot="doc-title"
@@ -64,23 +83,52 @@ export default function StringComparator({
 
       <div className="grid gap-4 md:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="first-string">First string</Label>
+          <div className="flex items-center justify-between">
+            <Label htmlFor="first-string">First string</Label>
+            <span className="text-xs text-muted-foreground">
+              {trimWhitespace ? firstString.trim().length : firstString.length}
+              /2000
+            </span>
+          </div>
           <Input
             id="first-string"
             value={firstString}
             onChange={(event) => setFirstString(event.target.value)}
             placeholder="Enter first string"
+            maxLength={2000}
           />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="second-string">Second string</Label>
+          <div className="flex items-center justify-between">
+            <Label htmlFor="second-string">Second string</Label>
+            <span className="text-xs text-muted-foreground">
+              {trimWhitespace
+                ? secondString.trim().length
+                : secondString.length}
+              /2000
+            </span>
+          </div>
           <Input
             id="second-string"
             value={secondString}
             onChange={(event) => setSecondString(event.target.value)}
             placeholder="Enter second string"
+            maxLength={2000}
           />
+        </div>
+      </div>
+
+      <div>
+        <div className="flex items-center gap-3">
+          <Switch
+            id="trim-whitespace"
+            checked={trimWhitespace}
+            onCheckedChange={(checked) => setTrimWhitespace(checked === true)}
+          />
+          <Label className="text-sm" htmlFor="trim-whitespace">
+            Trim whitespace
+          </Label>
         </div>
       </div>
 
@@ -107,44 +155,49 @@ export default function StringComparator({
           ) : (
             <div className="overflow-x-auto">
               <div className="min-w-max font-mono text-lg">
-                <div className="mb-2 flex">
-                  {results.map((result) => (
-                    <div
-                      key={result.index}
-                      className="w-6 text-center text-xs text-muted-foreground"
-                    >
-                      {result.index}
-                    </div>
-                  ))}
-                </div>
-
                 <div className="flex">
                   {results.map((result) => (
-                    <div
-                      key={`first-${result.index}`}
-                      className={`flex h-8 w-6 items-center justify-center ${
-                        result.same
-                          ? "bg-green-100 text-green-700 dark:bg-green-950 dark:text-green-400"
-                          : "bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-400"
-                      }`}
-                    >
-                      {result.first || "·"}
-                    </div>
+                    <Tooltip key={`second-${result.index}`}>
+                      <TooltipTrigger>
+                        <div
+                          className={cn(
+                            "flex h-8 w-6 items-center justify-center",
+                            result.same &&
+                              "bg-green-100 text-green-700 dark:bg-green-950 dark:text-green-400",
+                            !result.same &&
+                              "bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-400",
+                          )}
+                        >
+                          {result.second || "·"}
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent side="top">
+                        <p>Index: {result.index}</p>
+                      </TooltipContent>
+                    </Tooltip>
                   ))}
                 </div>
 
                 <div className="mt-1 flex">
                   {results.map((result) => (
-                    <div
-                      key={`second-${result.index}`}
-                      className={`flex h-8 w-6 items-center justify-center ${
-                        result.same
-                          ? "bg-green-100 text-green-700 dark:bg-green-950 dark:text-green-400"
-                          : "bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-400"
-                      }`}
-                    >
-                      {result.second || "·"}
-                    </div>
+                    <Tooltip key={`first-${result.index}`}>
+                      <TooltipTrigger>
+                        <div
+                          className={cn(
+                            "flex h-8 w-6 items-center justify-center",
+                            result.same &&
+                              "bg-green-100 text-green-700 dark:bg-green-950 dark:text-green-400",
+                            !result.same &&
+                              "bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-400",
+                          )}
+                        >
+                          {result.first || "·"}
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent side="bottom">
+                        <p>Index: {result.index}</p>
+                      </TooltipContent>
+                    </Tooltip>
                   ))}
                 </div>
               </div>
