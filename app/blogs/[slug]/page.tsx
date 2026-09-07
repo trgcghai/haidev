@@ -82,7 +82,10 @@ function getPageJsonLd(doc: Doc): WithContext<BlogPosting> {
     dateModified: new Date(doc.metadata.updatedAt).toISOString(),
     author: { "@id": JSON_LD_ID.person },
     publisher: { "@id": JSON_LD_ID.person },
-    mainEntityOfPage: absoluteUrl(postUrl),
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": absoluteUrl(postUrl),
+    },
     keywords: doc.metadata.keywords
       ?.split(",")
       .map((keyword) => keyword.trim())

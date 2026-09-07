@@ -88,7 +88,10 @@ function getPageJsonLd(doc: Doc): WithContext<WebApplication> {
       ),
     author: { "@id": JSON_LD_ID.person },
     publisher: { "@id": JSON_LD_ID.person },
-    mainEntityOfPage: absoluteUrl(projectUrl),
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": absoluteUrl(projectUrl),
+    },
     isPartOf: {
       "@type": "CollectionPage",
       "@id": absoluteUrl("/projects"),

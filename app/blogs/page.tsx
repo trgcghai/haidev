@@ -49,8 +49,8 @@ function getBlogJsonLd(posts: Doc[]): WithContext<Blog> {
     isPartOf: { "@id": JSON_LD_ID.website },
     about: { "@id": JSON_LD_ID.person },
     keywords: CONFIG.USER.keywords,
-    mainEntityOfPage: {
-      "@id": JSON_LD_ID.website,
+    mainEntity: {
+      "@type": "ItemList",
     },
     blogPost: posts.map((post) => ({
       "@type": "BlogPosting",
@@ -61,7 +61,6 @@ function getBlogJsonLd(posts: Doc[]): WithContext<Blog> {
       dateCreated: new Date(post.metadata.createdAt).toISOString(),
       dateModified: new Date(post.metadata.updatedAt).toISOString(),
       description: post.metadata.description,
-      sameAs: absoluteUrl(`/blog/${post.slug}`),
       publisher: { "@id": JSON_LD_ID.person },
       author: { "@id": JSON_LD_ID.person },
       keywords: post.metadata.keywords

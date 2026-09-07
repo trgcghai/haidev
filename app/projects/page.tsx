@@ -49,9 +49,6 @@ function getCollectionPageJsonLd(docs: Doc[]): WithContext<CollectionPage> {
     isPartOf: { "@id": JSON_LD_ID.website },
     about: { "@id": JSON_LD_ID.person },
     keywords: CONFIG.USER.keywords,
-    mainEntityOfPage: {
-      "@id": JSON_LD_ID.website,
-    },
     mainEntity: {
       "@type": "ItemList",
       name: "Projects List",
@@ -64,7 +61,6 @@ function getCollectionPageJsonLd(docs: Doc[]): WithContext<CollectionPage> {
         url: absoluteUrl(`/projects/${doc.slug}`),
         description: doc.metadata.description,
         name: doc.metadata.title,
-        sameAs: absoluteUrl(`/projects/${doc.slug}`),
         publisher: { "@id": JSON_LD_ID.person },
         author: { "@id": JSON_LD_ID.person },
         image:
