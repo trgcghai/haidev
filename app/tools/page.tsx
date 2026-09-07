@@ -13,7 +13,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 
-const DESCRIPTION = "Discover useful tools and utilities by Công Hải.";
+const DESCRIPTION =
+  "Explore a collection of useful tools and utilities designed to enhance your productivity and simplify your tasks.";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -97,12 +98,11 @@ const Page = () => {
             className="text-lg md:text-2xl font-semibold w-fit text-primary"
           />
         </h2>
-        <p className="my-4 text-base text-muted-foreground w-full wrap-break-word text-wrap tracking-wide">
-          Explore a collection of useful tools and utilities designed to enhance
-          your productivity and simplify your tasks.
+        <p className="my-4 text-sm sm:text-base text-muted-foreground w-full wrap-break-word text-wrap tracking-wide">
+          {DESCRIPTION}
         </p>
         <div className="screen-line-top relative py-4 -mx-1">
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 items-stretch">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-4 items-stretch">
             {toolRegistries.map((tool) => (
               <Link
                 href={`/${ROUTES.TOOLS.slug}/${tool.slug}`}

@@ -104,12 +104,11 @@ const ProjectsListPage = () => {
             className="text-lg md:text-2xl font-semibold w-fit text-primary"
           />
         </h2>
-        <p className="my-4 text-base text-muted-foreground w-full wrap-break-word text-wrap tracking-wide">
-          Check out my projects, where I showcase my work and demonstrate my
-          skills in web development, design, and problem-solving.
+        <p className="my-4 text-sm sm:text-base text-muted-foreground w-full wrap-break-word text-wrap tracking-wide">
+          {DESCRIPTION}
         </p>
         <div className="screen-line-top relative py-4 -mx-1">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {pinned.map((project, index) => (
               <ProjectItem
                 key={project.slug}
