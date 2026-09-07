@@ -1,4 +1,4 @@
-import PasswordGenerator from "@/app/tools/password-generator/password-generator";
+import StringComparator from "@/app/tools/string-comparator/string-comparator";
 import {
   jsonLdBreadcrumbList,
   JsonLdScript,
@@ -15,9 +15,7 @@ import { notFound } from "next/navigation";
 import { WebApplication, WithContext } from "schema-dts";
 
 export async function generateMetadata() {
-  const tool = toolRegistries.find(
-    (tool) => tool.slug === "password-generator",
-  );
+  const tool = toolRegistries.find((tool) => tool.slug === "string-comparator");
 
   if (!tool) {
     return notFound();
@@ -76,8 +74,8 @@ function getPageJsonLd(tool: Tool): WithContext<WebApplication> {
   };
 }
 
-const Page = async () => {
-  const slug = "password-generator";
+const Page = () => {
+  const slug = "string-comparator";
   const tool = toolRegistries.find((tool) => tool.slug === slug);
 
   if (!tool) {
@@ -120,7 +118,7 @@ const Page = async () => {
         />
       </div>
 
-      <PasswordGenerator title={tool.name} description={tool.description} />
+      <StringComparator title={tool.name} description={tool.description} />
     </>
   );
 };
