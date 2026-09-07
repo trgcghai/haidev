@@ -2,13 +2,15 @@ import {
   jsonLdBreadcrumbList,
   JsonLdScript,
 } from "@/components/providers/JsonLdScript";
-import { CONFIG } from "@/constants/config";
+import { CONFIG, ROUTES } from "@/constants/config";
 import { JSON_LD_ID } from "@/constants/json-ld";
 import { absoluteUrl } from "@/lib/utils";
 import { toolRegistries } from "@/registry/tools";
 import { Tool } from "@/types/tool";
 import { Metadata } from "next";
 import { CollectionPage, WithContext } from "schema-dts";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
 
 const DESCRIPTION = "Discover useful tools and utilities by Công Hải.";
 
@@ -85,6 +87,26 @@ const Page = () => {
           },
         ])}
       />
+
+      <div className="grid grid-cols-3 md:grid-cols-4 gap-6 items-stretch">
+        {toolRegistries.map((tool) => (
+          <Link href={`${ROUTES.TOOLS.slug}/${tool.slug}`} key={tool.slug}>
+            <Card className="h-full!">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <tool.icon className="size-5 text-primary" />
+                  <p>{tool.name}</p>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground line-clamp-3 text-ellipsis">
+                  {tool.description}
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
+        ))}
+      </div>
     </>
   );
 };

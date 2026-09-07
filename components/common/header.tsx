@@ -4,6 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { AnimationToggle } from "@/components/common/animation-toggle";
 import Image from "next/image";
+import { CONFIG } from "@/constants/config";
 
 const Header = () => {
   return (
@@ -21,23 +22,13 @@ const Header = () => {
       </div>
       <div className="flex items-center justify-between md:justify-end gap-2 flex-1">
         <div className="space-x-4">
-          <Button variant="ghost" size="default">
-            <Link href="/" className="hover:text-primary text-sm">
-              Portfolio
-            </Link>
-          </Button>
-
-          <Button variant="ghost" size="default">
-            <Link href="/blogs" className="hover:text-primary text-sm">
-              Blogs
-            </Link>
-          </Button>
-
-          <Button variant="ghost" size="default">
-            <Link href="/projects" className="hover:text-primary text-sm">
-              Projects
-            </Link>
-          </Button>
+          {CONFIG.SITE.routes.map((r) => (
+            <Button variant="ghost" size="default" key={r.slug}>
+              <Link href={r.url} className="hover:text-primary text-sm">
+                {r.title}
+              </Link>
+            </Button>
+          ))}
         </div>
 
         <Separator orientation="vertical" className="mx-4 hidden md:block" />
