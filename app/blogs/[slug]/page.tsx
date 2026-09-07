@@ -18,6 +18,7 @@ import Link from "next/link";
 import { ArrowLeftIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import DocActions from "@/components/common/doc-actions";
+import { CONFIG } from "@/constants/config";
 
 export async function generateStaticParams() {
   const docs = getBlogPosts();
@@ -42,17 +43,22 @@ export async function generateMetadata({
     title,
     description,
     alternates: {
-      canonical: postUrl,
+      canonical: absoluteUrl(postUrl),
     },
     openGraph: {
-      url: postUrl,
+      url: absoluteUrl(postUrl),
       type: "article",
       publishedTime: new Date(createdAt).toISOString(),
       modifiedTime: new Date(updatedAt).toISOString(),
     },
     keywords: doc.metadata.keywords
       ?.split(",")
-      .map((keyword) => keyword.trim()),
+      .map((keyword) => keyword.trim())
+      .concat(CONFIG.USER.keywords),
+    icons: CONFIG.SITE.icons,
+    authors: CONFIG.SITE.authors,
+    creator: CONFIG.SITE.creator,
+    publisher: CONFIG.SITE.publisher,
   };
 }
 
@@ -71,17 +77,20 @@ function getPageJsonLd(doc: Doc): WithContext<BlogPosting> {
         `/images?title=${encodeURIComponent(doc.metadata.title)}&description=${encodeURIComponent(doc.metadata.description)}`,
       ),
     url: absoluteUrl(postUrl),
+    dateCreated: new Date(doc.metadata.createdAt).toISOString(),
     datePublished: new Date(doc.metadata.createdAt).toISOString(),
     dateModified: new Date(doc.metadata.updatedAt).toISOString(),
     author: { "@id": JSON_LD_ID.person },
+    publisher: { "@id": JSON_LD_ID.person },
     mainEntityOfPage: absoluteUrl(postUrl),
     keywords: doc.metadata.keywords
       ?.split(",")
-      .map((keyword) => keyword.trim()),
+      .map((keyword) => keyword.trim())
+      .concat(CONFIG.USER.keywords),
     isPartOf: {
       "@type": "Blog",
       "@id": absoluteUrl("/blog"),
-      name: "Blog",
+      name: "Blogs - Công Hải",
       url: absoluteUrl("/blog"),
     },
   };

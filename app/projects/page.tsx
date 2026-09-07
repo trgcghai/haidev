@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { ROUTES } from "@/constants/config";
+import { CONFIG, ROUTES } from "@/constants/config";
 import {
   jsonLdBreadcrumbList,
   JsonLdScript,
@@ -12,18 +12,29 @@ import { CollectionPage, WithContext } from "schema-dts";
 import { getProjectPosts } from "@/lib/documents";
 import { Doc } from "@/types/document";
 
+const DESCRIPTION =
+  "Check out my projects, where I showcase my work and demonstrate my skills in web development, design, and problem-solving.";
+
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Projects - Công Hải",
-    description:
-      "Check out my projects, where I showcase my work and demonstrate my skills in web development, design, and problem-solving.",
-    alternates: {
-      canonical: ROUTES.PROJECTS.url,
-    },
+    description: DESCRIPTION,
     openGraph: {
-      url: ROUTES.PROJECTS.url,
+      url: absoluteUrl("/projects"),
       type: "website",
+      title: CONFIG.SITE.title,
+      description: CONFIG.USER.description,
+      countryName: CONFIG.USER.address,
+      siteName: CONFIG.SITE.name,
+      locale: CONFIG.USER.locale,
+      images: [new URL(CONFIG.USER.banner, CONFIG.SITE.url).toString()],
     },
+    keywords: CONFIG.USER.keywords,
+    alternates: CONFIG.SITE.alternates,
+    icons: CONFIG.SITE.icons,
+    authors: CONFIG.SITE.authors,
+    creator: CONFIG.SITE.creator,
+    publisher: CONFIG.SITE.publisher,
   };
 }
 
@@ -32,13 +43,20 @@ function getCollectionPageJsonLd(docs: Doc[]): WithContext<CollectionPage> {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "@id": absoluteUrl("/projects"),
-    name: "Projects - Công Hải",
-    description:
-      "Check out my projects, where I showcase my work and demonstrate my skills in web development, design, and problem-solving.",
     url: absoluteUrl("/projects"),
+    name: "Projects - Công Hải",
+    description: DESCRIPTION,
     isPartOf: { "@id": JSON_LD_ID.website },
+    about: { "@id": JSON_LD_ID.person },
+    keywords: CONFIG.USER.keywords,
+    mainEntityOfPage: {
+      "@id": JSON_LD_ID.website,
+    },
     mainEntity: {
       "@type": "ItemList",
+      name: "Projects List",
+      alternateName: "List of Projects",
+      description: DESCRIPTION,
       numberOfItems: docs.length,
       itemListElement: docs.map((doc, index) => ({
         "@type": "ListItem",
@@ -46,6 +64,9 @@ function getCollectionPageJsonLd(docs: Doc[]): WithContext<CollectionPage> {
         url: absoluteUrl(`/projects/${doc.slug}`),
         description: doc.metadata.description,
         name: doc.metadata.title,
+        sameAs: absoluteUrl(`/projects/${doc.slug}`),
+        publisher: { "@id": JSON_LD_ID.person },
+        author: { "@id": JSON_LD_ID.person },
         image:
           doc.metadata.image ||
           absoluteUrl(
