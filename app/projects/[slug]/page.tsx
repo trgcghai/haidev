@@ -7,6 +7,7 @@ import {
 } from "@/components/providers/JsonLdScript";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { CONFIG, ROUTES } from "@/constants/config";
 import { JSON_LD_ID } from "@/constants/json-ld";
 import { getDocBySlug, getProjectPosts } from "@/lib/documents";
 import { absoluteUrl } from "@/lib/utils";
@@ -17,7 +18,7 @@ import { ArrowLeftIcon } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CollectionPage, WithContext } from "schema-dts";
+import { SoftwareApplication, WithContext } from "schema-dts";
 
 export async function generateStaticParams() {
   const docs = getProjectPosts();
@@ -36,52 +37,66 @@ export async function generateMetadata({
 
   const { title, description, createdAt, updatedAt } = doc.metadata;
 
-  const postUrl = `/projects/${doc.slug}`;
+  const postUrl = "/" + ROUTES.PROJECTS.slug + "/" + doc.slug;
 
   return {
     title,
     description,
     alternates: {
-      canonical: postUrl,
+      canonical: absoluteUrl(postUrl),
     },
     openGraph: {
-      url: postUrl,
+      url: absoluteUrl(postUrl),
       type: "article",
       publishedTime: new Date(createdAt).toISOString(),
       modifiedTime: new Date(updatedAt).toISOString(),
     },
     keywords: doc.metadata.keywords
       ?.split(",")
-      .map((keyword) => keyword.trim()),
+      .map((keyword) => keyword.trim())
+      .concat(CONFIG.USER.keywords),
+    icons: CONFIG.SITE.icons,
+    authors: CONFIG.SITE.authors,
+    creator: CONFIG.SITE.creator,
+    publisher: CONFIG.SITE.publisher,
   };
 }
 
-function getPageJsonLd(doc: Doc): WithContext<CollectionPage> {
-  const projectUrl = `/projects/${doc.slug}`;
+function getPageJsonLd(doc: Doc): WithContext<SoftwareApplication> {
+  const projectUrl = "/" + ROUTES.PROJECTS.slug + "/" + doc.slug;
 
   return {
     "@context": "https://schema.org",
-    "@type": "CollectionPage",
+    "@type": "SoftwareApplication",
     "@id": absoluteUrl(projectUrl),
     name: doc.metadata.title,
     description: doc.metadata.description,
     url: absoluteUrl(projectUrl),
+    applicationCategory: "Web Application",
+    operatingSystem: "Web",
+    dateCreated: new Date(doc.metadata.createdAt).toISOString(),
     datePublished: new Date(doc.metadata.createdAt).toISOString(),
     dateModified: new Date(doc.metadata.updatedAt).toISOString(),
     keywords: doc.metadata.keywords
       ?.split(",")
-      .map((keyword) => keyword.trim()),
+      .map((keyword) => keyword.trim())
+      .concat(CONFIG.USER.keywords)
+      .join(","),
     image:
       doc.metadata.image ||
       absoluteUrl(
         `/images?title=${encodeURIComponent(doc.metadata.title)}&description=${encodeURIComponent(doc.metadata.description)}`,
       ),
     author: { "@id": JSON_LD_ID.person },
-    mainEntityOfPage: absoluteUrl(projectUrl),
+    publisher: { "@id": JSON_LD_ID.person },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": absoluteUrl(projectUrl),
+    },
     isPartOf: {
       "@type": "CollectionPage",
       "@id": absoluteUrl("/projects"),
-      name: "projects",
+      name: "Projects - Công Hải",
       url: absoluteUrl("/projects"),
     },
   };

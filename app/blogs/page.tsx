@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { ROUTES } from "@/constants/config";
+import { CONFIG, ROUTES } from "@/constants/config";
 import {
   jsonLdBreadcrumbList,
   JsonLdScript,
@@ -12,18 +12,29 @@ import { Blog, WithContext } from "schema-dts";
 import { absoluteUrl } from "@/lib/utils";
 import { Doc } from "@/types/document";
 
+const DESCRIPTION =
+  "Explore my blogs, where I share my thoughts, experiences, and insights on various topics.";
+
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Blogs - Công Hải",
-    description:
-      "Explore my blogs, where I share my thoughts, experiences, and insights on various topics.",
-    alternates: {
-      canonical: ROUTES.BLOGS.url,
-    },
+    description: DESCRIPTION,
     openGraph: {
-      url: ROUTES.BLOGS.url,
+      url: absoluteUrl("/blog"),
       type: "website",
+      title: CONFIG.SITE.title,
+      description: CONFIG.USER.description,
+      countryName: CONFIG.USER.address,
+      siteName: CONFIG.SITE.name,
+      locale: CONFIG.USER.locale,
+      images: [new URL(CONFIG.USER.banner, CONFIG.SITE.url).toString()],
     },
+    keywords: CONFIG.USER.keywords,
+    alternates: CONFIG.SITE.alternates,
+    icons: CONFIG.SITE.icons,
+    authors: CONFIG.SITE.authors,
+    creator: CONFIG.SITE.creator,
+    publisher: CONFIG.SITE.publisher,
   };
 }
 
@@ -33,12 +44,13 @@ function getBlogJsonLd(posts: Doc[]): WithContext<Blog> {
     "@type": "Blog",
     "@id": absoluteUrl("/blog"),
     name: "Blogs - Công Hải",
-    description:
-      "Explore my blogs, where I share my thoughts, experiences, and insights on various topics.",
+    description: DESCRIPTION,
     url: absoluteUrl("/blog"),
     isPartOf: { "@id": JSON_LD_ID.website },
-    mainEntityOfPage: {
-      "@id": JSON_LD_ID.website,
+    about: { "@id": JSON_LD_ID.person },
+    keywords: CONFIG.USER.keywords,
+    mainEntity: {
+      "@type": "ItemList",
     },
     blogPost: posts.map((post) => ({
       "@type": "BlogPosting",
@@ -46,7 +58,14 @@ function getBlogJsonLd(posts: Doc[]): WithContext<Blog> {
       headline: post.metadata.title,
       url: absoluteUrl(`/blog/${post.slug}`),
       datePublished: new Date(post.metadata.createdAt).toISOString(),
+      dateCreated: new Date(post.metadata.createdAt).toISOString(),
+      dateModified: new Date(post.metadata.updatedAt).toISOString(),
       description: post.metadata.description,
+      publisher: { "@id": JSON_LD_ID.person },
+      author: { "@id": JSON_LD_ID.person },
+      keywords: post.metadata.keywords
+        ?.split(",")
+        .map((keyword) => keyword.trim()),
       image:
         post.metadata.image ||
         absoluteUrl(

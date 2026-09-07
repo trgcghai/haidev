@@ -57,7 +57,7 @@ export const CONFIG = {
         title: "Website",
         handle: "haidev.id.vn",
         href: process.env.NEXT_PUBLIC_APP_URL,
-        sameAs: true,
+        sameAs: false,
       },
     },
     email: "conghai.tpma@gmail.com",
@@ -135,6 +135,12 @@ export const CONFIG = {
         title: "Projects",
         description: "Explore the projects developed by Công Hải.",
       },
+      {
+        url: "/tools",
+        slug: "tools",
+        title: "Tools",
+        description: "Discover useful tools and utilities by Công Hải.",
+      },
     ],
   },
 };
@@ -156,6 +162,7 @@ export const ROUTES = {
   HOME: getRoute("home"),
   BLOGS: getRoute("blogs"),
   PROJECTS: getRoute("projects"),
+  TOOLS: getRoute("tools"),
 };
 
 export type SocialName = keyof typeof CONFIG.USER.socials;

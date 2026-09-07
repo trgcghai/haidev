@@ -16,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(project.metadata.updatedAt).toISOString(),
   }));
 
-  const routes = ["/", "/projects", "/blogs"].map((r) => ({
+  const routes = CONFIG.SITE.routes.map((r) => ({
     url: `${CONFIG.SITE.url}${r}`,
     lastModified: new Date().toISOString(),
   }));
