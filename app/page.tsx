@@ -19,7 +19,7 @@ export default function Home() {
           width={2560}
           height={1440}
           loading="eager"
-          className="md:h-[500px] w-full object-cover rounded-xs"
+          className="lg:h-[500px] md:h-[400px] w-full object-cover rounded-xs"
         />
       </section>
 
