@@ -8,8 +8,6 @@ import { JsonLdScript } from "@/components/providers/JsonLdScript";
 import { CONFIG } from "@/constants/config";
 import { rootPageJsonLd } from "@/constants/json-ld";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 export default function Home() {
   return (
@@ -36,10 +34,6 @@ export default function Home() {
       <Stack />
 
       <FeaturedProjects />
-
-      <Link href="/assets/resume-en.pdf" target="_blank">
-        <Button>CV / Resume</Button>
-      </Link>
 
       <JsonLdScript data={rootPageJsonLd} />
     </>
