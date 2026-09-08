@@ -73,7 +73,7 @@ export const components: MDXRemoteProps["components"] = {
       {...(props as ImageProps)}
       alt={props.alt}
       src={props.src}
-      className="mb-4 object-cover"
+      className="mb-4 object-cover h-auto"
       loading="eager"
       quality={100}
     />
