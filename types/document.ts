@@ -26,6 +26,10 @@ export type DocMetadata = {
    */
   featured?: boolean;
   /**
+   * Flag to hide the post from the UI. Useful for drafts or deprecated content.
+   */
+  hidden?: boolean;
+  /**
    * Optional list of keywords for the post. Used for SEO and filtering.
    */
   keywords?: string;
