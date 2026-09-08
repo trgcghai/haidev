@@ -2,7 +2,7 @@ import { CopyButton } from "@/components/common/copy-button";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import ComesInGoesOutUnderline from "@/components/fancy/text/underline-comes-in-goes-out";
 import { CONFIG } from "@/constants/config";
-import { Link2, Mails, MapPin } from "lucide-react";
+import { FileUserIcon, Link2, Mails, MapPin } from "lucide-react";
 import Link from "next/link";
 
 interface AboutMeItem {
@@ -11,6 +11,7 @@ interface AboutMeItem {
   text: string;
   canCopy: boolean;
   isLink: boolean;
+  href?: string; // Optional property for link href
 }
 
 interface FindMeOnlineItem {
@@ -42,6 +43,15 @@ const aboutMeData: AboutMeItem[] = [
     text: CONFIG.USER.socials.website.handle,
     canCopy: false,
     isLink: true,
+    href: CONFIG.SITE.url,
+  },
+  {
+    id: 4,
+    icon: <FileUserIcon className="size-4" />,
+    text: "Resume / CV",
+    canCopy: false,
+    isLink: true,
+    href: "/assets/resume-en.pdf",
   },
 ];
 
@@ -119,7 +129,12 @@ const PersonalInformation = () => {
               )}
 
               {item.isLink && (
-                <Link href="/" className="hover:text-primary">
+                <Link
+                  href={item.href!}
+                  target={item.id == 4 ? "_blank" : "_self"}
+                  rel="noopener noreferrer"
+                  className="hover:text-primary"
+                >
                   <ComesInGoesOutUnderline
                     direction="left"
                     className="text-sm md:text-base"
