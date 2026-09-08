@@ -68,20 +68,16 @@ export const components: MDXRemoteProps["components"] = {
       {props.children}
     </p>
   ),
-  img: (props) => {
-    const [alt, w, h] = props.alt.split("&");
-    return (
-      <Image
-        width={w}
-        height={h}
-        className="w-full mb-4 object-cover"
-        {...(props as ImageProps)}
-        src={props.src}
-        alt={alt}
-        loading="eager"
-      />
-    );
-  },
+  Image: (props) => (
+    <Image
+      {...(props as ImageProps)}
+      alt={props.alt}
+      src={props.src}
+      className="mb-4 object-cover"
+      loading="eager"
+      quality={100}
+    />
+  ),
   pre: (props) => (
     <pre
       className="rounded-xl border bg-gray-300 dark:bg-gray-800 dark:text-secondary-foreground p-4 mb-6 w-full"
