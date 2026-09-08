@@ -18,14 +18,31 @@ const Experience = () => {
         </div>
         <div className="min-w-0 space-y-1">
           <p className="wrap-break-word text-base font-semibold text-gray-600 sm:text-lg">
+            <span className="text-primary">Front-end Developer</span> at{" "}
+            <span className="text-primary">Apps Cyclone</span>
+          </p>
+          <p>09/2026 - Present</p>
+          <p className="leading-relaxed">
+            Being trained in front-end development, focusing on UI/UX design,
+            web development with React and VueJS. Gaining experience in building
+            applications with high usuability and performance.
+          </p>
+        </div>
+      </div>
+      <div className="mt-4 flex items-start gap-3 rounded-sm text-sm text-secondary-foreground sm:p-4 sm:text-base">
+        <div className="flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line sm:size-9 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
+          <BriefcaseBusiness className="size-5" />
+        </div>
+        <div className="min-w-0 space-y-1">
+          <p className="wrap-break-word text-base font-semibold text-gray-600 sm:text-lg">
             <span className="text-primary">Full-Stack Developer</span> at{" "}
             <span className="text-primary">TMA Solutions</span>
           </p>
           <p>12/2025 - 04/2026</p>
           <p className="leading-relaxed">
-            Developing features and maintaining web applications, collaborating
-            with cross-functional teams to deliver high-quality software
-            solutions.
+            Contributed to a Project Management AI-integrated platform.
+            Developed features in both front-end and back-end and collaborated
+            with Mobile and QA-QC teams to deliver a high-quality product.
           </p>
         </div>
       </div>
