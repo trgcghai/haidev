@@ -23,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const routes = CONFIG.SITE.routes.map((r) => ({
-    url: `${CONFIG.SITE.url}${r}`,
+    url: `${CONFIG.SITE.url}/${r.slug}`,
     lastModified: new Date().toISOString(),
   }));
 
