@@ -9,9 +9,10 @@ import { JSON_LD_ID } from "@/constants/json-ld";
 import { absoluteUrl } from "@/lib/utils";
 import { toolRegistries } from "@/registry/tools";
 import { Tool } from "@/types/tool";
-import { ArrowLeftIcon } from "lucide-react";
+import { ArrowLeftIcon, Loader2Icon } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { WebApplication, WithContext } from "schema-dts";
 
 export async function generateMetadata() {
@@ -118,7 +119,16 @@ const Page = () => {
         />
       </div>
 
-      <QrCodeGenerator title={tool.name} description={tool.description} />
+      <Suspense
+        fallback={
+          <div>
+            <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+            Loading...
+          </div>
+        }
+      >
+        <QrCodeGenerator title={tool.name} description={tool.description} />
+      </Suspense>
     </>
   );
 };
