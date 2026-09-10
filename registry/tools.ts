@@ -1,5 +1,5 @@
 import { Tool } from "@/types/tool";
-import { KeySquareIcon, ShellIcon } from "lucide-react";
+import { KeySquareIcon, QrCodeIcon, ShellIcon } from "lucide-react";
 
 export const toolRegistries: Tool[] = [
   {
@@ -38,5 +38,23 @@ export const toolRegistries: Tool[] = [
     icon: KeySquareIcon,
     createdAt: "2026-09-07",
     updatedAt: "2026-09-07",
+  },
+  {
+    name: "QR code generator",
+    description:
+      "Create QR codes for URLs, text, and other data with our easy-to-use QR code generator.",
+    slug: "qr-code-generator",
+    category: "General",
+    keywords: [
+      "qr code",
+      "generator",
+      "qr code generator tool",
+      "create qr code",
+      "generate qr code",
+      "qr code generator online",
+    ],
+    icon: QrCodeIcon,
+    createdAt: "2026-09-09",
+    updatedAt: "2026-09-09",
   },
 ];

@@ -11,6 +11,9 @@ importers:
       '@base-ui/react':
         specifier: ^1.7.0
         version: 1.7.0(@date-fns/tz@1.5.0)(@types/react@19.2.18)(date-fns@4.4.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@lglab/react-qr-code':
+        specifier: ^1.7.2
+        version: 1.7.2(react@19.2.8)
       '@mdx-js/loader':
         specifier: ^3.1.1
         version: 3.1.1
@@ -610,6 +613,11 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@lglab/react-qr-code@1.7.2':
+    resolution: {integrity: sha512-+LqKrp7ftiDqTaWkeAqRQhyTKbixhlQ3dkKtv9g30rb0SqZ6ExFb+t+EEk9z4WRozRnG3Nh+4nzIBZHxxhkPyw==}
+    peerDependencies:
+      react: ^18 || ^19
 
   '@mdx-js/loader@3.1.1':
     resolution: {integrity: sha512-0TTacJyZ9mDmY+VefuthVshaNIyCGZHJG2fMnGaDttCt8HmjUF7SizlHJpaCDoGnN635nK1wpzfpx/Xx5S4WnQ==}
@@ -4677,6 +4685,10 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@lglab/react-qr-code@1.7.2(react@19.2.8)':
+    dependencies:
+      react: 19.2.8
 
   '@mdx-js/loader@3.1.1':
     dependencies:
