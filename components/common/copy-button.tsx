@@ -9,6 +9,7 @@ import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { Button } from "@/components/ui/button";
 import { IconSwap, IconSwapItem } from "@/components/common/icon-swap";
 import { CopyIcon, CheckIcon, CircleXIcon } from "lucide-react";
+import { useCopyQRToClipboard } from "@/hooks/use-copy-qr-to-clipboard";
 
 export type CopyStateIconProps = {
   state: CopyState;
@@ -73,6 +74,55 @@ export function CopyButton({
       size={size}
       onClick={(e) => {
         copy(text);
+        onClick?.(e);
+      }}
+      aria-label="Copy"
+      {...props}
+    >
+      <CopyStateIcon
+        state={state}
+        idleIcon={idleIcon}
+        doneIcon={doneIcon}
+        errorIcon={errorIcon}
+      />
+      {children}
+    </Button>
+  );
+}
+
+export type CopyQrButtonProps = ComponentProps<typeof Button> & {
+  /** The SVG element to copy. */
+  data: SVGSVGElement;
+  /** Called with the copied text on successful copy. */
+  onCopySuccess?: (text: string) => void;
+  /** Called with the error if the copy operation fails. */
+  onCopyError?: (error: Error) => void;
+} & Omit<CopyStateIconProps, "state">;
+
+export function CopyQrButton({
+  className,
+  size = "icon",
+  children,
+  data,
+  idleIcon,
+  doneIcon,
+  errorIcon,
+  onClick,
+  onCopySuccess,
+  onCopyError,
+  ...props
+}: CopyQrButtonProps) {
+  const { state, copy } = useCopyQRToClipboard({
+    onCopySuccess,
+    onCopyError,
+  });
+
+  return (
+    <Button
+      className={cn("will-change-transform", className)}
+      size={size}
+      onClick={(e) => {
+        copy(data);
         onClick?.(e);
       }}
       aria-label="Copy"

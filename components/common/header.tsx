@@ -52,7 +52,12 @@ const Header = () => {
         <Sheet>
           <SheetTrigger
             render={
-              <Button variant="outline" size="icon" aria-label="Open menu">
+              <Button
+                data-slot="sheet-trigger"
+                variant="outline"
+                size="icon"
+                aria-label="Open menu"
+              >
                 <Menu className="h-5 w-5" />
               </Button>
             }

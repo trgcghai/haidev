@@ -11,6 +11,7 @@ import { CONFIG } from "@/constants/config";
 import { JsonLdScript } from "@/components/providers/JsonLdScript";
 import { websiteJsonLd } from "@/constants/json-ld";
 import { Toaster } from "@/components/ui/toast";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -87,7 +88,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <Header />
 
             <div className="container max-w-7xl mt-8 space-y-12 md:space-y-16 mx-auto border rounded-sm p-4 bg-neutral-50/40 dark:bg-neutral-800/40">
-              {children}
+              <NuqsAdapter>{children}</NuqsAdapter>
 
               <Footer />
             </div>
