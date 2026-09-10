@@ -1,0 +1,62 @@
+import {
+  DataModulesStyle,
+  FinderPatternInnerStyle,
+  FinderPatternOuterStyle,
+} from "@lglab/react-qr-code";
+
+export const DATA_MODULES_STYLES: DataModulesStyle[] = [
+  "square",
+  "square-sm",
+  "pinched-square",
+  "rounded",
+  "leaf",
+  "vertical-line",
+  "horizontal-line",
+  "circuit-board",
+  "circle",
+  "diamond",
+  "star",
+  "heart",
+  "hashtag",
+];
+
+export const FINDER_PATTERN_INNER_STYLES: FinderPatternInnerStyle[] = [
+  "square",
+  "pinched-square",
+  "rounded-sm",
+  "rounded",
+  "rounded-lg",
+  "circle",
+  "inpoint-sm",
+  "inpoint",
+  "inpoint-lg",
+  "outpoint-sm",
+  "outpoint",
+  "outpoint-lg",
+  "leaf-sm",
+  "leaf",
+  "leaf-lg",
+  "diamond",
+  "star",
+  "heart",
+  "hashtag",
+  "microchip",
+];
+
+export const FINDER_PATTERN_OUTER_STYLES: FinderPatternOuterStyle[] = [
+  "square",
+  "pinched-square",
+  "rounded-sm",
+  "rounded",
+  "rounded-lg",
+  "circle",
+  "inpoint-sm",
+  "inpoint",
+  "inpoint-lg",
+  "outpoint-sm",
+  "outpoint",
+  "outpoint-lg",
+  "leaf-sm",
+  "leaf",
+  "leaf-lg",
+];
