@@ -1,12 +1,14 @@
+import { getDict } from "@/app/[lang]/dictionaries";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import { GraduationCap } from "lucide-react";
 
-const Education = () => {
+const Education = async () => {
+  const dict = await getDict();
   return (
     <div>
       <h2 id="education">
         <LetterSwapForward
-          label="# Education"
+          label={`# ${dict.root.education.heading}`}
           reverse={true}
           className="text-lg md:text-2xl font-semibold w-fit text-primary"
         />
@@ -18,16 +20,12 @@ const Education = () => {
         </div>
         <div>
           <p className="wrap-break-word text-base font-semibold text-gray-600 sm:text-lg">
-            <span className="text-primary">
-              Information Technology, Software Engineering
-            </span>{" "}
-            at{" "}
-            <span className="text-primary">
-              Industrial University of Ho Chi Minh City
-            </span>
+            <span className="text-primary">{dict.root.education.major}</span>
+            {` ${dict.root.education.at} `}
+            <span className="text-primary">{dict.root.education.school}</span>
           </p>
-          <p>2022 - 2027 (Expected)</p>
-          <p>GPA: 3.59/4.0 (8.5/10)</p>
+          <p>{dict.root.education.period}</p>
+          <p>{dict.root.education.gpa}</p>
         </div>
       </div>
     </div>

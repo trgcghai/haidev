@@ -1,16 +1,18 @@
+import { getDict } from "@/app/[lang]/dictionaries";
 import { CopyButton } from "@/components/common/copy-button";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import ComesInGoesOutUnderline from "@/components/fancy/text/underline-comes-in-goes-out";
 import { aboutMeData, findMeOnlineData } from "@/constants/static";
 import Link from "next/link";
 
-const PersonalInformation = () => {
+const PersonalInformation = async () => {
+  const dict = await getDict();
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-4">
       <div className="space-y-4">
         <h2 id="about-me">
           <LetterSwapForward
-            label="# About me"
+            label={`# ${dict.root.aboutMeHeading}`}
             reverse={true}
             className="text-lg md:text-2xl font-semibold w-fit text-primary"
           />
@@ -61,7 +63,7 @@ const PersonalInformation = () => {
       <div className="space-y-4">
         <h2 id="find-me-online">
           <LetterSwapForward
-            label="# Find me online"
+            label={`# ${dict.root.findMeOnlineHeading}`}
             reverse={true}
             className="text-lg md:text-2xl font-semibold w-fit text-primary"
           />

@@ -8,14 +8,8 @@ import { JsonLdScript } from "@/components/providers/JsonLdScript";
 import { CONFIG } from "@/constants/config";
 import { rootPageJsonLd } from "@/constants/json-ld";
 import Image from "next/image";
-import { hasLocale } from "@/app/[lang]/dictionaries";
-import { notFound } from "next/navigation";
 
-export default async function Home({ params }: PageProps<"/[lang]">) {
-  const { lang } = await params;
-
-  if (!hasLocale(lang)) notFound();
-
+export default async function Home() {
   return (
     <>
       <section id="banner" className="mb-12 md:mb-12">
@@ -29,7 +23,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         />
       </section>
 
-      <Hero lang={lang} />
+      <Hero />
 
       <PersonalInformation />
 

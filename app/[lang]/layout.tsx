@@ -52,10 +52,13 @@ export const metadata: Metadata = {
   publisher: CONFIG.SITE.publisher,
 };
 
-export default function RootLayout({ children }: LayoutProps<"/[lang]">) {
+export default async function RootLayout({
+  children,
+  params,
+}: LayoutProps<"/[lang]">) {
   return (
     <html
-      lang="en"
+      lang={(await params).lang}
       className={cn(
         "h-full",
         "antialiased",

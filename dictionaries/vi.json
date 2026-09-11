@@ -1,5 +1,129 @@
 {
   "root": {
-    "greeting": "Chào mừng đến với Portfolio của Công Hải"
+    "greeting": "Chào mừng đến với Portfolio của Công Hải",
+    "aboutMeHeading": "Thông tin về tôi",
+    "findMeOnlineHeading": "Mạng xã hội",
+    "education": {
+      "heading": "Học vấn",
+      "major": "Công nghệ Thông tin, Kỹ thuật Phần mềm",
+      "at": "tại",
+      "school": "Trường Đại học Công nghiệp Thành phố Hồ Chí Minh",
+      "period": "2022 - 2027 (Dự kiến)",
+      "gpa": "GPA: 3.59/4.0 (8.5/10)"
+    },
+    "experience": {
+      "heading": "Kinh nghiệm",
+      "at": "tại",
+      "items": [
+        {
+          "role": "Front-end Developer",
+          "company": "Apps Cyclone",
+          "period": "09/2026 - Hiện tại",
+          "description": "Được đào tạo về phát triển Front-end, tập trung vào thiết kế UI/UX và phát triển web với React và VueJS. Tích lũy kinh nghiệm xây dựng các ứng dụng có tính khả dụng và hiệu năng cao."
+        },
+        {
+          "role": "Full-Stack Developer",
+          "company": "TMA Solutions",
+          "period": "12/2025 - 04/2026",
+          "description": "Tham gia phát triển nền tảng quản lý dự án tích hợp AI. Phát triển các tính năng ở cả Front-end và Back-end, đồng thời phối hợp với các đội ngũ Mobile và QA-QC để xây dựng sản phẩm chất lượng cao."
+        }
+      ]
+    },
+    "stack": "Công nghệ",
+    "projects": "Dự án"
+  },
+  "header": {
+    "menu": "Menu",
+    "home": "Trang chủ",
+    "blogs": "Bài viết",
+    "projects": "Dự án",
+    "tools": "Công cụ"
+  },
+  "footer": {
+    "inspiredBy": "Được truyền cảm hứng bởi",
+    "designedAndBuiltBy": "Thiết kế và phát triển bởi",
+    "componentsAndAnimationsBy": "Components và Animation bởi"
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "seeMore": "Xem thêm",
+    "roleTyper": "Tôi là một ",
+    "tryStopBackgroundAnimation": "Animation khiến bạn khó chịu?",
+    "tryChangeDarkMode": "Không quen với dark theme?",
+    "tryChangeLightMode": "Không quen với light theme?",
+    "tryThisArrow": "Bấm vào đây",
+    "clickHere": "Bấm vào đây",
+    "animationToggle": {
+      "pause": "Tạm dừng animation",
+      "play": "Tiếp tục animation"
+    },
+    "docActions": {
+      "contentCopied": "Đã sao chép nội dung",
+      "failedToCopyContent": "Không thể sao chép nội dung",
+      "copy": "Sao chép",
+      "linkCopied": "Đã sao chép liên kết",
+      "failedToCopyLink": "Không thể sao chép liên kết",
+      "share": "Chia sẻ"
+    },
+    "toc": {
+      "title": "Mục lục"
+    }
+  },
+  "notFound": {
+    "metadataTitle": "Không tìm thấy trang",
+    "desktopTitle": "404 - Không tìm thấy trang",
+    "code": "404",
+    "title": "Không tìm thấy trang",
+    "description": "Trang bạn đang tìm kiếm không tồn tại. Nếu bạn cho rằng đây là lỗi, vui lòng liên hệ với tôi để được hỗ trợ.",
+    "home": "Trang chủ",
+    "contact": "Liên hệ"
+  },
+  "tools": {
+    "passwordGenerator": {
+      "passwordCopied": "Đã sao chép mật khẩu",
+      "failedToCopyPassword": "Không thể sao chép mật khẩu",
+      "passwordLength": "Độ dài mật khẩu:",
+      "characters": "ký tự",
+      "lengthHelp": "Giá trị phải nằm trong khoảng từ 8 đến 128",
+      "includeDigits": "Bao gồm chữ số",
+      "includeUppercase": "Bao gồm chữ cái viết hoa",
+      "includeSpecial": "Bao gồm ký tự đặc biệt"
+    },
+    "qrCodeGenerator": {
+      "placeholder": "Nhập chuỗi",
+      "random": "Ngẫu nhiên",
+      "restore": "Khôi phục",
+      "download": "Tải xuống",
+      "copy": "Sao chép"
+    },
+    "stringComparator": {
+      "firstString": "Chuỗi thứ nhất",
+      "firstStringPlaceholder": "Nhập chuỗi thứ nhất",
+      "secondString": "Chuỗi thứ hai",
+      "secondStringPlaceholder": "Nhập chuỗi thứ hai",
+      "trimWhitespace": "Loại bỏ khoảng trắng",
+      "same": "Giống nhau:",
+      "difference": "Khác nhau:",
+      "clear": "Xóa",
+      "comparison": "So sánh",
+      "emptyState": "Nhập hai chuỗi để so sánh.",
+      "index": "Vị trí:"
+    }
+  },
+  "pages": {
+    "blogs": {
+      "heading": "Bài viết",
+      "description": "Khám phá các bài viết của tôi, nơi tôi chia sẻ suy nghĩ, trải nghiệm và kiến thức về nhiều chủ đề khác nhau."
+    },
+    "projects": {
+      "heading": "Dự án",
+      "description": "Khám phá các dự án của tôi, nơi tôi giới thiệu những sản phẩm đã thực hiện và thể hiện kỹ năng về phát triển web, thiết kế và giải quyết vấn đề."
+    },
+    "tools": {
+      "heading": "Công cụ",
+      "description": "Khám phá bộ sưu tập các công cụ và tiện ích hữu ích được thiết kế để nâng cao năng suất và đơn giản hóa công việc của bạn.",
+      "backLabel": "Công cụ",
+      "loading": "Đang tải..."
+    }
   }
 }

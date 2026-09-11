@@ -1,5 +1,129 @@
 {
   "root": {
-    "greeting": "Welcome to Cong Hai's Portfolio"
+    "greeting": "Welcome to Cong Hai's Portfolio",
+    "aboutMeHeading": "About me",
+    "findMeOnlineHeading": "Find me online",
+    "education": {
+      "heading": "Education",
+      "major": "Information Technology, Software Engineering",
+      "at": "at",
+      "school": "Industrial University of Ho Chi Minh City",
+      "period": "2022 - 2027 (Expected)",
+      "gpa": "GPA: 3.59/4.0 (8.5/10)"
+    },
+    "experience": {
+      "heading": "Experience",
+      "at": "at",
+      "items": [
+        {
+          "role": "Front-end Developer",
+          "company": "Apps Cyclone",
+          "period": "09/2026 - Present",
+          "description": "Being trained in front-end development, focusing on UI/UX design, web development with React and VueJS. Gaining experience in building applications with high usuability and performance."
+        },
+        {
+          "role": "Full-Stack Developer",
+          "company": "TMA Solutions",
+          "period": "12/2025 - 04/2026",
+          "description": "Contributed to a Project Management AI-integrated platform. Developed features in both front-end and back-end and collaborated with Mobile and QA-QC teams to deliver a high-quality product."
+        }
+      ]
+    },
+    "stack": "Stack",
+    "projects": "Projects"
+  },
+  "header": {
+    "menu": "Menu",
+    "home": "Home",
+    "blogs": "Blogs",
+    "projects": "Projects",
+    "tools": "Tools"
+  },
+  "footer": {
+    "inspiredBy": "Inspired by",
+    "designedAndBuiltBy": "Designed and built by",
+    "componentsAndAnimationsBy": "Components and Animations by"
+  },
+  "common": {
+    "loading": "Loading...",
+    "seeMore": "See more",
+    "roleTyper": "I am a ",
+    "tryStopBackgroundAnimation": "Not used to the animation?",
+    "tryChangeDarkMode": "Not used to dark theme?",
+    "tryChangeLightMode": "Not used to light theme?",
+    "tryThisArrow": "Try this",
+    "clickHere": "Click here",
+    "animationToggle": {
+      "pause": "Pause the background animation",
+      "play": "Play the background animation"
+    },
+    "docActions": {
+      "contentCopied": "Content copied",
+      "failedToCopyContent": "Failed to copy content",
+      "copy": "Copy",
+      "linkCopied": "Link copied",
+      "failedToCopyLink": "Failed to copy link",
+      "share": "Share"
+    },
+    "toc": {
+      "title": "Table of Contents"
+    }
+  },
+  "notFound": {
+    "metadataTitle": "Page Not Found",
+    "desktopTitle": "404 - Page Not Found",
+    "code": "404",
+    "title": "Page Not Found",
+    "description": "The page you are looking for does not exist. If you believe this is an error, please contact me for assistance.",
+    "home": "Home",
+    "contact": "Contact me"
+  },
+  "tools": {
+    "passwordGenerator": {
+      "passwordCopied": "Password copied",
+      "failedToCopyPassword": "Failed to copy password",
+      "passwordLength": "Password length:",
+      "characters": "characters",
+      "lengthHelp": "Value must be between 8 and 128",
+      "includeDigits": "Include digits",
+      "includeUppercase": "Include uppercase characters",
+      "includeSpecial": "Include special characters"
+    },
+    "qrCodeGenerator": {
+      "placeholder": "Enter string",
+      "random": "Random",
+      "restore": "Restore",
+      "download": "Download",
+      "copy": "Copy"
+    },
+    "stringComparator": {
+      "firstString": "First string",
+      "firstStringPlaceholder": "Enter first string",
+      "secondString": "Second string",
+      "secondStringPlaceholder": "Enter second string",
+      "trimWhitespace": "Trim whitespace",
+      "same": "Same:",
+      "difference": "Difference:",
+      "clear": "Clear",
+      "comparison": "Comparison",
+      "emptyState": "Enter two strings to compare them.",
+      "index": "Index:"
+    }
+  },
+  "pages": {
+    "blogs": {
+      "heading": "Blogs",
+      "description": "Explore my blogs, where I share my thoughts, experiences, and insights on various topics."
+    },
+    "projects": {
+      "heading": "Projects",
+      "description": "Check out my projects, where I showcase my work and demonstrate my skills in web development, design, and problem-solving."
+    },
+    "tools": {
+      "heading": "Tools",
+      "description": "Explore a collection of useful tools and utilities designed to enhance your productivity and simplify your tasks.",
+      "backLabel": "Tools",
+      "loading": "Loading..."
+    }
   }
 }

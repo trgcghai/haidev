@@ -14,8 +14,11 @@ import { AnimationToggle } from "@/components/common/animation-toggle";
 import Image from "next/image";
 import { CONFIG } from "@/constants/config";
 import { Menu } from "lucide-react";
+import { getDict } from "@/app/[lang]/dictionaries";
 
-const Header = () => {
+const Header = async () => {
+  const dict = await getDict();
+
   return (
     <div className="container max-w-7xl mt-8 mx-auto border rounded-sm px-4 py-2 flex items-center justify-between bg-neutral-50/40 dark:bg-neutral-800/40">
       <Link href="/" className="flex items-center gap-2 shrink-0">
@@ -33,7 +36,7 @@ const Header = () => {
           {CONFIG.SITE.routes.map((r) => (
             <Button variant="ghost" size="default" key={r.slug}>
               <Link href={r.url} className="hover:text-primary text-sm">
-                {r.title}
+                {dict.header[r.slug as keyof typeof dict.header]}
               </Link>
             </Button>
           ))}
@@ -77,7 +80,7 @@ const Header = () => {
                       className="justify-start"
                     >
                       <Link href={r.url} className="hover:text-primary text-sm">
-                        {r.title}
+                        {dict.header[r.slug as keyof typeof dict.header]}
                       </Link>
                     </Button>
                   }

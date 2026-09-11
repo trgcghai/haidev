@@ -60,7 +60,7 @@ export function ModeToggler({ system = true }: ModeTogglerProps) {
         }
       />
       <TooltipContent>
-        <p>{currentTheme.name}</p>
+        <p className="capitalize">{currentTheme.name}</p>
       </TooltipContent>
     </Tooltip>
   );

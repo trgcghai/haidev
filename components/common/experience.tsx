@@ -1,12 +1,14 @@
+import { getDict } from "@/app/[lang]/dictionaries";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import { BriefcaseBusiness } from "lucide-react";
 
-const Experience = () => {
+const Experience = async () => {
+  const dict = await getDict();
   return (
     <div>
       <h2 id="experience">
         <LetterSwapForward
-          label="# Experience"
+          label={`# ${dict.root.experience.heading}`}
           reverse={true}
           className="text-lg md:text-2xl font-semibold w-fit text-primary"
         />
@@ -18,14 +20,15 @@ const Experience = () => {
         </div>
         <div className="min-w-0 space-y-1">
           <p className="wrap-break-word text-base font-semibold text-gray-600 sm:text-lg">
-            <span className="text-primary">Front-end Developer</span> at{" "}
+            <span className="text-primary">
+              {dict.root.experience.items[0].role}
+            </span>
+            {` ${dict.root.experience.at} `}
             <span className="text-primary">Apps Cyclone</span>
           </p>
-          <p>09/2026 - Present</p>
+          <p>{dict.root.experience.items[0].period}</p>
           <p className="leading-relaxed">
-            Being trained in front-end development, focusing on UI/UX design,
-            web development with React and VueJS. Gaining experience in building
-            applications with high usuability and performance.
+            {dict.root.experience.items[0].description}
           </p>
         </div>
       </div>
@@ -35,14 +38,15 @@ const Experience = () => {
         </div>
         <div className="min-w-0 space-y-1">
           <p className="wrap-break-word text-base font-semibold text-gray-600 sm:text-lg">
-            <span className="text-primary">Full-Stack Developer</span> at{" "}
+            <span className="text-primary">
+              {dict.root.experience.items[1].role}
+            </span>
+            {` ${dict.root.experience.at} `}
             <span className="text-primary">TMA Solutions</span>
           </p>
-          <p>12/2025 - 04/2026</p>
+          <p>{dict.root.experience.items[1].period}</p>
           <p className="leading-relaxed">
-            Contributed to a Project Management AI-integrated platform.
-            Developed features in both front-end and back-end and collaborated
-            with Mobile and QA-QC teams to deliver a high-quality product.
+            {dict.root.experience.items[1].description}
           </p>
         </div>
       </div>
