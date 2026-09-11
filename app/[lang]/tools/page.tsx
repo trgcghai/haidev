@@ -12,6 +12,7 @@ import { CollectionPage, WithContext } from "schema-dts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 
 const DESCRIPTION =
   "Explore a collection of useful tools and utilities designed to enhance your productivity and simplify your tasks.";
@@ -72,7 +73,9 @@ function getCollectionPageJsonLd(tools: Tool[]): WithContext<CollectionPage> {
   };
 }
 
-const Page = () => {
+const Page = async () => {
+  const dict = await getSafeDictionary();
+
   return (
     <>
       <JsonLdScript data={getCollectionPageJsonLd(toolRegistries)} />
@@ -93,13 +96,13 @@ const Page = () => {
       <div className="">
         <h2 id="tools">
           <LetterSwapForward
-            label="# Tools"
+            label={`# ${dict.pages.tools.heading}`}
             reverse={true}
             className="text-lg md:text-2xl font-semibold w-fit text-primary"
           />
         </h2>
         <p className="my-4 text-sm sm:text-base text-muted-foreground w-full wrap-break-word text-wrap tracking-wide">
-          {DESCRIPTION}
+          {dict.pages.tools.description}
         </p>
         <div className="screen-line-top relative py-4 -mx-1">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-4 items-stretch">

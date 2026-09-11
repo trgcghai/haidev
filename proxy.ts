@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { match } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
-
-const locales = ["en", "vi"];
+import { locales } from "@/constants/dictionary";
 
 function getLocale(request: NextRequest) {
   const languages = new Negotiator({

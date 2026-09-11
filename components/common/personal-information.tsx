@@ -1,4 +1,4 @@
-import { getDict } from "@/app/[lang]/dictionaries";
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 import { CopyButton } from "@/components/common/copy-button";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import ComesInGoesOutUnderline from "@/components/fancy/text/underline-comes-in-goes-out";
@@ -6,7 +6,7 @@ import { aboutMeData, findMeOnlineData } from "@/constants/static";
 import Link from "next/link";
 
 const PersonalInformation = async () => {
-  const dict = await getDict();
+  const dict = await getSafeDictionary();
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-4">
       <div className="space-y-4">

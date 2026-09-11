@@ -1,9 +1,9 @@
-import { getDict } from "@/app/[lang]/dictionaries";
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import { BriefcaseBusiness } from "lucide-react";
 
 const Experience = async () => {
-  const dict = await getDict();
+  const dict = await getSafeDictionary();
   return (
     <div>
       <h2 id="experience">

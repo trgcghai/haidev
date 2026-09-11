@@ -14,10 +14,10 @@ import { AnimationToggle } from "@/components/common/animation-toggle";
 import Image from "next/image";
 import { CONFIG } from "@/constants/config";
 import { Menu } from "lucide-react";
-import { getDict } from "@/app/[lang]/dictionaries";
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 
 const Header = async () => {
-  const dict = await getDict();
+  const dict = await getSafeDictionary();
 
   return (
     <div className="container max-w-7xl mt-8 mx-auto border rounded-sm px-4 py-2 flex items-center justify-between bg-neutral-50/40 dark:bg-neutral-800/40">

@@ -11,6 +11,7 @@ import { getBlogPosts } from "@/lib/documents";
 import { Blog, WithContext } from "schema-dts";
 import { absoluteUrl } from "@/lib/utils";
 import { Doc } from "@/types/document";
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 
 const DESCRIPTION =
   "Explore my blogs, where I share my thoughts, experiences, and insights on various topics.";
@@ -75,11 +76,13 @@ function getBlogJsonLd(posts: Doc[]): WithContext<Blog> {
   };
 }
 
-const BlogListPage = () => {
+const BlogListPage = async () => {
   const blogs = getBlogPosts();
 
   const pinned = blogs.filter((b) => b.metadata.pinned);
   const notPinned = blogs.filter((b) => !b.metadata.pinned);
+
+  const dict = await getSafeDictionary();
 
   return (
     <>
@@ -101,13 +104,13 @@ const BlogListPage = () => {
       <div className="">
         <h2 id="blogs">
           <LetterSwapForward
-            label="# Blogs"
+            label={`# ${dict.pages.blogs.heading}`}
             reverse={true}
             className="text-lg md:text-2xl font-semibold w-fit text-primary"
           />
         </h2>
         <p className="my-4 text-sm sm:text-base text-muted-foreground wrap-break-word text-wrap tracking-wide">
-          {DESCRIPTION}
+          {dict.pages.blogs.description}
         </p>
 
         <div className="screen-line-top relative py-4 -mx-1">

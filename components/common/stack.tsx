@@ -1,9 +1,9 @@
-import { getDict } from "@/app/[lang]/dictionaries";
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 import { TechStack } from "@/components/common/tech-stack";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 
 const Stack = async () => {
-  const dict = await getDict();
+  const dict = await getSafeDictionary();
 
   return (
     <div>

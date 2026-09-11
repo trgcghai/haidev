@@ -5,11 +5,11 @@ import { truncate } from "lodash";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import { ROUTES } from "@/constants/config";
 import { getFeaturedProjects } from "@/lib/documents";
-import { getDict } from "@/app/[lang]/dictionaries";
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 
 const FeaturedProjects = async () => {
   const featuredProjects = getFeaturedProjects();
-  const dict = await getDict();
+  const dict = await getSafeDictionary();
 
   return (
     <div>

@@ -1,9 +1,9 @@
-import { getDict } from "@/app/[lang]/dictionaries";
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 import ComesInGoesOutUnderline from "@/components/fancy/text/underline-comes-in-goes-out";
 import Link from "next/link";
 
 const Footer = async () => {
-  const dict = await getDict();
+  const dict = await getSafeDictionary();
 
   return (
     <footer className="grid grid-cols-1 gap-4 md:grid-cols-3 text-sm text-gray-600 mt-40 border-t pt-4 md:text-left text-center">

@@ -1,9 +1,9 @@
-import { getDict } from "@/app/[lang]/dictionaries";
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import { GraduationCap } from "lucide-react";
 
 const Education = async () => {
-  const dict = await getDict();
+  const dict = await getSafeDictionary();
   return (
     <div>
       <h2 id="education">
