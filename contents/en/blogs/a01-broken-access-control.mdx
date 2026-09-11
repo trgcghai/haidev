@@ -1,0 +1,67 @@
+---
+title: A01 Broken Access Control
+description: Let's explore the security vulnerability ranked number one in prevalence according to the OWASP 2025 list.
+keywords: OWASP, OWASP 2025, A01 OWASP, Broken access control
+tags: security, OWASP 2025
+createdAt: 2026-08-28
+updatedAt: 2026-08-28
+---
+
+# A01: Broken Access Control
+
+## Definition
+
+Ranked #1 in the OWASP 2025 list, this concept refers to the unauthorized access to and modification of system resources. It arises from the implementation of unclear or incorrect access control mechanisms.
+
+Systems that implement identity verification (authentication) without enforcing permission verification (authorization) allow authenticated users to perform actions they are not permitted to take.
+
+This lack of access control can occur at various system layers, ranging from the UI to the API and database.
+Example: In a group chat, the absence of access control mechanisms might allow a standard member to kick an administrator out of the chat or edit another user's messages.
+
+## Causes
+
+Failure to implement authorization mechanisms while only implementing authentication mechanisms.
+
+Failure to apply authorization at one or more layers: UI, API, or database.
+
+## Consequences
+
+Attackers can exploit this vulnerability to view or modify other users' sensitive information, compromising the CIA (Confidentiality, Integrity, Availability) of the system and its data.
+
+## Attack Scenarios
+
+- 1 UI-level vulnerability:
+
+An attacker memorizes the access URL associated with a specific role. E.g.:
+
+[www.example.com/admin/dashboard]('www.example.com/admin/dashboard')
+
+If an attacker accesses this URL after logging in, a lack of proper authorization allows them to view or edit data within the dashboard.
+
+- 2 API-level vulnerabilities:
+
+Attackers discover API paths used to view or modify data. E.g.:
+
+```jsx
+DELETE api.example.com/users/{id}
+```
+
+They exploit this to delete another user's account after logging into the system.
+
+- 3 Database-level vulnerabilities:
+
+When modifying resources in the database, it is necessary to verify ownership—ensuring that only the owner (or an authorized party based on business logic) can perform the action. E.g.:
+
+Only the sender of a message should be able to delete or edit its content.
+
+Implementing authorization at the UI and API levels can prevent unauthorized access based on roles, but it may not stop unauthorized access to resources belonging to other users who share the same privilege level. Checking ownership at the database level prevents this.
+
+Attackers can exploit this gap to modify resources belonging to other users.
+
+## Prevention methods
+
+Implement "auth guards" to prevent unauthorized access to UI components that fall outside the user's permissions.
+
+Implement authorization for all necessary system APIs.
+
+Verify resource ownership for APIs that modify data.

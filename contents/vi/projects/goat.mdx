@@ -1,0 +1,101 @@
+---
+title: "Goat Job Hunter"
+description: "Tổng quan, tính năng, công nghệ, kiến ​​trúc, hướng dẫn vận hành và thông tin người đóng góp cho nền tảng tìm việc Goat."
+featured: true
+keywords: goat, job hunter, nền tảng tìm việc
+tags: spring boot, nextjs, websocket, expo, react native, webRTC
+createdAt: "2026-08-28"
+updatedAt: "2026-08-28"
+---
+
+## Tổng quan
+
+Goat Job Hunter là nền tảng tìm kiếm việc làm và tuyển dụng được xây dựng dành cho ứng viên, nhà tuyển dụng, doanh nghiệp và quản trị viên. Hệ thống bao gồm API backend sử dụng Spring Boot, giao diện web frontend sử dụng Next.js và ứng dụng di động frontend sử dụng Expo React Native.
+
+Nền tảng hỗ trợ quy trình cốt lõi của thị trường việc làm: người dùng có thể duyệt tin tuyển dụng và thông tin công ty, quản lý hồ sơ và CV, ứng tuyển vào các vị trí, giao tiếp qua tính năng trò chuyện, lên lịch phỏng vấn, cũng như sử dụng các tính năng hỗ trợ xã hội và công cụ hỗ trợ bởi AI.
+
+## Tính năng
+
+- Duyệt tin tuyển dụng, bộ lọc tìm kiếm và trang chi tiết công việc.
+- Khám phá công ty và trang hồ sơ công ty.
+- Quản lý hồ sơ ứng viên, CV và danh sách việc làm đã lưu/đã ứng tuyển.
+- Quy trình đăng ký dành cho nhà tuyển dụng và doanh nghiệp.
+- Xác thực, OTP, đặt lại mật khẩu và phân quyền truy cập theo vai trò.
+- Bảng điều khiển quản trị (dashboard) cho tài khoản, vai trò, quyền hạn, việc làm, bài viết (blog), kỹ năng và thông tin nghề nghiệp.
+- Các tính năng trò chuyện, nhắn tin, trạng thái hoạt động, kết bạn, thông báo và trung tâm kết nối xã hội.
+- Hỗ trợ phỏng vấn tích hợp tính năng thời gian thực và gọi video.
+- Các endpoint backend hỗ trợ AI chat và trợ lý ảo.
+- Khu vực nội dung cho blog, thông tin pháp lý và chính sách cộng đồng.
+- Ứng dụng di động đa nền tảng hỗ trợ các quy trình về việc làm, công ty, trò chuyện, cuộc gọi, blog, lời mời và quản lý hồ sơ.
+
+## Công nghệ (Stack)
+
+- Backend: Java 21, Spring Boot 3.5, Spring Security, Spring Data JPA, WebSocket, Validation, Mail, Actuator, Thymeleaf, OpenAPI, Liquibase, Redis, PostgreSQL, AWS SDK, Cloudinary, Google GenAI, hỗ trợ token Agora. - Web frontend: Next.js 16, React 19, TypeScript, Tailwind CSS 4, Radix UI, Ant Design, Redux Toolkit, Redux Persist, React Hook Form, Zod, Axios, STOMP/SockJS, Agora RTC Web SDK, Recharts, Framer Motion.
+- Mobile frontend: Expo 54, React Native 0.81, React 19, Expo Router, TypeScript, Redux Toolkit, Redux Persist, React Hook Form, Zod, Axios, STOMP/SockJS, React Native Agora, React Native Paper, Reanimated, Gesture Handler.
+- Công cụ hỗ trợ: Gradle Kotlin DSL, npm, ESLint, Jest (cho dự án mobile), Dockerfile (để đóng gói backend).
+
+## Kiến trúc
+
+Dự án được tổ chức thành ba ứng dụng chính:
+
+- `DHKTPM18CTT_Nhom07_WebsiteTimKiemViecLam`: Dịch vụ backend sử dụng Spring Boot. Nó cung cấp các REST API và endpoint WebSocket, đồng thời quản lý logic nghiệp vụ, cơ chế lưu trữ dữ liệu, bảo mật, thông báo, tính năng chat, phỏng vấn, AI và các dịch vụ tích hợp.
+- `DHKTPM18CTT_Nhom07_WebsiteTimKiemViecLam_Fe`: Ứng dụng web sử dụng Next.js. Nó cung cấp các tính năng như tìm kiếm việc làm công khai, xác thực người dùng, quy trình dành cho ứng viên và nhà tuyển dụng/doanh nghiệp, chat, chat với AI, các tính năng mạng xã hội và giao diện quản trị.
+- `Goat-JobHunter-Mobile-FE`: Ứng dụng di động sử dụng Expo React Native. Nó cung cấp khả năng truy cập trên thiết bị di động cho các tính năng: tìm kiếm việc làm, trang thông tin công ty, chat, gọi điện, blog, lời mời, xác thực và quản lý hồ sơ cá nhân.
+
+Trong quá trình vận hành, các ứng dụng khách (web và mobile) giao tiếp với API backend qua giao thức HTTP thông qua các lớp dịch vụ (service layers) sử dụng Axios. Các tính năng thời gian thực (real-time) sử dụng WebSocket/STOMP và SockJS. Quy trình gọi video hoặc thoại sử dụng tích hợp Agora, trong khi việc lưu trữ dữ liệu và các vấn đề về hạ tầng được xử lý bởi PostgreSQL, Redis, Liquibase (để quản lý migration), Cloudinary, các dịch vụ AWS và hệ thống gửi email. ## Cách chạy ứng dụng
+
+Backend:
+
+```bash
+cd DHKTPM18CTT_Nhom07_WebsiteTimKiemViecLam
+./gradlew bootRun
+```
+
+Trên Windows PowerShell hoặc Command Prompt:
+
+```bash
+cd DHKTPM18CTT_Nhom07_WebsiteTimKiemViecLam
+gradlew.bat bootRun
+```
+
+Web frontend:
+
+```bash
+cd DHKTPM18CTT_Nhom07_WebsiteTimKiemViecLam_Fe
+npm install
+npm run dev
+```
+
+Truy cập `http://localhost:3000` sau khi máy chủ phát triển web đã khởi động.
+
+Mobile frontend:
+
+```bash
+cd Goat-JobHunter-Mobile-FE
+npm install
+npm run start
+```
+
+Sử dụng Expo để mở ứng dụng trên Android, iOS hoặc web. Có thể khởi chạy bản build native cho Android bằng lệnh:
+
+```bash
+npm run android
+```
+
+Trước khi chạy toàn bộ hệ thống, hãy cấu hình các biến môi trường cần thiết cho từng ứng dụng, bao gồm: URL API, cơ sở dữ liệu, Redis, dịch vụ email, Cloudinary, AWS, Agora và các thông tin xác thực tích hợp khác.
+
+## Thành viên đóng góp
+
+- Nhóm dự án DHKTPM18CTT Nhom07.
+- Các thành viên đóng góp cho phần Backend, Web Frontend và Mobile Frontend của nền tảng Goat Job Hunter.
+
+## Github
+
+<LinkGithubButton
+  href="https://github.com/trgcghai/Goat-JobHunter-Fe"
+  title="Frontend"
+/>
+<LinkGithubButton
+  href="https://github.com/trgcghai/Goat-JobHunter-Be"
+  title="Backend"
+/>
