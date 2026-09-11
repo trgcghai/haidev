@@ -77,7 +77,7 @@ function getBlogJsonLd(posts: Doc[]): WithContext<Blog> {
 }
 
 const BlogListPage = async () => {
-  const blogs = getBlogPosts();
+  const blogs = await getBlogPosts();
 
   const pinned = blogs.filter((b) => b.metadata.pinned);
   const notPinned = blogs.filter((b) => !b.metadata.pinned);

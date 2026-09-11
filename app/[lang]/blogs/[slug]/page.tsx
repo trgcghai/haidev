@@ -5,13 +5,12 @@ import {
 import MDX from "@/components/mdx/MDX";
 import { JSON_LD_ID } from "@/constants/json-ld";
 import { getBlogPosts, getDocBySlug } from "@/lib/documents";
-import { absoluteUrl } from "@/lib/utils";
+import { absoluteUrl, formatDate } from "@/lib/utils";
 import { Doc } from "@/types/document";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlogPosting, WithContext } from "schema-dts";
 import { getTableOfContents } from "fumadocs-core/content/toc";
-import { format } from "date-fns";
 import Toc from "@/components/common/toc";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -21,7 +20,7 @@ import DocActions from "@/components/common/doc-actions";
 import { CONFIG, ROUTES } from "@/constants/config";
 
 export async function generateStaticParams() {
-  const docs = getBlogPosts();
+  const docs = await getBlogPosts();
   return docs.map((doc) => ({ slug: doc.slug }));
 }
 
@@ -29,7 +28,7 @@ export async function generateMetadata({
   params,
 }: PageProps<"/[lang]/blogs/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const doc = getDocBySlug(slug);
+  const doc = await getDocBySlug(slug);
 
   if (!doc) {
     return notFound();
@@ -101,8 +100,8 @@ function getPageJsonLd(doc: Doc): WithContext<BlogPosting> {
 }
 
 const Page = async ({ params }: PageProps<"/[lang]/blogs/[slug]">) => {
-  const { slug } = await params;
-  const doc = getDocBySlug(slug);
+  const { slug, lang } = await params;
+  const doc = await getDocBySlug(slug);
 
   if (!doc) {
     notFound();
@@ -173,8 +172,8 @@ const Page = async ({ params }: PageProps<"/[lang]/blogs/[slug]">) => {
         <p className="text-base text-muted-foreground wrap-break-word text-wrap tracking-wide">
           {doc.metadata.description}
         </p>
-        <p className="text-sm text-muted-foreground">
-          {format(doc.metadata.createdAt, "MMMM d, yyyy")}
+        <p className="text-sm text-muted-foreground capitalize">
+          {formatDate(doc.metadata.createdAt, lang)}
         </p>
       </section>
 

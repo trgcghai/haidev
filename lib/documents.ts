@@ -3,6 +3,7 @@ import path from "path";
 import { cache } from "react";
 import matter from "gray-matter";
 import { Doc, DocMetadata } from "@/types/document";
+import { lang } from "next/root-params";
 
 function parseFrontmatter(fileContent: string) {
   const file = matter(fileContent);
@@ -52,8 +53,9 @@ function getMDXData(dir: string) {
   });
 }
 
-export const getAllDocs = cache(() => {
-  return getMDXData(path.join(process.cwd(), "features"))
+export const getAllDocs = cache(async () => {
+  const rootlang = await lang();
+  return getMDXData(path.join(process.cwd(), "contents/" + rootlang))
     .filter((doc) => !doc.metadata.hidden)
     .sort((a, b) => {
       if (a.metadata.pinned && !b.metadata.pinned) return -1;
@@ -66,12 +68,14 @@ export const getAllDocs = cache(() => {
     });
 });
 
-export function getDocBySlug(slug: string) {
-  return getAllDocs().find((doc) => doc.slug === slug);
+export async function getDocBySlug(slug: string) {
+  return getAllDocs().then((docs) => docs.find((doc) => doc.slug === slug));
 }
 
-export function getDocsByCategory(category: string) {
-  return getAllDocs().filter((doc) => doc.metadata?.category === category);
+export async function getDocsByCategory(category: string) {
+  return getAllDocs().then((docs) =>
+    docs.filter((doc) => doc.metadata.category === category),
+  );
 }
 
 /** Categories derived from the features' content subfolder. */
@@ -79,15 +83,17 @@ export const BLOGS_CATEGORY = "blogs";
 export const PROJECTS_CATEGORY = "projects";
 
 /** Blog posts — docs under the `blog/` content folder. */
-export function getBlogPosts() {
+export async function getBlogPosts() {
   return getDocsByCategory(BLOGS_CATEGORY);
 }
 
 /** Project docs — docs under the `projects/` content folder. */
-export function getProjectPosts() {
+export async function getProjectPosts() {
   return getDocsByCategory(PROJECTS_CATEGORY);
 }
 
-export function getFeaturedProjects() {
-  return getProjectPosts().filter((doc) => doc.metadata.featured);
+export async function getFeaturedProjects() {
+  return getProjectPosts().then((docs) =>
+    docs.filter((doc) => doc.metadata.featured),
+  );
 }

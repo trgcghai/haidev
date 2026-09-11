@@ -75,7 +75,7 @@ function getCollectionPageJsonLd(docs: Doc[]): WithContext<CollectionPage> {
 }
 
 const ProjectsListPage = async () => {
-  const projects = getProjectPosts();
+  const projects = await getProjectPosts();
 
   const pinned = projects.filter((b) => b.metadata.pinned);
   const notPinned = projects.filter((b) => !b.metadata.pinned);

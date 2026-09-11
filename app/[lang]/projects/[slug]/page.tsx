@@ -10,9 +10,8 @@ import { Button } from "@/components/ui/button";
 import { CONFIG, ROUTES } from "@/constants/config";
 import { JSON_LD_ID } from "@/constants/json-ld";
 import { getDocBySlug, getProjectPosts } from "@/lib/documents";
-import { absoluteUrl } from "@/lib/utils";
+import { absoluteUrl, formatDate } from "@/lib/utils";
 import { Doc } from "@/types/document";
-import { format } from "date-fns";
 import { getTableOfContents } from "fumadocs-core/content/toc";
 import { ArrowLeftIcon } from "lucide-react";
 import { Metadata } from "next";
@@ -21,7 +20,7 @@ import { notFound } from "next/navigation";
 import { SoftwareApplication, WithContext } from "schema-dts";
 
 export async function generateStaticParams() {
-  const docs = getProjectPosts();
+  const docs = await getProjectPosts();
   return docs.map((doc) => ({ slug: doc.slug }));
 }
 
@@ -29,7 +28,7 @@ export async function generateMetadata({
   params,
 }: PageProps<"/[lang]/projects/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const doc = getDocBySlug(slug);
+  const doc = await getDocBySlug(slug);
 
   if (!doc) {
     return notFound();
@@ -103,8 +102,8 @@ function getPageJsonLd(doc: Doc): WithContext<SoftwareApplication> {
 }
 
 const Page = async ({ params }: PageProps<"/[lang]/projects/[slug]">) => {
-  const { slug } = await params;
-  const doc = getDocBySlug(slug);
+  const { slug, lang } = await params;
+  const doc = await getDocBySlug(slug);
 
   if (!doc) {
     notFound();
@@ -175,8 +174,8 @@ const Page = async ({ params }: PageProps<"/[lang]/projects/[slug]">) => {
         <p className="text-base text-muted-foreground wrap-break-word text-wrap tracking-wide break-all">
           {doc.metadata.description}
         </p>
-        <p className="text-sm text-muted-foreground">
-          {format(doc.metadata.createdAt, "MMMM d, yyyy")}
+        <p className="text-sm text-muted-foreground capitalize">
+          {formatDate(doc.metadata.createdAt, lang)}
         </p>
       </section>
 

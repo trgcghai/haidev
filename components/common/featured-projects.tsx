@@ -8,7 +8,7 @@ import { getFeaturedProjects } from "@/lib/documents";
 import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 
 const FeaturedProjects = async () => {
-  const featuredProjects = getFeaturedProjects();
+  const featuredProjects = await getFeaturedProjects();
   const dict = await getSafeDictionary();
 
   return (

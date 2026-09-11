@@ -12,6 +12,7 @@ import { JsonLdScript } from "@/components/providers/JsonLdScript";
 import { websiteJsonLd } from "@/constants/json-ld";
 import { Toaster } from "@/components/ui/toast";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { locales } from "@/constants/dictionary";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -24,6 +25,10 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+export async function generateStaticParams() {
+  return locales.map((lang) => ({ lang }));
+}
 
 export const metadata: Metadata = {
   title: CONFIG.USER.displayName,
