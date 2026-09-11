@@ -35,7 +35,13 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Skip all internal paths (_next)
-    "/((?!_next).*)",
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next (Next.js internals)
+     * - images, public (static asset paths)
+     * - any path with a file extension (public folder assets)
+     */
+    "/((?!api|_next|images|public|.*\\..*).*)",
   ],
 };
