@@ -27,7 +27,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: PageProps<"/blogs/[slug]">): Promise<Metadata> {
+}: PageProps<"/[lang]/blogs/[slug]">): Promise<Metadata> {
   const slug = (await params).slug;
   const doc = getDocBySlug(slug);
 
@@ -100,7 +100,7 @@ function getPageJsonLd(doc: Doc): WithContext<BlogPosting> {
   };
 }
 
-const Page = async ({ params }: PageProps<"/blogs/[slug]">) => {
+const Page = async ({ params }: PageProps<"/[lang]/blogs/[slug]">) => {
   const slug = (await params).slug;
   const doc = getDocBySlug(slug);
 

@@ -1,4 +1,4 @@
-import StringComparator from "@/app/tools/string-comparator/string-comparator";
+import QrCodeGenerator from "@/app/[lang]/tools/qr-code-generator/qr-code-generator";
 import {
   jsonLdBreadcrumbList,
   JsonLdScript,
@@ -9,13 +9,14 @@ import { JSON_LD_ID } from "@/constants/json-ld";
 import { absoluteUrl } from "@/lib/utils";
 import { toolRegistries } from "@/registry/tools";
 import { Tool } from "@/types/tool";
-import { ArrowLeftIcon } from "lucide-react";
+import { ArrowLeftIcon, Loader2Icon } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { WebApplication, WithContext } from "schema-dts";
 
 export async function generateMetadata() {
-  const tool = toolRegistries.find((tool) => tool.slug === "string-comparator");
+  const tool = toolRegistries.find((tool) => tool.slug === "qr-code-generator");
 
   if (!tool) {
     return notFound();
@@ -75,7 +76,7 @@ function getPageJsonLd(tool: Tool): WithContext<WebApplication> {
 }
 
 const Page = () => {
-  const slug = "string-comparator";
+  const slug = "qr-code-generator";
   const tool = toolRegistries.find((tool) => tool.slug === slug);
 
   if (!tool) {
@@ -118,7 +119,16 @@ const Page = () => {
         />
       </div>
 
-      <StringComparator title={tool.name} description={tool.description} />
+      <Suspense
+        fallback={
+          <div>
+            <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+            Loading...
+          </div>
+        }
+      >
+        <QrCodeGenerator title={tool.name} description={tool.description} />
+      </Suspense>
     </>
   );
 };

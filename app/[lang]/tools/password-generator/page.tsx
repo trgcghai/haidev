@@ -1,4 +1,4 @@
-import PasswordGenerator from "@/app/tools/password-generator/password-generator";
+import PasswordGenerator from "@/app/[lang]/tools/password-generator/password-generator";
 import {
   jsonLdBreadcrumbList,
   JsonLdScript,

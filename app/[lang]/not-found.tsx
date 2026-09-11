@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Page Not Found",
-}
+};
 
 export default function NotFound() {
   return (
@@ -23,12 +23,15 @@ export default function NotFound() {
       <div className="flex items-center justify-center gap-4 mt-4 flex-col md:flex-row">
         <Button variant="outline">
           <Link href="/" className="hover:text-primary flex items-center gap-2">
-          <Home className="h-4 w-4" />
+            <Home className="h-4 w-4" />
             Home
           </Link>
         </Button>
         <Button variant="outline">
-          <Link href="/#contact" className="hover:text-primary flex items-center gap-2">
+          <Link
+            href="/#contact"
+            className="hover:text-primary flex items-center gap-2"
+          >
             <Mail className="h-4 w-4" />
             Contact me
           </Link>
