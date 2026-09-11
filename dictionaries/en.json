@@ -65,9 +65,7 @@
       "failedToCopyLink": "Failed to copy link",
       "share": "Share"
     },
-    "toc": {
-      "title": "Table of Contents"
-    }
+    "toc": "Table of Contents"
   },
   "notFound": {
     "metadataTitle": "Page Not Found",

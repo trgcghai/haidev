@@ -1,3 +1,4 @@
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 import DocActions from "@/components/common/doc-actions";
 import Toc from "@/components/common/toc";
 import MDX from "@/components/mdx/MDX";
@@ -111,6 +112,8 @@ const Page = async ({ params }: PageProps<"/[lang]/projects/[slug]">) => {
 
   const toc = getTableOfContents(doc.content);
 
+  const dict = await getSafeDictionary();
+
   return (
     <>
       <JsonLdScript data={getPageJsonLd(doc)} />
@@ -141,7 +144,7 @@ const Page = async ({ params }: PageProps<"/[lang]/projects/[slug]">) => {
           render={
             <Link href="/projects">
               <ArrowLeftIcon />
-              Projects
+              {dict.pages.projects.heading}
             </Link>
           }
         />
@@ -180,7 +183,7 @@ const Page = async ({ params }: PageProps<"/[lang]/projects/[slug]">) => {
       </section>
 
       <section className="mb-4">
-        <Toc items={toc} />
+        <Toc items={toc} title={dict.common.toc} />
       </section>
 
       <MDX code={doc.content} />

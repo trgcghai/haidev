@@ -18,6 +18,7 @@ import { ArrowLeftIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import DocActions from "@/components/common/doc-actions";
 import { CONFIG, ROUTES } from "@/constants/config";
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 
 export async function generateStaticParams() {
   const docs = await getBlogPosts();
@@ -109,6 +110,8 @@ const Page = async ({ params }: PageProps<"/[lang]/blogs/[slug]">) => {
 
   const toc = getTableOfContents(doc.content);
 
+  const dict = await getSafeDictionary();
+
   return (
     <>
       <JsonLdScript data={getPageJsonLd(doc)} />
@@ -139,7 +142,7 @@ const Page = async ({ params }: PageProps<"/[lang]/blogs/[slug]">) => {
           render={
             <Link href="/blogs">
               <ArrowLeftIcon />
-              Blogs
+              {dict.pages.blogs.heading}
             </Link>
           }
         />
@@ -178,7 +181,7 @@ const Page = async ({ params }: PageProps<"/[lang]/blogs/[slug]">) => {
       </section>
 
       <div className="mb-4">
-        <Toc items={toc} />
+        <Toc items={toc} title={dict.common.toc} />
       </div>
 
       <MDX code={doc.content} />

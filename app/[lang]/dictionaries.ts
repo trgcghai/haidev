@@ -2,8 +2,7 @@ import "server-only";
 import { lang } from "next/root-params";
 import { Locale } from "@/constants/dictionary";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const dictionaries: Record<Locale, () => Promise<any>> = {
+const dictionaries = {
   en: () => import("@/dictionaries/en.json").then((module) => module.default),
   vi: () => import("@/dictionaries/vi.json").then((module) => module.default),
 };

@@ -65,9 +65,7 @@
       "failedToCopyLink": "Không thể sao chép liên kết",
       "share": "Chia sẻ"
     },
-    "toc": {
-      "title": "Mục lục"
-    }
+    "toc": "Mục lục"
   },
   "notFound": {
     "metadataTitle": "Không tìm thấy trang",
