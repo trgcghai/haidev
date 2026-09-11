@@ -15,6 +15,7 @@ import Image from "next/image";
 import { CONFIG } from "@/constants/config";
 import { Menu } from "lucide-react";
 import { getSafeDictionary } from "@/app/[lang]/dictionaries";
+import { LanguageSwitcher } from "@/components/common/language-switcher";
 
 const Header = async () => {
   const dict = await getSafeDictionary();
@@ -44,6 +45,7 @@ const Header = async () => {
 
         <Separator orientation="vertical" className="mx-4 h-6" />
 
+        <LanguageSwitcher />
         <ModeToggler system={false} />
         <AnimationToggle />
       </div>

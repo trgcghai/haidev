@@ -1,17 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
 import { match } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
-import { locales } from "@/constants/dictionary";
+import { defaultLocale, locales } from "@/constants/dictionary";
+
+function getLocaleFromCookie(request: NextRequest) {
+  const locale = request.cookies.get("NEXT_LOCALE")?.value;
+
+  if (locale && locales.includes(locale as (typeof locales)[number])) {
+    return locale;
+  }
+
+  return null;
+}
 
 function getLocale(request: NextRequest) {
   const languages = new Negotiator({
     headers: {
-      "accept-language":
-        request.headers.get("accept-language") || "en-US,en;q=0.5",
+      "accept-language": request.headers.get("accept-language")!,
     },
   }).languages();
 
-  return match(languages, locales, "en");
+  return match(languages, locales, defaultLocale);
 }
 
 export function proxy(request: NextRequest) {
@@ -23,12 +32,19 @@ export function proxy(request: NextRequest) {
 
   if (pathnameHasLocale) return;
 
-  // Redirect if there is no locale
   const locale = getLocale(request);
+  const cookieLocale = getLocaleFromCookie(request);
+
+  if (cookieLocale && cookieLocale !== locale) {
+    // Redirect to the locale from the cookie if it exists and is different from the detected locale
+    request.nextUrl.pathname = `/${cookieLocale}${pathname}`;
+    return NextResponse.redirect(request.nextUrl);
+  }
+
+  // Redirect if there is no locale in the pathname and the detected locale is different from the default locale
   request.nextUrl.pathname = `/${locale}${pathname}`;
 
-  // e.g. incoming request is /products
-  // The new URL is now /en/products
+  // e.g. /products -> /en/products
   return NextResponse.redirect(request.nextUrl);
 }
 
