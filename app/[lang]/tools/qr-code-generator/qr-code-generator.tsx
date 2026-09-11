@@ -23,13 +23,19 @@ import {
 } from "@/types/qr";
 import { CopyQrButton } from "@/components/common/copy-button";
 import useQrGenerator from "@/hooks/use-qr-generator";
+import { Dictionary } from "@/app/[lang]/dictionaries";
 
 interface QrCodeGeneratorProps {
   title: string;
   description: string;
+  dict: Dictionary["tools"]["qr-code-generator"];
 }
 
-const QrCodeGenerator = ({ title, description }: QrCodeGeneratorProps) => {
+const QrCodeGenerator = ({
+  title,
+  description,
+  dict,
+}: QrCodeGeneratorProps) => {
   const {
     value,
     setValue,
@@ -58,7 +64,7 @@ const QrCodeGenerator = ({ title, description }: QrCodeGeneratorProps) => {
           <Textarea
             value={value}
             onChange={(event) => setValue(event.target.value)}
-            placeholder="Enter string"
+            placeholder={dict.placeholder}
             maxLength={2000}
           />
 
@@ -144,11 +150,11 @@ const QrCodeGenerator = ({ title, description }: QrCodeGeneratorProps) => {
           <div className="flex items-center gap-4">
             <Button onClick={random}>
               <Shuffle className="size-4" />
-              Random
+              {dict.random}
             </Button>
             <Button variant="secondary" onClick={restoreDefault}>
               <Undo2Icon className="size-4" />
-              Restore
+              {dict.restore}
             </Button>
           </div>
         </div>
@@ -173,14 +179,14 @@ const QrCodeGenerator = ({ title, description }: QrCodeGeneratorProps) => {
           <div className="flex flex-col items-center justify-center w-3xs gap-4">
             <Button onClick={download} className="w-full">
               <Download className="size-4" />
-              Download
+              {dict.download}
             </Button>
             <CopyQrButton
               // eslint-disable-next-line react-hooks/refs
               data={refQr.current?.svg as SVGSVGElement}
               className="w-full"
             >
-              <p className="ml-2">Copy</p>
+              <p className="ml-2">{dict.copy}</p>
             </CopyQrButton>
           </div>
         </div>

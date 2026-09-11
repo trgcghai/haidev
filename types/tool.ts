@@ -6,7 +6,7 @@ export type Tool = {
   /**
    * Category of the tool. This can be used to group tools by their functionality or purpose.
    */
-  category: "String" | "General";
+  category: string;
   /**
    * Icon component for the tool. This should be a React component that renders an SVG icon.
    */

@@ -13,6 +13,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import { Dictionary } from "@/app/[lang]/dictionaries";
 
 type ComparisonResult = {
   index: number;
@@ -24,11 +25,13 @@ type ComparisonResult = {
 interface StringComparatorProps {
   title: string;
   description: string;
+  dict: Dictionary["tools"]["string-comparator"];
 }
 
 export default function StringComparator({
   title,
   description,
+  dict,
 }: StringComparatorProps) {
   const [firstString, setFirstString] = useState("");
   const [secondString, setSecondString] = useState("");
@@ -84,7 +87,7 @@ export default function StringComparator({
       <div className="grid gap-4 md:grid-cols-2">
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <Label htmlFor="first-string">First string</Label>
+            <Label htmlFor="first-string">{dict.firstString}</Label>
             <span className="text-xs text-muted-foreground">
               {trimWhitespace ? firstString.trim().length : firstString.length}
               /2000
@@ -94,14 +97,14 @@ export default function StringComparator({
             id="first-string"
             value={firstString}
             onChange={(event) => setFirstString(event.target.value)}
-            placeholder="Enter first string"
+            placeholder={dict.firstStringPlaceholder}
             maxLength={2000}
           />
         </div>
 
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <Label htmlFor="second-string">Second string</Label>
+            <Label htmlFor="second-string">{dict.secondString}</Label>
             <span className="text-xs text-muted-foreground">
               {trimWhitespace
                 ? secondString.trim().length
@@ -113,7 +116,7 @@ export default function StringComparator({
             id="second-string"
             value={secondString}
             onChange={(event) => setSecondString(event.target.value)}
-            placeholder="Enter second string"
+            placeholder={dict.secondStringPlaceholder}
             maxLength={2000}
           />
         </div>
@@ -127,31 +130,33 @@ export default function StringComparator({
             onCheckedChange={(checked) => setTrimWhitespace(checked === true)}
           />
           <Label className="text-sm" htmlFor="trim-whitespace">
-            Trim whitespace
+            {dict.trimWhitespace}
           </Label>
         </div>
       </div>
 
       <div className="flex items-center gap-3">
-        <Badge variant="outline">Same: {sameCount}</Badge>
+        <Badge variant="outline">
+          {dict.same} {sameCount}
+        </Badge>
 
-        <Badge variant="destructive">Difference: {differenceCount}</Badge>
+        <Badge variant="destructive">
+          {dict.difference} {differenceCount}
+        </Badge>
 
         <Button variant="outline" className="ml-auto" onClick={clear}>
-          Clear
+          {dict.clear}
         </Button>
       </div>
 
-      <Card className="">
+      <Card>
         <CardHeader>
-          <CardTitle>Comparison</CardTitle>
+          <CardTitle>{dict.comparison}</CardTitle>
         </CardHeader>
 
         <CardContent>
           {results.length === 0 ? (
-            <p className="text-sm text-muted-foreground">
-              Enter two strings to compare them.
-            </p>
+            <p className="text-sm text-muted-foreground">{dict.emptyState}</p>
           ) : (
             <div className="overflow-x-auto">
               <div className="min-w-max font-mono text-lg">
@@ -172,7 +177,9 @@ export default function StringComparator({
                         </div>
                       </TooltipTrigger>
                       <TooltipContent side="top">
-                        <p>Index: {result.index}</p>
+                        <p>
+                          {dict.index}: {result.index}
+                        </p>
                       </TooltipContent>
                     </Tooltip>
                   ))}
@@ -195,7 +202,9 @@ export default function StringComparator({
                         </div>
                       </TooltipTrigger>
                       <TooltipContent side="bottom">
-                        <p>Index: {result.index}</p>
+                        <p>
+                          {dict.index}: {result.index}
+                        </p>
                       </TooltipContent>
                     </Tooltip>
                   ))}

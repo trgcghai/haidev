@@ -5,7 +5,6 @@ import {
 import { CONFIG, ROUTES } from "@/constants/config";
 import { JSON_LD_ID } from "@/constants/json-ld";
 import { absoluteUrl, cn } from "@/lib/utils";
-import { toolRegistries } from "@/registry/tools";
 import { Tool } from "@/types/tool";
 import { Metadata } from "next";
 import { CollectionPage, WithContext } from "schema-dts";
@@ -13,6 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import { getSafeDictionary } from "@/app/[lang]/dictionaries";
+import { getAllTools } from "@/lib/tools";
 
 const DESCRIPTION =
   "Explore a collection of useful tools and utilities designed to enhance your productivity and simplify your tasks.";
@@ -76,9 +76,11 @@ function getCollectionPageJsonLd(tools: Tool[]): WithContext<CollectionPage> {
 const Page = async () => {
   const dict = await getSafeDictionary();
 
+  const tools = await getAllTools();
+
   return (
     <>
-      <JsonLdScript data={getCollectionPageJsonLd(toolRegistries)} />
+      <JsonLdScript data={getCollectionPageJsonLd(tools)} />
 
       <JsonLdScript
         data={jsonLdBreadcrumbList([
@@ -106,7 +108,7 @@ const Page = async () => {
         </p>
         <div className="screen-line-top relative py-4 -mx-1">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-4 items-stretch">
-            {toolRegistries.map((tool) => (
+            {tools.map((tool) => (
               <Link
                 href={`/${ROUTES.TOOLS.slug}/${tool.slug}`}
                 key={tool.slug}

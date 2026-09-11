@@ -77,7 +77,7 @@
     "contact": "Liên hệ"
   },
   "tools": {
-    "passwordGenerator": {
+    "password-generator": {
       "passwordCopied": "Đã sao chép mật khẩu",
       "failedToCopyPassword": "Không thể sao chép mật khẩu",
       "passwordLength": "Độ dài mật khẩu:",
@@ -87,14 +87,14 @@
       "includeUppercase": "Bao gồm chữ cái viết hoa",
       "includeSpecial": "Bao gồm ký tự đặc biệt"
     },
-    "qrCodeGenerator": {
+    "qr-code-generator": {
       "placeholder": "Nhập chuỗi",
       "random": "Ngẫu nhiên",
       "restore": "Khôi phục",
       "download": "Tải xuống",
       "copy": "Sao chép"
     },
-    "stringComparator": {
+    "string-comparator": {
       "firstString": "Chuỗi thứ nhất",
       "firstStringPlaceholder": "Nhập chuỗi thứ nhất",
       "secondString": "Chuỗi thứ hai",

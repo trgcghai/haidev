@@ -68,28 +68,48 @@ export const getAllDocs = cache(async () => {
     });
 });
 
+export const getAllDocsWithLang = cache(async (rootlang: string) => {
+  return getMDXData(path.join(process.cwd(), "contents/" + rootlang))
+    .filter((doc) => !doc.metadata.hidden)
+    .sort((a, b) => {
+      if (a.metadata.pinned && !b.metadata.pinned) return -1;
+      if (!a.metadata.pinned && b.metadata.pinned) return 1;
+
+      return (
+        new Date(b.metadata.createdAt).getTime() -
+        new Date(a.metadata.createdAt).getTime()
+      );
+    });
+});
+
 export async function getDocBySlug(slug: string) {
   return getAllDocs().then((docs) => docs.find((doc) => doc.slug === slug));
 }
 
-export async function getDocsByCategory(category: string) {
+export async function getDocsByCategory(category: string, lang?: string) {
+  if (lang) {
+    return getAllDocsWithLang(lang).then((docs) =>
+      docs.filter((doc) => doc.metadata.category === category),
+    );
+  }
+
   return getAllDocs().then((docs) =>
     docs.filter((doc) => doc.metadata.category === category),
   );
 }
 
-/** Categories derived from the features' content subfolder. */
+/** Categories derived from the contents' content subfolder. */
 export const BLOGS_CATEGORY = "blogs";
 export const PROJECTS_CATEGORY = "projects";
 
 /** Blog posts — docs under the `blog/` content folder. */
-export async function getBlogPosts() {
-  return getDocsByCategory(BLOGS_CATEGORY);
+export async function getBlogPosts(lang?: string) {
+  return getDocsByCategory(BLOGS_CATEGORY, lang);
 }
 
 /** Project docs — docs under the `projects/` content folder. */
-export async function getProjectPosts() {
-  return getDocsByCategory(PROJECTS_CATEGORY);
+export async function getProjectPosts(lang?: string) {
+  return getDocsByCategory(PROJECTS_CATEGORY, lang);
 }
 
 export async function getFeaturedProjects() {

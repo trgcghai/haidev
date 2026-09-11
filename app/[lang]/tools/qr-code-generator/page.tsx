@@ -1,3 +1,4 @@
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 import QrCodeGenerator from "@/app/[lang]/tools/qr-code-generator/qr-code-generator";
 import {
   jsonLdBreadcrumbList,
@@ -6,8 +7,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { CONFIG, ROUTES } from "@/constants/config";
 import { JSON_LD_ID } from "@/constants/json-ld";
+import { getToolBySlug } from "@/lib/tools";
 import { absoluteUrl } from "@/lib/utils";
-import { toolRegistries } from "@/registry/tools";
 import { Tool } from "@/types/tool";
 import { ArrowLeftIcon, Loader2Icon } from "lucide-react";
 import Link from "next/link";
@@ -16,7 +17,7 @@ import { Suspense } from "react";
 import { WebApplication, WithContext } from "schema-dts";
 
 export async function generateMetadata() {
-  const tool = toolRegistries.find((tool) => tool.slug === "qr-code-generator");
+  const tool = await getToolBySlug("qr-code-generator");
 
   if (!tool) {
     return notFound();
@@ -75,13 +76,15 @@ function getPageJsonLd(tool: Tool): WithContext<WebApplication> {
   };
 }
 
-const Page = () => {
+const Page = async () => {
   const slug = "qr-code-generator";
-  const tool = toolRegistries.find((tool) => tool.slug === slug);
+  const tool = await getToolBySlug(slug);
 
   if (!tool) {
     notFound();
   }
+
+  const dict = await getSafeDictionary();
 
   return (
     <>
@@ -113,7 +116,7 @@ const Page = () => {
           render={
             <Link href="/tools">
               <ArrowLeftIcon />
-              Tools
+              {dict.pages.tools.heading}
             </Link>
           }
         />
@@ -123,11 +126,15 @@ const Page = () => {
         fallback={
           <div>
             <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-            Loading...
+            {dict.pages.tools.loading}
           </div>
         }
       >
-        <QrCodeGenerator title={tool.name} description={tool.description} />
+        <QrCodeGenerator
+          title={tool.name}
+          description={tool.description}
+          dict={dict.tools["qr-code-generator"]}
+        />
       </Suspense>
     </>
   );

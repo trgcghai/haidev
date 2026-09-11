@@ -77,7 +77,7 @@
     "contact": "Contact me"
   },
   "tools": {
-    "passwordGenerator": {
+    "password-generator": {
       "passwordCopied": "Password copied",
       "failedToCopyPassword": "Failed to copy password",
       "passwordLength": "Password length:",
@@ -87,14 +87,14 @@
       "includeUppercase": "Include uppercase characters",
       "includeSpecial": "Include special characters"
     },
-    "qrCodeGenerator": {
+    "qr-code-generator": {
       "placeholder": "Enter string",
       "random": "Random",
       "restore": "Restore",
       "download": "Download",
       "copy": "Copy"
     },
-    "stringComparator": {
+    "string-comparator": {
       "firstString": "First string",
       "firstStringPlaceholder": "Enter first string",
       "secondString": "Second string",

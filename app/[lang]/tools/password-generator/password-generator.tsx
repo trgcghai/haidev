@@ -9,6 +9,7 @@ import { CopyButton } from "@/components/common/copy-button";
 import { Slider } from "@/components/ui/slider";
 import { toast } from "sonner";
 import { Switch } from "@/components/ui/switch";
+import { Dictionary } from "@/app/[lang]/dictionaries";
 
 const LOWERCASE = "abcdefghijklmnopqrstuvwxyz";
 const UPPERCASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -18,11 +19,13 @@ const SPECIAL = "!@#$%^&*()_+-=[]{}|;:,.<>?";
 interface PasswordGeneratorProps {
   title: string;
   description: string;
+  dict: Dictionary["tools"]["password-generator"];
 }
 
 export default function PasswordGenerator({
   description,
   title,
+  dict,
 }: PasswordGeneratorProps) {
   const [length, setLength] = useState(12);
   const [includeDigit, setIncludeDigit] = useState(true);
@@ -92,15 +95,15 @@ export default function PasswordGenerator({
           text={password}
           variant="default"
           size="icon-lg"
-          onCopySuccess={() => toast.success("Password copied")}
-          onCopyError={() => toast.error("Failed to copy password")}
+          onCopySuccess={() => toast.success(dict.passwordCopied)}
+          onCopyError={() => toast.error(dict.failedToCopyPassword)}
         />
       </div>
 
       <div className="space-y-6 rounded-lg border p-6">
         <div className="space-y-2">
           <Label className="text-sm" htmlFor="length">
-            Password length: {length} characters
+            {`${dict.passwordLength} ${length} ${dict.characters}`}
           </Label>
           <Slider
             value={length}
@@ -110,7 +113,7 @@ export default function PasswordGenerator({
             onValueChange={(value) => setLength(value as number)}
           />
           <span className="text-sm text-muted-foreground">
-            Value must be between 8 and 128
+            {dict.lengthHelp}
           </span>
         </div>
 
@@ -122,7 +125,7 @@ export default function PasswordGenerator({
               onCheckedChange={(checked) => setIncludeDigit(checked === true)}
             />
             <Label className="text-sm" htmlFor="include-digit">
-              Include digits
+              {dict.includeDigits}
             </Label>
           </div>
 
@@ -135,7 +138,7 @@ export default function PasswordGenerator({
               }
             />
             <Label className="text-sm" htmlFor="include-uppercase">
-              Include uppercase characters
+              {dict.includeUppercase}
             </Label>
           </div>
 
@@ -146,7 +149,7 @@ export default function PasswordGenerator({
               onCheckedChange={(checked) => setIncludeSpecial(checked === true)}
             />
             <Label className="text-sm" htmlFor="include-special">
-              Include special characters
+              {dict.includeSpecial}
             </Label>
           </div>
         </div>
