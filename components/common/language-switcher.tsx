@@ -34,7 +34,7 @@ export function LanguageSwitcher({
 
     const newPathname = cloneSegments.join("/");
 
-    document.cookie = `NEXT_LOCALE=${locale}; Path=/; Max-Age=31536000; SameSite=Lax`;
+    document.cookie = `NEXT_LOCALE=${locale}; Path=/; Max-Age=31536000; SameSite=Lax; Secure`;
 
     router.push(newPathname);
   }
