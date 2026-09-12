@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/accordion";
 import { TOCItemType } from "@/types/fumadocs-core";
 
-const Toc = ({ items }: { items: TOCItemType[] }) => {
+const Toc = ({ items, title }: { items: TOCItemType[]; title: string }) => {
   const [activeHref, setActiveHref] = useState<string>(items[0].url);
   return (
     <>
@@ -17,7 +17,7 @@ const Toc = ({ items }: { items: TOCItemType[] }) => {
         <AccordionItem value="toc">
           <AccordionTrigger className="hover:no-underline">
             <h3 className="text-xl font-bold text-secondary-foreground">
-              Table of Contents
+              {title}
             </h3>
           </AccordionTrigger>
           <AccordionContent className="[&_span]:text-base [&_a]:no-underline [&_a]:underline-offset-0 [&_a]:hover:text-foreground">

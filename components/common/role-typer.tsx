@@ -1,10 +1,13 @@
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 import Typewriter from "@/components/fancy/text/typewriter";
 import { CONFIG } from "@/constants/config";
 
-const RoleTyper = () => {
+const RoleTyper = async () => {
+  const dict = await getSafeDictionary();
+
   return (
     <p className="whitespace-pre-wrap text-secondary-foreground md:text-lg sm:text-base text-sm text-center md:text-left">
-      <span>{"I am a "}</span>
+      <span>{dict.common.roleTyper}</span>
       <Typewriter
         text={CONFIG.USER.roles}
         speed={70}

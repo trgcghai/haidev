@@ -1,11 +1,14 @@
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 import ComesInGoesOutUnderline from "@/components/fancy/text/underline-comes-in-goes-out";
 import Link from "next/link";
 
-const Footer = () => {
+const Footer = async () => {
+  const dict = await getSafeDictionary();
+
   return (
     <footer className="grid grid-cols-1 gap-4 md:grid-cols-3 text-sm text-gray-600 mt-40 border-t pt-4 md:text-left text-center">
       <div>
-        Inspired by{" "}
+        {`${dict.footer.inspiredBy} `}
         <div className="gap-2 flex justify-center md:justify-start">
           <Link
             href="https://tiesen.id.vn/"
@@ -41,7 +44,7 @@ const Footer = () => {
       </div>
 
       <div>
-        Designed and built by{" "}
+        {`${dict.footer.designedAndBuiltBy} `}
         <div className="gap-2 flex justify-center md:justify-start">
           <Link href="/" className="hover:text-primary">
             <ComesInGoesOutUnderline direction="left">
@@ -52,7 +55,7 @@ const Footer = () => {
       </div>
 
       <div>
-        Components and animations by{" "}
+        {`${dict.footer.componentsAndAnimationsBy} `}
         <div className="gap-2 flex justify-center md:justify-start">
           <Link
             href="https://chanhdai.com/components"

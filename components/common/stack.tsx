@@ -1,12 +1,15 @@
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 import { TechStack } from "@/components/common/tech-stack";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 
-const Stack = () => {
+const Stack = async () => {
+  const dict = await getSafeDictionary();
+
   return (
     <div>
       <h2 id="stack">
         <LetterSwapForward
-          label="# Stack"
+          label={`# ${dict.root.stack}`}
           reverse={true}
           className="text-lg md:text-2xl font-semibold w-fit text-primary"
         />

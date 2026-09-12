@@ -9,7 +9,15 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-export function AnimationToggle() {
+interface AnimationToggleProps {
+  animatingTooltip?: string;
+  pausedTooltip?: string;
+}
+
+export function AnimationToggle({
+  animatingTooltip = "Pause the background animation",
+  pausedTooltip = "Play the background animation",
+}: AnimationToggleProps) {
   const [isAnimating, setIsAnimating] = useState(true);
 
   useEffect(() => {
@@ -36,11 +44,7 @@ export function AnimationToggle() {
         }
       />
       <TooltipContent side="bottom">
-        <p>
-          {isAnimating
-            ? "Pause the background animation"
-            : "Play the background animation"}
-        </p>
+        <p>{isAnimating ? animatingTooltip : pausedTooltip}</p>
       </TooltipContent>
     </Tooltip>
   );

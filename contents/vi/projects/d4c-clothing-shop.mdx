@@ -1,0 +1,107 @@
+---
+title: "D4C Clothing Shop"
+description: "Giới thiệu về nền tảng thương mại điện tử D4C Clothing Shop được xây dựng theo kiến ​​trúc microservices."
+featured: true
+keywords: D4C, D4C clothing, D4C clothing shop, cửa hàng quần áo
+tags: microservices, event-driven, rabbitmq, docker, Express, spring boot, react
+createdAt: "2026-08-28"
+updatedAt: "2026-08-28"
+---
+
+# D4C Clothing Shop
+
+## Tổng quan
+
+D4C Clothing Shop là một nền tảng thương mại điện tử chuyên về bán lẻ quần áo, được xây dựng dựa trên kiến ​​trúc microservices. Dự án kết hợp giao diện người dùng (frontend) bằng React, API Gateway sử dụng Spring Cloud, cơ chế khám phá dịch vụ (service discovery) với Eureka, các dịch vụ Java Spring Boot, dịch vụ Node.js cùng cơ sở hạ tầng hỗ trợ cho việc lưu trữ dữ liệu, truyền tin (messaging), bộ nhớ đệm (caching) và tìm kiếm.
+
+Hệ thống được thiết kế để chạy cục bộ (local) bằng Docker Compose, đồng thời cho phép phát triển độc lập từng dịch vụ. Lưu lượng truy cập từ phía người dùng đi qua API Gateway tại địa chỉ `http://localhost:8080/api/**`, và các dịch vụ sẽ đăng ký với Eureka để thực hiện khám phá dịch vụ.
+
+## Các tính năng
+
+- Duyệt sản phẩm và quản lý dữ liệu sản phẩm.
+- Xác thực người dùng và các API quản lý hồ sơ người dùng.
+- Các dịch vụ xử lý giỏ hàng, đơn hàng và thanh toán phục vụ quy trình thanh toán.
+- Gửi thông báo thông qua hệ thống truyền tin dựa trên RabbitMQ.
+- Tích hợp dịch vụ gợi ý và AI để mang lại trải nghiệm mua sắm cá nhân hóa.
+- Hỗ trợ dịch vụ tìm kiếm với Typesense và cơ sở hạ tầng liên quan đến Elasticsearch.
+- Định tuyến tập trung thông qua Spring Cloud Gateway.
+- Khám phá dịch vụ thông qua Eureka.
+- Điều phối bằng Docker Compose phục vụ phát triển full-stack cục bộ.
+
+## Công nghệ sử dụng
+
+- Frontend: React 19, TypeScript, Vite, Tailwind CSS, shadcn/ui, Radix UI, Zustand, TanStack Query.
+- API Gateway: Spring Cloud Gateway.
+- Service Registry: Spring Boot Eureka Discovery Server.
+- Dịch vụ Java: Spring Boot 3.x, Java 21, Maven hoặc Gradle (tùy thuộc vào từng dịch vụ).
+- Dịch vụ Node.js: Express.js với ES modules.
+- Cơ sở dữ liệu và lưu trữ: MariaDB, Redis, AWS DynamoDB, AWS S3.
+- Truyền tin (Messaging): RabbitMQ.
+- Tìm kiếm: Typesense, Elasticsearch, Kibana. - Đóng gói bằng container: Docker và Docker Compose.
+
+## Kiến trúc
+
+Ứng dụng được tổ chức theo mô hình monorepo cho kiến ​​trúc microservices. Frontend gọi đến API Gateway, và gateway này sẽ định tuyến các yêu cầu có đường dẫn `/api/**` tới các instance dịch vụ được phát hiện thông qua Eureka.
+
+Các dịch vụ cốt lõi của ứng dụng bao gồm:
+
+- `UserService`: xác thực và quản lý người dùng.
+- `ProductService`: các API liên quan đến sản phẩm, danh mục, biến thể sản phẩm và dữ liệu đa phương tiện (media).
+- `CartService`: các thao tác với giỏ hàng, có hỗ trợ từ Redis.
+- `OrderService`: quản lý vòng đời đơn hàng.
+- `PaymentService`: tích hợp xử lý thanh toán.
+- `NotificationService`: xử lý thông báo với RabbitMQ.
+- `RecommendationService`: các API gợi ý sản phẩm.
+- `AIService`: các tính năng ứng dụng có hỗ trợ bởi AI.
+- `SearchService`: lập chỉ mục tìm kiếm và hỗ trợ truy vấn.
+
+Các dịch vụ hạ tầng bao gồm MariaDB, Redis, RabbitMQ, Elasticsearch, Kibana và Typesense. Tệp `docker-compose.yml` tại thư mục gốc đóng vai trò là nguồn cấu hình chính (source of truth) cho việc điều phối dịch vụ ở môi trường cục bộ. ## Cách chạy
+
+Chạy toàn bộ hệ thống (full-stack) bằng Docker:
+
+```bash
+docker compose up --build -d
+```
+
+Chạy hệ thống ở chế độ phát triển (development) với hỗ trợ hot-reload cho frontend và các cổng debug cho Java:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+```
+
+Dừng hệ thống:
+
+```bash
+docker compose down
+```
+
+Các URL cục bộ hữu ích:
+
+- Frontend: `http://localhost:5173`
+- API Gateway: `http://localhost:8080`
+- Eureka Dashboard: `http://localhost:8761`
+- RabbitMQ Management UI: `http://localhost:15672`
+- Kibana: `http://localhost:5601`
+- Elasticsearch: `http://localhost:9200`
+- Typesense: `http://localhost:8108`
+
+Kiểm tra nhanh sau khi khởi động:
+
+```bash
+docker compose ps
+curl http://localhost:8761
+curl http://localhost:8080/actuator/health
+curl http://localhost:8080/api/products
+```
+
+## Thành viên đóng góp
+
+- Truong Cong Hai - 22692311
+- Dang Tran Tan Phat - 22649051
+- Huynh Anh Hung - 22645171
+- Le Huynh Cong Tiep - 22692271
+- Le Minh Tuan - 22697621
+
+## Github
+
+<LinkGithubButton href="https://github.com/trgcghai/D4C_Clothing_Shop" />

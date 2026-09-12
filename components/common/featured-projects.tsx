@@ -5,15 +5,17 @@ import { truncate } from "lodash";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import { ROUTES } from "@/constants/config";
 import { getFeaturedProjects } from "@/lib/documents";
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 
-const FeaturedProjects = () => {
-  const featuredProjects = getFeaturedProjects();
+const FeaturedProjects = async () => {
+  const featuredProjects = await getFeaturedProjects();
+  const dict = await getSafeDictionary();
 
   return (
     <div>
       <h2 id="projects">
         <LetterSwapForward
-          label="# Projects"
+          label={`# ${dict.root.projects}`}
           reverse={true}
           className="text-lg md:text-2xl font-semibold w-fit text-primary"
         />
@@ -35,12 +37,13 @@ const FeaturedProjects = () => {
                 </p>
                 <p className="leading-relaxed">
                   {truncate(project.metadata.description, { length: 110 })}
+                  {".."}
                   <Link
                     href={`/${ROUTES.PROJECTS.slug}/${project.slug}`}
                     className="text-primary hover:underline"
                   >
                     <ComesInGoesOutUnderline direction="left">
-                      See more
+                      {`${dict.common.seeMore}`}
                     </ComesInGoesOutUnderline>
                   </Link>
                 </p>

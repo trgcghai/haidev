@@ -3,6 +3,7 @@ import path from "path";
 import { cache } from "react";
 import matter from "gray-matter";
 import { Doc, DocMetadata } from "@/types/document";
+import { lang } from "next/root-params";
 
 function parseFrontmatter(fileContent: string) {
   const file = matter(fileContent);
@@ -52,8 +53,9 @@ function getMDXData(dir: string) {
   });
 }
 
-export const getAllDocs = cache(() => {
-  return getMDXData(path.join(process.cwd(), "features"))
+export const getAllDocs = cache(async () => {
+  const rootlang = await lang();
+  return getMDXData(path.join(process.cwd(), "contents/" + rootlang))
     .filter((doc) => !doc.metadata.hidden)
     .sort((a, b) => {
       if (a.metadata.pinned && !b.metadata.pinned) return -1;
@@ -66,28 +68,52 @@ export const getAllDocs = cache(() => {
     });
 });
 
-export function getDocBySlug(slug: string) {
-  return getAllDocs().find((doc) => doc.slug === slug);
+export const getAllDocsWithLang = cache(async (rootlang: string) => {
+  return getMDXData(path.join(process.cwd(), "contents/" + rootlang))
+    .filter((doc) => !doc.metadata.hidden)
+    .sort((a, b) => {
+      if (a.metadata.pinned && !b.metadata.pinned) return -1;
+      if (!a.metadata.pinned && b.metadata.pinned) return 1;
+
+      return (
+        new Date(b.metadata.createdAt).getTime() -
+        new Date(a.metadata.createdAt).getTime()
+      );
+    });
+});
+
+export async function getDocBySlug(slug: string) {
+  return getAllDocs().then((docs) => docs.find((doc) => doc.slug === slug));
 }
 
-export function getDocsByCategory(category: string) {
-  return getAllDocs().filter((doc) => doc.metadata?.category === category);
+export async function getDocsByCategory(category: string, lang?: string) {
+  if (lang) {
+    return getAllDocsWithLang(lang).then((docs) =>
+      docs.filter((doc) => doc.metadata.category === category),
+    );
+  }
+
+  return getAllDocs().then((docs) =>
+    docs.filter((doc) => doc.metadata.category === category),
+  );
 }
 
-/** Categories derived from the features' content subfolder. */
+/** Categories derived from the contents' content subfolder. */
 export const BLOGS_CATEGORY = "blogs";
 export const PROJECTS_CATEGORY = "projects";
 
 /** Blog posts — docs under the `blog/` content folder. */
-export function getBlogPosts() {
-  return getDocsByCategory(BLOGS_CATEGORY);
+export async function getBlogPosts(lang?: string) {
+  return getDocsByCategory(BLOGS_CATEGORY, lang);
 }
 
 /** Project docs — docs under the `projects/` content folder. */
-export function getProjectPosts() {
-  return getDocsByCategory(PROJECTS_CATEGORY);
+export async function getProjectPosts(lang?: string) {
+  return getDocsByCategory(PROJECTS_CATEGORY, lang);
 }
 
-export function getFeaturedProjects() {
-  return getProjectPosts().filter((doc) => doc.metadata.featured);
+export async function getFeaturedProjects() {
+  return getProjectPosts().then((docs) =>
+    docs.filter((doc) => doc.metadata.featured),
+  );
 }

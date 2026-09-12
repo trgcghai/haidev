@@ -19,9 +19,15 @@ const themes = [
 
 interface ModeTogglerProps {
   system?: boolean;
+  darkTooltip?: string;
+  lightTooltip?: string;
 }
 
-export function ModeToggler({ system = true }: ModeTogglerProps) {
+export function ModeToggler({
+  system = true,
+  darkTooltip,
+  lightTooltip,
+}: ModeTogglerProps) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -60,7 +66,11 @@ export function ModeToggler({ system = true }: ModeTogglerProps) {
         }
       />
       <TooltipContent>
-        <p>{currentTheme.name}</p>
+        <p className="capitalize">
+          {currentTheme.name === "dark"
+            ? darkTooltip
+            : lightTooltip || currentTheme.name}
+        </p>
       </TooltipContent>
     </Tooltip>
   );

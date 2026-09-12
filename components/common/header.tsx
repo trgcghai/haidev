@@ -14,8 +14,12 @@ import { AnimationToggle } from "@/components/common/animation-toggle";
 import Image from "next/image";
 import { CONFIG } from "@/constants/config";
 import { Menu } from "lucide-react";
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
+import { LanguageSwitcher } from "@/components/common/language-switcher";
 
-const Header = () => {
+const Header = async () => {
+  const dict = await getSafeDictionary();
+
   return (
     <div className="container max-w-7xl mt-8 mx-auto border rounded-sm px-4 py-2 flex items-center justify-between bg-neutral-50/40 dark:bg-neutral-800/40">
       <Link href="/" className="flex items-center gap-2 shrink-0">
@@ -33,7 +37,7 @@ const Header = () => {
           {CONFIG.SITE.routes.map((r) => (
             <Button variant="ghost" size="default" key={r.slug}>
               <Link href={r.url} className="hover:text-primary text-sm">
-                {r.title}
+                {dict.header[r.slug as keyof typeof dict.header]}
               </Link>
             </Button>
           ))}
@@ -41,13 +45,28 @@ const Header = () => {
 
         <Separator orientation="vertical" className="mx-4 h-6" />
 
-        <ModeToggler system={false} />
-        <AnimationToggle />
+        <LanguageSwitcher />
+        <ModeToggler
+          system={false}
+          darkTooltip={dict.common.theme.dark}
+          lightTooltip={dict.common.theme.light}
+        />
+        <AnimationToggle
+          animatingTooltip={dict.common.animationToggle.pause}
+          pausedTooltip={dict.common.animationToggle.play}
+        />
       </div>
 
       <div className="flex items-center gap-2 md:hidden">
-        <ModeToggler system={false} />
-        <AnimationToggle />
+        <ModeToggler
+          system={false}
+          darkTooltip={dict.common.theme.dark}
+          lightTooltip={dict.common.theme.light}
+        />
+        <AnimationToggle
+          animatingTooltip={dict.common.animationToggle.pause}
+          pausedTooltip={dict.common.animationToggle.play}
+        />
 
         <Sheet>
           <SheetTrigger
@@ -77,7 +96,7 @@ const Header = () => {
                       className="justify-start"
                     >
                       <Link href={r.url} className="hover:text-primary text-sm">
-                        {r.title}
+                        {dict.header[r.slug as keyof typeof dict.header]}
                       </Link>
                     </Button>
                   }
