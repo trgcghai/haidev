@@ -46,13 +46,27 @@ const Header = async () => {
         <Separator orientation="vertical" className="mx-4 h-6" />
 
         <LanguageSwitcher />
-        <ModeToggler system={false} />
-        <AnimationToggle />
+        <ModeToggler
+          system={false}
+          darkTooltip={dict.common.theme.dark}
+          lightTooltip={dict.common.theme.light}
+        />
+        <AnimationToggle
+          animatingTooltip={dict.common.animationToggle.pause}
+          pausedTooltip={dict.common.animationToggle.play}
+        />
       </div>
 
       <div className="flex items-center gap-2 md:hidden">
-        <ModeToggler system={false} />
-        <AnimationToggle />
+        <ModeToggler
+          system={false}
+          darkTooltip={dict.common.theme.dark}
+          lightTooltip={dict.common.theme.light}
+        />
+        <AnimationToggle
+          animatingTooltip={dict.common.animationToggle.pause}
+          pausedTooltip={dict.common.animationToggle.play}
+        />
 
         <Sheet>
           <SheetTrigger

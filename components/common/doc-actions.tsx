@@ -1,5 +1,6 @@
 "use client";
 
+import { Dictionary } from "@/app/[lang]/dictionaries";
 import { CopyButton } from "@/components/common/copy-button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { absoluteUrl } from "@/lib/utils";
@@ -7,7 +8,12 @@ import { Doc } from "@/types/document";
 import { ShareIcon } from "lucide-react";
 import { toast } from "sonner";
 
-const DocActions = ({ doc }: { doc: Doc }) => {
+interface DocActionsProps {
+  doc: Doc;
+  dict: Dictionary["common"]["docActions"];
+}
+
+const DocActions = ({ doc, dict }: DocActionsProps) => {
   const isMobile = useIsMobile();
   return (
     <div className="flex items-center gap-2">
@@ -16,10 +22,10 @@ const DocActions = ({ doc }: { doc: Doc }) => {
         text={doc.content}
         size={isMobile ? "icon-lg" : "lg"}
         className="gap-2 hover:text-primary"
-        onCopySuccess={() => toast.success("Content copied")}
-        onCopyError={() => toast.error("Failed to copy content")}
+        onCopySuccess={() => toast.success(dict.contentCopied)}
+        onCopyError={() => toast.error(dict.failedToCopyContent)}
       >
-        {isMobile ? "" : "Copy"}
+        {isMobile ? "" : dict.copy}
       </CopyButton>
       <CopyButton
         variant="outline"
@@ -27,10 +33,10 @@ const DocActions = ({ doc }: { doc: Doc }) => {
         size={isMobile ? "icon-lg" : "lg"}
         className="gap-2 hover:text-primary"
         idleIcon={<ShareIcon />}
-        onCopySuccess={() => toast.success("Link copied")}
-        onCopyError={() => toast.error("Failed to copy link")}
+        onCopySuccess={() => toast.success(dict.linkCopied)}
+        onCopyError={() => toast.error(dict.failedToCopyLink)}
       >
-        {isMobile ? "" : "Share"}
+        {isMobile ? "" : dict.share}
       </CopyButton>
     </div>
   );

@@ -57,6 +57,10 @@
       "pause": "Tạm dừng animation",
       "play": "Tiếp tục animation"
     },
+    "theme": {
+      "dark": "Tối",
+      "light": "Sáng"
+    },
     "docActions": {
       "contentCopied": "Đã sao chép nội dung",
       "failedToCopyContent": "Không thể sao chép nội dung",

@@ -147,7 +147,7 @@ const Page = async ({ params }: PageProps<"/[lang]/blogs/[slug]">) => {
           }
         />
 
-        <DocActions doc={doc} />
+        <DocActions doc={doc} dict={dict.common.docActions} />
       </div>
 
       <section className="mb-4 space-y-4">

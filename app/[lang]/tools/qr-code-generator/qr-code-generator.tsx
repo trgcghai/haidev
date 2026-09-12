@@ -148,11 +148,15 @@ const QrCodeGenerator = ({
           </div>
 
           <div className="flex items-center gap-4">
-            <Button onClick={random}>
+            <Button onClick={random} className="flex-1 md:flex-0">
               <Shuffle className="size-4" />
               {dict.random}
             </Button>
-            <Button variant="secondary" onClick={restoreDefault}>
+            <Button
+              variant="secondary"
+              onClick={restoreDefault}
+              className="flex-1 md:flex-0"
+            >
               <Undo2Icon className="size-4" />
               {dict.restore}
             </Button>

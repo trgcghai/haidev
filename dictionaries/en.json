@@ -57,6 +57,10 @@
       "pause": "Pause the background animation",
       "play": "Play the background animation"
     },
+    "theme": {
+      "dark": "Dark",
+      "light": "Light"
+    },
     "docActions": {
       "contentCopied": "Content copied",
       "failedToCopyContent": "Failed to copy content",
