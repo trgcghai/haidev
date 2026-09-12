@@ -81,28 +81,34 @@ const Header = async () => {
               </Button>
             }
           />
-          <SheetContent side="right" className="w-64">
+          <SheetContent side="right" className="w-3/5!">
             <SheetHeader>
               <SheetTitle>Menu</SheetTitle>
             </SheetHeader>
-            <nav className="flex flex-col gap-1 p-4 space-y-4">
-              {CONFIG.SITE.routes.map((r) => (
-                <SheetClose
-                  key={r.slug}
-                  render={
-                    <Button
-                      variant="ghost"
-                      size="default"
-                      className="justify-start"
-                    >
-                      <Link href={r.url} className="hover:text-primary text-sm">
-                        {dict.header[r.slug as keyof typeof dict.header]}
-                      </Link>
-                    </Button>
-                  }
-                />
-              ))}
-            </nav>
+            <div className="p-4 space-y-4">
+              <nav className="flex flex-col gap-1 space-y-4">
+                {CONFIG.SITE.routes.map((r) => (
+                  <SheetClose
+                    key={r.slug}
+                    render={
+                      <Button
+                        variant="ghost"
+                        size="default"
+                        className="justify-start"
+                      >
+                        <Link
+                          href={r.url}
+                          className="hover:text-primary text-sm"
+                        >
+                          {dict.header[r.slug as keyof typeof dict.header]}
+                        </Link>
+                      </Button>
+                    }
+                  />
+                ))}
+              </nav>
+              <LanguageSwitcher triggerClassname="w-full" contentClassname="" />
+            </div>
           </SheetContent>
         </Sheet>
       </div>

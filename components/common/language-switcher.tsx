@@ -9,8 +9,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 
-export function LanguageSwitcher() {
+export function LanguageSwitcher({
+  triggerClassname = "",
+  contentClassname = "",
+}: {
+  triggerClassname?: string;
+  contentClassname?: string;
+}) {
   const router = useRouter();
   const pathname = usePathname();
   const segments = pathname.split("/");
@@ -34,14 +41,14 @@ export function LanguageSwitcher() {
 
   return (
     <Select onValueChange={(value) => changeLanguage(value as Locale)}>
-      <SelectTrigger className="capitalize min-w-28">
+      <SelectTrigger className={cn("capitalize min-w-28", triggerClassname)}>
         <SelectValue
           placeholder={
             localeOptions.find((o) => o.value === currentLocale)!.label
           }
         />
       </SelectTrigger>
-      <SelectContent className="min-w-fit">
+      <SelectContent className={cn("min-w-fit", contentClassname)}>
         {localeOptions.map((s) => (
           <SelectItem key={s.value} value={s.value} className="capitalize">
             {s.label}
