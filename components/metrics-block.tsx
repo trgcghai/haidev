@@ -9,13 +9,11 @@ import {
   MetricLabel,
   MetricValue,
 } from "@/components/metric";
-import { absoluteUrl } from "@/lib/utils";
 import { getSafeDictionary } from "@/app/[lang]/dictionaries";
+import { getInsights } from "@/lib/insignts";
 
 export async function MetricsBlock() {
-  const res = await fetch(absoluteUrl("/api/vercel/metrics"));
-  const data = await res.json();
-
+  const data = await getInsights();
   const dict = await getSafeDictionary();
 
   return (
