@@ -132,7 +132,8 @@
       "description": "The code is public, and so are the numbers. Visitors, sessions, and views, compared with the previous period.",
       "noData": "No insights available.",
       "visitors": "Visitors",
-      "views": "Views"
+      "views": "Views",
+      "comparedText": "compared to the previous period."
     }
   }
 }

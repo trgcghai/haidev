@@ -1,3 +1,4 @@
+import { Locale } from "@/constants/dictionary";
 import { clsx, type ClassValue } from "clsx";
 import { DateArg, format } from "date-fns";
 import { enUS, vi } from "date-fns/locale";
@@ -15,4 +16,8 @@ export function formatDate(date: DateArg<Date> & {}, lang: string) {
   return format(date, "PPP", {
     locale: lang === "vi" ? vi : enUS,
   });
+}
+
+export function formatNumber(value: number, locale: Locale): string {
+  return value.toLocaleString(locale === "vi" ? "vi-VN" : "en-US");
 }

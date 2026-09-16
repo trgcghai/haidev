@@ -1,4 +1,4 @@
-import { MetricsBlock } from "@/components/metrics-block";
+import { MetricsBlock } from "@/components/metrics";
 import {
   jsonLdBreadcrumbList,
   JsonLdScript,
