@@ -38,6 +38,9 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.20
         version: 0.5.20(tailwindcss@4.3.3)
+      '@types/d3-array':
+        specifier: ^3.2.2
+        version: 3.2.2
       '@types/d3-shape':
         specifier: ^3.2.0
         version: 3.2.0
