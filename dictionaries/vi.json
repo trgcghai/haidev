@@ -132,7 +132,8 @@
       "description": "Khám phá số liệu được công khai, bao gồm số lượng khách truy cập, phiên truy cập và lượt xem, so sánh với khoảng thời gian trước đó.",
       "noData": "Không có dữ liệu thống kê.",
       "visitors": "Khách truy cập",
-      "views": "Lượt xem"
+      "views": "Lượt xem",
+      "comparedText": "so với khoảng thời gian trước đó."
      }
   }
 }

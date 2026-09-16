@@ -153,7 +153,7 @@ const Page = async ({ params }: PageProps<"/[lang]/blogs/[slug]">) => {
       <section className="mb-4 space-y-4">
         <h1
           data-slot="doc-title"
-          className="screen-line-bottom text-3xl font-semibold text-primary line-clamp-2 text-ellipsis"
+          className="text-3xl font-semibold text-primary line-clamp-2 text-ellipsis"
         >
           {doc.metadata.title}
         </h1>

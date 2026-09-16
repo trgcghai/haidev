@@ -106,7 +106,7 @@ const Page = async () => {
         <p className="my-4 text-sm sm:text-base text-muted-foreground w-full wrap-break-word text-wrap tracking-wide">
           {dict.pages.tools.description}
         </p>
-        <div className="screen-line-top relative py-4 -mx-1">
+        <div className="relative py-4 -mx-1">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-4 items-stretch">
             {tools.map((tool) => (
               <Link
@@ -114,9 +114,6 @@ const Page = async () => {
                 key={tool.slug}
                 className={cn(
                   "flex flex-col gap-2 p-2 transition-[background-color] ease-out hover:bg-accent/30 rounded-xl",
-                  "max-sm:screen-line-top max-sm:screen-line-bottom",
-                  "sm:max-md:nth-[2n+1]:screen-line-top sm:max-md:nth-[2n+1]:screen-line-bottom",
-                  "md:nth-[3n+1]:screen-line-top md:nth-[3n+1]:screen-line-bottom",
                 )}
               >
                 <Card className="h-full!">

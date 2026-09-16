@@ -9,8 +9,7 @@ import { CONFIG } from "@/constants/config";
 import { rootPageJsonLd } from "@/constants/json-ld";
 import Image from "next/image";
 import { Suspense } from "react";
-import { Loader2 } from "lucide-react";
-import { MetricsBlock } from "@/components/metrics-block";
+import { MetricsBlock, MetricsBlockSkeleton } from "@/components/metrics";
 
 export default async function Home() {
   return (
@@ -38,7 +37,7 @@ export default async function Home() {
 
       <FeaturedProjects />
 
-      <Suspense fallback={<Loader2 className="size-4 mx-auto animate-spin" />}>
+      <Suspense fallback={<MetricsBlockSkeleton />}>
         <MetricsBlock />
       </Suspense>
 

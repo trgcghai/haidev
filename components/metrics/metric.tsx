@@ -1,18 +1,13 @@
 import { TrendingDownIcon, TrendingUpIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function Metric({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="metric"
-      className={cn(
-        // `justify-between` keeps values aligned across a row when a label
-        // wraps to two lines in a narrow column.
-        "flex flex-col justify-between gap-2 p-4",
-        "max-md:nth-[2n+1]:screen-line-bottom md:nth-[4n+1]:screen-line-bottom",
-        className,
-      )}
+      className={cn("flex flex-col justify-between gap-2 p-4", className)}
       {...props}
     />
   );
@@ -40,13 +35,18 @@ export type MetricChangeProps = {
    * `null` when there is no previous period to compare against.
    */
   value: number | null;
+
+  /**
+   * Text to use for screen readers to describe the comparison, e.g. "compared to the previous period" or "compared to the previous month".
+   */
+  compareText: string;
 };
 
 /**
  * Assumes every metric is one where higher is better, so up maps to green.
  * The icon carries the direction too, so the meaning survives without color.
  */
-export function MetricChange({ value }: MetricChangeProps) {
+export function MetricChange({ value, compareText }: MetricChangeProps) {
   if (value === null) {
     return null;
   }
@@ -71,7 +71,7 @@ export function MetricChange({ value }: MetricChangeProps) {
         </>
       )}
       {Math.abs(percent).toLocaleString("en-US")}%
-      <span className="sr-only"> compared to the previous period</span>
+      <span className="sr-only"> {compareText}</span>
     </span>
   );
 }
@@ -91,3 +91,25 @@ export function MetricValue({
     />
   );
 }
+
+export const MetricsSeriesSkeleton = () => {
+  return (
+    <div aria-hidden>
+      <div className="aspect-2/1 w-full sm:aspect-3/1" />
+      <div className="h-11" />
+    </div>
+  );
+};
+
+export const MetricsSummarySkeleton = () => {
+  return (
+    <div className="grid grid-cols-2" aria-hidden>
+      {Array.from({ length: 2 }, (_, index) => (
+        <div key={index} className={cn("flex flex-col gap-2 p-4")}>
+          <Skeleton className="h-4 w-16" />
+          <Skeleton className="h-4.5 w-24" />
+        </div>
+      ))}
+    </div>
+  );
+};

@@ -110,7 +110,7 @@ const ProjectsListPage = async () => {
         <p className="my-4 text-sm sm:text-base text-muted-foreground w-full wrap-break-word text-wrap tracking-wide">
           {dict.pages.projects.description}
         </p>
-        <div className="screen-line-top relative py-4 -mx-1">
+        <div className="relative py-4 -mx-1">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {pinned.map((project, index) => (
               <ProjectItem
