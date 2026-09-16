@@ -13,6 +13,8 @@ import { websiteJsonLd } from "@/constants/json-ld";
 import { Toaster } from "@/components/ui/toast";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { locales } from "@/constants/dictionary";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -105,6 +107,8 @@ export default async function RootLayout({
             <LineNavProvider />
           </div>
           <Toaster position="top-center" />
+          <Analytics />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
 

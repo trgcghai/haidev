@@ -173,7 +173,8 @@ export const CONFIG = {
         slug: "insights",
         title: "Insights",
         description:
-          "Gain valuable insights and analytics from Công Hải's portfolio.",
+          "The code is public, and so are the numbers. Visitors, sessions, and views, compared with the previous period.",
+        header: false,
       },
     ],
   },

@@ -126,6 +126,13 @@
       "description": "Explore a collection of useful tools and utilities designed to enhance your productivity and simplify your tasks.",
       "backLabel": "Tools",
       "loading": "Loading..."
+    },
+    "insight": {
+      "heading": "Insight",
+      "description": "The code is public, and so are the numbers. Visitors, sessions, and views, compared with the previous period.",
+      "noData": "No insights available.",
+      "visitors": "Visitors",
+      "views": "Views"
     }
   }
 }
