@@ -126,6 +126,13 @@
       "description": "Khám phá bộ sưu tập các công cụ và tiện ích hữu ích được thiết kế để nâng cao năng suất và đơn giản hóa công việc của bạn.",
       "backLabel": "Công cụ",
       "loading": "Đang tải..."
-    }
+    },
+    "insight": {
+      "heading": "Số liệu thống kê",
+      "description": "Khám phá số liệu được công khai, bao gồm số lượng khách truy cập, phiên truy cập và lượt xem, so sánh với khoảng thời gian trước đó.",
+      "noData": "Không có dữ liệu thống kê.",
+      "visitors": "Khách truy cập",
+      "views": "Lượt xem"
+     }
   }
 }

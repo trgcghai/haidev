@@ -1,17 +1,18 @@
-import type { Metadata } from "next";
-
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
+import { MetricsBlock } from "@/components/metrics-block";
 import {
   jsonLdBreadcrumbList,
   JsonLdScript,
 } from "@/components/providers/JsonLdScript";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { CONFIG } from "@/constants/config";
+import { absoluteUrl } from "@/lib/utils";
+import { Loader2 } from "lucide-react";
+import { Metadata } from "next";
+import { Suspense } from "react";
 
 const title = "Insights";
 const description =
-  "The code is public, and so are the numbers. Visitors, sessions, and views, compared with the previous period.";
-
-const ogImage = `/og/simple?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`;
+  "Gain valuable insights and analytics from Công Hải's portfolio.";
 
 export const metadata: Metadata = {
   title,
@@ -22,8 +23,13 @@ export const metadata: Metadata = {
   openGraph: {
     url: "/insights",
     type: "website",
+    title: CONFIG.SITE.title,
+    description: CONFIG.USER.description,
+    countryName: CONFIG.USER.address,
+    siteName: CONFIG.SITE.name,
+    locale: CONFIG.USER.locale,
     images: {
-      url: ogImage,
+      url: `/og/simple?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`,
       width: 1200,
       height: 630,
       alt: title,
@@ -31,7 +37,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function InsightsPage() {
+const Page = async () => {
+  const res = await fetch(absoluteUrl("/api/vercel/metrics"));
+  const data = await res.json();
+
+  const dict = await getSafeDictionary();
+
   return (
     <>
       <JsonLdScript
@@ -47,20 +58,17 @@ export default function InsightsPage() {
         ])}
       />
 
-      <div className="min-h-svh">
-        <h1>Insights</h1>
-
-        <div className="h-4" />
-        <div className="screen-line-bottom h-px" />
-
-        <Analytics />
-
-        <div className="h-4" />
-
-        <SpeedInsights />
-
-        <div className="screen-line-top h-4" />
-      </div>
+      <Suspense fallback={<Loader2 className="h-8 w-8 animate-spin" />}>
+        <MetricsBlock
+          data={data}
+          noDataMessage={dict.pages.insight.noData}
+          title={dict.pages.insight.heading}
+          visitorsLabel={dict.pages.insight.visitors}
+          viewsLabel={dict.pages.insight.views}
+        />
+      </Suspense>
     </>
   );
-}
+};
+
+export default Page;
