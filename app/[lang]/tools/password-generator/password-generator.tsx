@@ -67,7 +67,7 @@ export default function PasswordGenerator({
       <div>
         <h1
           data-slot="doc-title"
-          className="screen-line-bottom text-3xl font-semibold text-primary line-clamp-2 text-ellipsis"
+          className="text-3xl font-semibold text-primary line-clamp-2 text-ellipsis"
         >
           {title}
         </h1>

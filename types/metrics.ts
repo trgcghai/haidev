@@ -1,5 +1,5 @@
 export type InsightsSeriesItem = {
-  timestamp: string;
+  date: string;
   visitors: number;
   views: number;
 };

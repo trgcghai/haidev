@@ -1,10 +1,9 @@
-import { MetricsBlock } from "@/components/metrics";
+import { MetricsBlock, MetricsBlockSkeleton } from "@/components/metrics";
 import {
   jsonLdBreadcrumbList,
   JsonLdScript,
 } from "@/components/providers/JsonLdScript";
 import { CONFIG } from "@/constants/config";
-import { Loader2 } from "lucide-react";
 import { Metadata } from "next";
 import { Suspense } from "react";
 
@@ -51,7 +50,7 @@ const Page = async () => {
         ])}
       />
 
-      <Suspense fallback={<Loader2 className="h-8 w-8 animate-spin" />}>
+      <Suspense fallback={<MetricsBlockSkeleton />}>
         <MetricsBlock />
       </Suspense>
     </>

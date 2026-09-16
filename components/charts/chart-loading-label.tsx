@@ -7,7 +7,7 @@ import {
   LOADING_LABEL_EXIT_S,
   LOADING_LABEL_EXIT_Y_PX,
 } from "./line-loading-timing";
-import { ShimmeringText } from "@/components/shimmering-text";
+import { ShimmeringText } from "@/components/charts/shimmering-text";
 
 export interface ChartLoadingLabelProps {
   /** Label shown centered over the chart. */

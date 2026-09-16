@@ -1,9 +1,9 @@
 export function TechStack() {
   return (
-    <section data-slot="panel" className="screen-line-top screen-line-bottom">
+    <section data-slot="panel">
       <div className="relative [--badge-height:--spacing(6)] [--col-left-width:--spacing(48)]">
         <div
-          className="pointer-events-none absolute inset-y-0 left-(--col-left-width) -z-1 w-px border-r border-line border-line max-sm:hidden"
+          className="pointer-events-none absolute inset-y-0 left-(--col-left-width) -z-1 w-px border-r border-line max-sm:hidden"
           aria-hidden="true"
         ></div>
         <div className="grid items-start gap-y-2 border-b border-line py-4 last:border-none sm:grid-cols-[var(--col-left-width)_1fr]">
