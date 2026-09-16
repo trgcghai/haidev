@@ -145,24 +145,28 @@ export const CONFIG = {
         slug: "home",
         title: "Home",
         description: "Welcome to Công Hải's personal portfolio website.",
+        header: true,
       },
       {
         url: "/blogs",
         slug: "blogs",
         title: "Blogs",
         description: "Read insightful blogs and articles by Công Hải.",
+        header: true,
       },
       {
         url: "/projects",
         slug: "projects",
         title: "Projects",
         description: "Explore the projects developed by Công Hải.",
+        header: true,
       },
       {
         url: "/tools",
         slug: "tools",
         title: "Tools",
         description: "Discover useful tools and utilities by Công Hải.",
+        header: true,
       },
       {
         url: "/insights",
