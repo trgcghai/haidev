@@ -1,11 +1,9 @@
-import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 import { MetricsBlock } from "@/components/metrics-block";
 import {
   jsonLdBreadcrumbList,
   JsonLdScript,
 } from "@/components/providers/JsonLdScript";
 import { CONFIG } from "@/constants/config";
-import { absoluteUrl } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { Metadata } from "next";
 import { Suspense } from "react";
@@ -38,11 +36,6 @@ export const metadata: Metadata = {
 };
 
 const Page = async () => {
-  const res = await fetch(absoluteUrl("/api/vercel/metrics"));
-  const data = await res.json();
-
-  const dict = await getSafeDictionary();
-
   return (
     <>
       <JsonLdScript
@@ -59,13 +52,7 @@ const Page = async () => {
       />
 
       <Suspense fallback={<Loader2 className="h-8 w-8 animate-spin" />}>
-        <MetricsBlock
-          data={data}
-          noDataMessage={dict.pages.insight.noData}
-          title={dict.pages.insight.heading}
-          visitorsLabel={dict.pages.insight.visitors}
-          viewsLabel={dict.pages.insight.views}
-        />
+        <MetricsBlock />
       </Suspense>
     </>
   );

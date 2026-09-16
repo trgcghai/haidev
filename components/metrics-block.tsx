@@ -9,29 +9,22 @@ import {
   MetricLabel,
   MetricValue,
 } from "@/components/metric";
+import { absoluteUrl } from "@/lib/utils";
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 
-interface MetricsBlockProps {
-  data: InsightsData;
-  title: string;
-  noDataMessage: string;
-  visitorsLabel: string;
-  viewsLabel: string;
-}
+export async function MetricsBlock() {
+  const res = await fetch(absoluteUrl("/api/vercel/metrics"));
+  const data = await res.json();
 
-export function MetricsBlock({
-  data,
-  title,
-  noDataMessage,
-  visitorsLabel,
-  viewsLabel,
-}: MetricsBlockProps) {
+  const dict = await getSafeDictionary();
+
   return (
     <div className="max-w-screen overflow-x-clip">
       <div className="container mx-auto px-4">
         <div className="border-x border-line py-8">
           <div className="screen-line-top screen-line-bottom">
             <h2 className="screen-line-bottom ml-4 font-heading text-3xl font-medium tracking-tight">
-              {title}
+              {dict.pages.insight.heading}
               <sup className="ml-2 text-sm font-medium text-muted-foreground tracking-wide">
                 ({format(new Date(data.startDate), "dd.MM")} -{" "}
                 {format(new Date(data.endDate), "dd.MM")})
@@ -48,7 +41,7 @@ export function MetricsBlock({
               <dl className="grid grid-cols-2">
                 <Metric>
                   <MetricLabel>
-                    {visitorsLabel}
+                    {dict.pages.insight.visitors}
                     <MetricChange value={data.changes.visitors} />
                   </MetricLabel>
                   <MetricValue>
@@ -58,7 +51,7 @@ export function MetricsBlock({
 
                 <Metric>
                   <MetricLabel>
-                    {viewsLabel}
+                    {dict.pages.insight.views}
                     <MetricChange value={data.changes.views} />
                   </MetricLabel>
                   <MetricValue>
@@ -89,7 +82,9 @@ export function MetricsBlock({
               </LineChart>
             ) : (
               <div className="grid aspect-2/1 w-full place-content-center md:aspect-3/1">
-                <p className="text-muted-foreground">{noDataMessage}</p>
+                <p className="text-muted-foreground">
+                  {dict.pages.insight.noData}
+                </p>
               </div>
             )}
           </div>
@@ -98,31 +93,6 @@ export function MetricsBlock({
     </div>
   );
 }
-
-type InsightsSummary = {
-  visitors: number;
-  views: number;
-};
-
-type InsightsSeriesItem = {
-  date: string;
-  visitors: number;
-  views: number;
-};
-
-/**
- * `null` where the previous period was zero, since growth from zero has no
- * meaningful percentage.
- */
-type InsightsChanges = Record<keyof InsightsSummary, number | null>;
-
-type InsightsData = {
-  summary: InsightsSummary;
-  changes: InsightsChanges;
-  series: InsightsSeriesItem[];
-  startDate: string;
-  endDate: string;
-};
 
 /**
  * Formats a duration given in seconds into a compact `Xh Ym Zs` string.

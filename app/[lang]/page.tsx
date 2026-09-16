@@ -8,6 +8,9 @@ import { JsonLdScript } from "@/components/providers/JsonLdScript";
 import { CONFIG } from "@/constants/config";
 import { rootPageJsonLd } from "@/constants/json-ld";
 import Image from "next/image";
+import { Suspense } from "react";
+import { Loader2 } from "lucide-react";
+import { MetricsBlock } from "@/components/metrics-block";
 
 export default async function Home() {
   return (
@@ -34,6 +37,10 @@ export default async function Home() {
       <Stack />
 
       <FeaturedProjects />
+
+      <Suspense fallback={<Loader2 className="size-4 mx-auto animate-spin" />}>
+        <MetricsBlock />
+      </Suspense>
 
       <JsonLdScript data={rootPageJsonLd} />
     </>
