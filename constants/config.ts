@@ -145,24 +145,35 @@ export const CONFIG = {
         slug: "home",
         title: "Home",
         description: "Welcome to Công Hải's personal portfolio website.",
+        header: true,
       },
       {
         url: "/blogs",
         slug: "blogs",
         title: "Blogs",
         description: "Read insightful blogs and articles by Công Hải.",
+        header: true,
       },
       {
         url: "/projects",
         slug: "projects",
         title: "Projects",
         description: "Explore the projects developed by Công Hải.",
+        header: true,
       },
       {
         url: "/tools",
         slug: "tools",
         title: "Tools",
         description: "Discover useful tools and utilities by Công Hải.",
+        header: true,
+      },
+      {
+        url: "/insights",
+        slug: "insights",
+        title: "Insights",
+        description:
+          "Gain valuable insights and analytics from Công Hải's portfolio.",
       },
     ],
   },
@@ -186,6 +197,7 @@ export const ROUTES = {
   BLOGS: getRoute("blogs"),
   PROJECTS: getRoute("projects"),
   TOOLS: getRoute("tools"),
+  INSIGHTS: getRoute("insights"),
 };
 
 export type SocialName = keyof typeof CONFIG.USER.socials;

@@ -34,13 +34,15 @@ const Header = async () => {
 
       <div className="hidden md:flex items-center gap-2 flex-1 justify-end">
         <div className="space-x-4">
-          {CONFIG.SITE.routes.map((r) => (
-            <Button variant="ghost" size="default" key={r.slug}>
-              <Link href={r.url} className="hover:text-primary text-sm">
-                {dict.header[r.slug as keyof typeof dict.header]}
-              </Link>
-            </Button>
-          ))}
+          {CONFIG.SITE.routes
+            .filter((r) => r.header)
+            .map((r) => (
+              <Button variant="ghost" size="default" key={r.slug}>
+                <Link href={r.url} className="hover:text-primary text-sm">
+                  {dict.header[r.slug as keyof typeof dict.header]}
+                </Link>
+              </Button>
+            ))}
         </div>
 
         <Separator orientation="vertical" className="mx-4 h-6" />
