@@ -164,6 +164,13 @@ export const CONFIG = {
         title: "Tools",
         description: "Discover useful tools and utilities by Công Hải.",
       },
+      {
+        url: "/insights",
+        slug: "insights",
+        title: "Insights",
+        description:
+          "Gain valuable insights and analytics from Công Hải's portfolio.",
+      },
     ],
   },
 };
@@ -186,6 +193,7 @@ export const ROUTES = {
   BLOGS: getRoute("blogs"),
   PROJECTS: getRoute("projects"),
   TOOLS: getRoute("tools"),
+  INSIGHTS: getRoute("insights"),
 };
 
 export type SocialName = keyof typeof CONFIG.USER.socials;
