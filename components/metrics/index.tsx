@@ -10,6 +10,8 @@ import {
   MetricsSeriesSkeleton,
   MetricsSummarySkeleton,
 } from "@/components/metrics/metric";
+import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
+import Link from "next/link";
 
 export const MetricsBlock = async () => {
   const data = await getInsights();
@@ -26,12 +28,18 @@ export const MetricsBlock = async () => {
 
   return (
     <div className="">
-      <h2 className="ml-4 font-heading text-3xl font-medium tracking-tight">
-        {dict.pages.insight.heading}
-        <sup className="ml-2 text-sm font-medium text-muted-foreground tracking-wide">
+      <h2 id="metrics" className="flex items-center">
+        <Link href="/insights" className="flex items-center">
+          <LetterSwapForward
+            label={`# ${dict.pages.insight.heading}`}
+            reverse={true}
+            className="text-lg md:text-2xl font-semibold w-fit text-primary"
+          />
+        </Link>
+        <span className="ml-2 text-sm font-medium text-muted-foreground tracking-wide">
           ({format(new Date(data.startDate), "dd.MM")} -{" "}
           {format(new Date(data.endDate), "dd.MM")})
-        </sup>
+        </span>
       </h2>
 
       <MetricsSummary

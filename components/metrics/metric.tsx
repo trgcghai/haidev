@@ -103,7 +103,7 @@ export const MetricsSeriesSkeleton = () => {
 
 export const MetricsSummarySkeleton = () => {
   return (
-    <div className="grid grid-cols-2" aria-hidden>
+    <div className="grid grid-cols-1 md:grid-cols-2" aria-hidden>
       {Array.from({ length: 2 }, (_, index) => (
         <div key={index} className={cn("flex flex-col gap-2 p-4")}>
           <Skeleton className="h-4 w-16" />
