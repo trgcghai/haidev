@@ -24,8 +24,8 @@ const MetricsSummary = ({
 }: MetricsSummaryProps) => {
   return (
     <div className="relative">
-      <dl className="grid grid-cols-2">
-        <Metric className="border-r">
+      <dl className="grid grid-cols-1 md:grid-cols-2">
+        <Metric className="border-b md:border-b-0 md:border-r">
           <MetricLabel>
             {dict.visitors}
             <MetricChange

@@ -9,6 +9,7 @@ const ITEMS = [
   { title: "Education", href: "#education" },
   { title: "Stack", href: "#stack" },
   { title: "Projects", href: "#projects" },
+  { title: "Metrics", href: "#metrics" },
 ];
 
 const HomeLineNav = () => {
