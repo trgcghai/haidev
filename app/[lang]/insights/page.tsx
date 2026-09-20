@@ -1,11 +1,13 @@
-import { MetricsBlock, MetricsBlockSkeleton } from "@/components/metrics";
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
+import { MetricsBlock } from "@/components/metrics";
 import {
   jsonLdBreadcrumbList,
   JsonLdScript,
 } from "@/components/providers/JsonLdScript";
 import { CONFIG } from "@/constants/config";
+import { Locale } from "@/constants/dictionary";
 import { Metadata } from "next";
-import { Suspense } from "react";
+import { lang as rootLang } from "next/root-params";
 
 const title = "Insights";
 const description =
@@ -35,6 +37,9 @@ export const metadata: Metadata = {
 };
 
 const Page = async () => {
+  const dict = await getSafeDictionary();
+  const lang = await rootLang();
+
   return (
     <>
       <JsonLdScript
@@ -50,9 +55,7 @@ const Page = async () => {
         ])}
       />
 
-      <Suspense fallback={<MetricsBlockSkeleton />}>
-        <MetricsBlock />
-      </Suspense>
+      <MetricsBlock dict={dict} lang={lang as Locale} />
     </>
   );
 };

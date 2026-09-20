@@ -94,9 +94,11 @@ export function MetricValue({
 
 export const MetricsSeriesSkeleton = () => {
   return (
-    <div aria-hidden>
-      <div className="aspect-2/1 w-full sm:aspect-3/1" />
-      <div className="h-11" />
+    <div aria-hidden className="p-4">
+      <Skeleton className="h-10 w-full" />
+      <Skeleton className="h-10 w-full" />
+      <Skeleton className="h-10 w-full" />
+      <Skeleton className="h-10 w-full" />
     </div>
   );
 };
