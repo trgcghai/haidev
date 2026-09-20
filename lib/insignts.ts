@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 
 export const getInsights = async () => {
   try {
-    const res = await fetch(absoluteUrl("/api/vercel/metrics"));
+    const res = await fetch(absoluteUrl("/api/vercel/metrics"), {
+      cache: "no-store",
+    });
 
     if (!res.ok) {
       return null;
