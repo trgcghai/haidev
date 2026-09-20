@@ -1,30 +1,25 @@
+"use client";
 import { format } from "date-fns";
 
-import { getSafeDictionary } from "@/app/[lang]/dictionaries";
-import { getInsights } from "@/lib/insignts";
-import MetricsSummary from "@/components/metrics/metrics-summary";
-import { lang as rootLang } from "next/root-params";
+import { Dictionary } from "@/app/[lang]/dictionaries";
 import { Locale } from "@/constants/dictionary";
-import MetricsSeries from "@/components/metrics/metrics-series";
+import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
+import Link from "next/link";
 import {
   MetricsSeriesSkeleton,
   MetricsSummarySkeleton,
 } from "@/components/metrics/metric";
-import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
-import Link from "next/link";
+import MetricsSeries from "@/components/metrics/metrics-series";
+import MetricsSummary from "@/components/metrics/metrics-summary";
+import useInsights from "@/hooks/use-insights";
 
-export const MetricsBlock = async () => {
-  const data = await getInsights();
-  const dict = await getSafeDictionary();
-  const lang = await rootLang();
+interface MetricsBlockProps {
+  dict: Dictionary;
+  lang: Locale;
+}
 
-  if (!data) {
-    return (
-      <div className="grid aspect-2/1 w-full place-content-center sm:aspect-3/1">
-        <p className="text-muted-foreground">{dict.pages.insight.noData}</p>
-      </div>
-    );
-  }
+export const MetricsBlock = ({ dict, lang }: MetricsBlockProps) => {
+  const { data, error, loading } = useInsights();
 
   return (
     <div className="">
@@ -36,25 +31,39 @@ export const MetricsBlock = async () => {
             className="text-lg md:text-2xl font-semibold w-fit text-primary"
           />
         </Link>
-        <span className="ml-2 text-sm font-medium text-muted-foreground tracking-wide">
-          ({format(new Date(data.startDate), "dd.MM")} -{" "}
-          {format(new Date(data.endDate), "dd.MM")})
-        </span>
+        {!loading && !error && data && (
+          <span className="ml-2 text-sm font-medium text-muted-foreground tracking-wide">
+            ({format(new Date(data.startDate), "dd.MM")} -{" "}
+            {format(new Date(data.endDate), "dd.MM")})
+          </span>
+        )}
       </h2>
 
-      <MetricsSummary
-        summary={data.summary}
-        changes={data.changes}
-        dict={dict.pages.insight}
-        locale={lang as Locale}
-      />
+      {loading && <MetricsBlockSkeleton />}
 
-      <MetricsSeries series={data.series} dict={dict.pages.insight} />
+      {!data && error && (
+        <div className="flex flex-col items-center justify-center gap-2 p-4 mt-4">
+          <p className="text-muted-foreground">{dict.pages.insight.noData}</p>
+        </div>
+      )}
+
+      {!loading && !error && data && (
+        <>
+          <MetricsSummary
+            summary={data.summary}
+            changes={data.changes}
+            dict={dict.pages.insight}
+            locale={lang as Locale}
+          />
+
+          <MetricsSeries series={data.series} dict={dict.pages.insight} />
+        </>
+      )}
     </div>
   );
 };
 
-export const MetricsBlockSkeleton = () => {
+const MetricsBlockSkeleton = () => {
   return (
     <>
       <MetricsSummarySkeleton />
