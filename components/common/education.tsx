@@ -14,7 +14,7 @@ const Education = async () => {
         />
       </h2>
 
-      <div className="mt-4 flex items-start gap-3 rounded-sm text-sm text-secondary-foreground sm:p-4 sm:text-base">
+      <div className="mt-4 flex items-start gap-3 rounded-sm text-sm text-secondary-foreground sm:py-4 sm:text-base">
         <div className="relative z-1 flex size-8 shrink-0 items-center justify-center rounded-sm select-none border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">
           <GraduationCap className="size-5" />
         </div>
@@ -28,10 +28,10 @@ const Education = async () => {
               {dict.root.education.school}
             </span>
           </p>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-base text-muted-foreground">
             {dict.root.education.period}
           </p>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-base text-muted-foreground">
             {dict.root.education.gpa}
           </p>
         </div>

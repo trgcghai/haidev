@@ -68,7 +68,7 @@ export function WorkExperience({
   experiences,
 }: WorkExperienceProps) {
   return (
-    <div className={cn("px-4 text-foreground", className)}>
+    <div className={cn("text-foreground", className)}>
       {experiences.map((experience) => (
         <ExperienceItem key={experience.id} experience={experience} />
       ))}
