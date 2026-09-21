@@ -18,13 +18,23 @@
         {
           "role": "Front-end Developer",
           "company": "Apps Cyclone",
-          "period": "09/2026 - Present",
+          "website": "https://appscyclone.com/",
+          "period": {
+            "start": "09/2026",
+            "end": "Present"
+          },
+          "skills": ["React", "VueJS", "UI/UX Design", "Web Development", "Web3 Foundation", "Blockchain Development"],
           "description": "Being trained in front-end development, focusing on UI/UX design, web development with React and VueJS. Gaining experience in building applications with high usuability and performance."
         },
         {
           "role": "Full-Stack Developer",
           "company": "TMA Solutions",
-          "period": "12/2025 - 04/2026",
+          "website": "https://www.tma.vn/",
+          "period": {
+            "start": "12/2025",
+            "end": "04/2026"
+          },
+          "skills": ["React", "React Router", "ShadcnUI", "Tailwindcss", "Tanstack Query", "ExpressJS", "S3", "MongoDB", "PostgreSQL", "Multi-tenant"],
           "description": "Contributed to a Project Management AI-integrated platform. Developed features in both front-end and back-end and collaborated with Mobile and QA-QC teams to deliver a high-quality product."
         }
       ]
