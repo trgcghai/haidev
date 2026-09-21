@@ -76,6 +76,10 @@ export default async function RootLayout({
       )}
       suppressHydrationWarning
     >
+      <head>
+        <JsonLdScript data={websiteJsonLd} />
+      </head>
+
       <body
         className="
           relative flex min-h-dvh flex-col
@@ -111,8 +115,6 @@ export default async function RootLayout({
           <SpeedInsights />
         </ThemeProvider>
       </body>
-
-      <JsonLdScript data={websiteJsonLd} />
     </html>
   );
 }
