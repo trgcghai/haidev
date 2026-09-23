@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
         protocol: "http",
         hostname: "localhost",
       },
+      {
+        protocol: "https",
+        hostname: "assets.chanhdai.com",
+        pathname: "/**/*",
+      },
     ],
     qualities: [75, 100],
   },
