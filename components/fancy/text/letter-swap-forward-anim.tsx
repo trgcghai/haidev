@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { AnimationOptions, motion, stagger, useAnimate } from "motion/react"
+import { useRef, useState } from "react";
+import { AnimationOptions, motion, stagger, useAnimate } from "motion/react";
 
 interface TextProps {
-  label: string
-  reverse?: boolean
-  transition?: AnimationOptions
-  staggerDuration?: number
-  staggerFrom?: "first" | "last" | "center" | number
-  className?: string
-  onClick?: () => void
+  label: string;
+  reverse?: boolean;
+  transition?: AnimationOptions;
+  staggerDuration?: number;
+  staggerFrom?: "first" | "last" | "center" | number;
+  className?: string;
+  onClick?: () => void;
 }
 
 const LetterSwapForward = ({
@@ -26,13 +26,13 @@ const LetterSwapForward = ({
   onClick,
   ...props
 }: TextProps) => {
-  const [scope, animate] = useAnimate()
-  const [blocked, setBlocked] = useState(false)
+  const [scope, animate] = useAnimate();
+  const blocked = useRef(false);
 
   const hoverStart = () => {
-    if (blocked) return
+    if (blocked.current) return;
 
-    setBlocked(true)
+    blocked.current = true;
 
     // Function to merge user transition with stagger and delay
     const mergeTransition = (baseTransition: AnimationOptions) => ({
@@ -40,12 +40,12 @@ const LetterSwapForward = ({
       delay: stagger(staggerDuration, {
         from: staggerFrom,
       }),
-    })
+    });
 
     animate(
       ".letter",
       { y: reverse ? "100%" : "-100%" },
-      mergeTransition(transition)
+      mergeTransition(transition),
     ).then(() => {
       animate(
         ".letter",
@@ -54,18 +54,18 @@ const LetterSwapForward = ({
         },
         {
           duration: 0,
-        }
+        },
       ).then(() => {
-        setBlocked(false)
-      })
-    })
+        blocked.current = false;
+      });
+    });
 
     animate(
       ".letter-secondary",
       {
         top: "0%",
       },
-      mergeTransition(transition)
+      mergeTransition(transition),
     ).then(() => {
       animate(
         ".letter-secondary",
@@ -74,13 +74,15 @@ const LetterSwapForward = ({
         },
         {
           duration: 0,
-        }
-      )
-    })
-  }
+        },
+      );
+    });
+  };
 
   return (
     <span
+      role={onClick ? "button" : "heading"}
+      aria-level={2}
       className={`flex justify-center items-center relative overflow-hidden  ${className} `}
       onMouseEnter={hoverStart}
       onClick={onClick}
@@ -106,10 +108,10 @@ const LetterSwapForward = ({
               {letter}
             </motion.span>
           </span>
-        )
+        );
       })}
     </span>
-  )
-}
+  );
+};
 
-export default LetterSwapForward
+export default LetterSwapForward;

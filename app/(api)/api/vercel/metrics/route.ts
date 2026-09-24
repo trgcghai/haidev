@@ -71,9 +71,15 @@ const getMetrics = async () => {
     return errorResponse;
   }
 
-  const current: SummaryAnalytics = await summaryResponse.json();
-  const previous: SummaryAnalytics = await previousSummaryResponse.json();
-  const series: SerieAnalytics = await seriesResponse.json();
+  const [current, previous, series]: [
+    SummaryAnalytics,
+    SummaryAnalytics,
+    SerieAnalytics,
+  ] = await Promise.all([
+    summaryResponse.json(),
+    previousSummaryResponse.json(),
+    seriesResponse.json(),
+  ]);
 
   const visitors = current.data?.visitors ?? 0;
   const views = current.data?.pageviews ?? 0;
