@@ -1,7 +1,7 @@
 import Image from "@/components/common/Image";
+import { LocalizedLink } from "@/components/common/LocalizedLink";
 import { cn } from "@/lib/utils";
 import { PinIcon } from "lucide-react";
-import Link from "next/link";
 
 export type ProjectItemProps = {
   url: string;
@@ -21,7 +21,7 @@ export function ProjectItem({
   index,
 }: ProjectItemProps) {
   return (
-    <Link
+    <LocalizedLink
       href={url}
       className={cn(
         "flex flex-col gap-2 p-2 transition-[background-color] ease-out hover:bg-accent/30 rounded-xl",
@@ -54,6 +54,6 @@ export function ProjectItem({
           </div>
         )}
       </div>
-    </Link>
+    </LocalizedLink>
   );
 }

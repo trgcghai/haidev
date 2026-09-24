@@ -13,12 +13,12 @@ import { BlogPosting, WithContext } from "schema-dts";
 import { getTableOfContents } from "fumadocs-core/content/toc";
 import Toc from "@/components/common/toc";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { ArrowLeftIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import DocActions from "@/components/common/doc-actions";
 import { CONFIG, ROUTES } from "@/constants/config";
 import { getSafeDictionary } from "@/app/[lang]/dictionaries";
+import { LocalizedLink } from "@/components/common/LocalizedLink";
 
 export async function generateStaticParams() {
   const docs = await getBlogPosts();
@@ -140,10 +140,10 @@ const Page = async ({ params }: PageProps<"/[lang]/blogs/[slug]">) => {
           size="sm"
           nativeButton={false}
           render={
-            <Link href="/blogs">
+            <LocalizedLink href="/blogs">
               <ArrowLeftIcon />
               {dict.pages.blogs.heading}
-            </Link>
+            </LocalizedLink>
           }
         />
 

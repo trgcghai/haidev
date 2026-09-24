@@ -9,10 +9,10 @@ import { Tool } from "@/types/tool";
 import { Metadata } from "next";
 import { CollectionPage, WithContext } from "schema-dts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Link from "next/link";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 import { getAllTools } from "@/lib/tools";
+import { LocalizedLink } from "@/components/common/LocalizedLink";
 
 const DESCRIPTION =
   "Explore a collection of useful tools and utilities designed to enhance your productivity and simplify your tasks.";
@@ -109,7 +109,7 @@ const Page = async () => {
         <div className="relative py-4 -mx-1">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-4 items-stretch">
             {tools.map((tool) => (
-              <Link
+              <LocalizedLink
                 href={`/${ROUTES.TOOLS.slug}/${tool.slug}`}
                 key={tool.slug}
                 className={cn(
@@ -129,7 +129,7 @@ const Page = async () => {
                     </p>
                   </CardContent>
                 </Card>
-              </Link>
+              </LocalizedLink>
             ))}
           </div>
         </div>

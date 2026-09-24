@@ -16,10 +16,6 @@ const nextConfig: NextConfig = {
     ],
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "localhost",
-      },
-      {
         protocol: "https",
         hostname: "assets.chanhdai.com",
         pathname: "/**/*",

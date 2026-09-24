@@ -16,6 +16,7 @@ import rehypeExternalLinks from "rehype-external-links";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import LinkGithubButton from "@/components/projects/link-github-button";
+import Carousel from "@/components/common/carousel";
 
 export const components: MDXRemoteProps["components"] = {
   h1: (props: React.ComponentProps<"h1">) => (
@@ -124,6 +125,7 @@ export const components: MDXRemoteProps["components"] = {
     </li>
   ),
   LinkGithubButton,
+  Carousel,
 };
 
 const options: MDXRemoteProps["options"] = {

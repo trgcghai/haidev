@@ -4,14 +4,12 @@ import {
   jsonLdBreadcrumbList,
   JsonLdScript,
 } from "@/components/providers/JsonLdScript";
-import { Button } from "@/components/ui/button";
+import BackButton from "@/components/tools/back-button";
 import { CONFIG, ROUTES } from "@/constants/config";
 import { JSON_LD_ID } from "@/constants/json-ld";
 import { getToolBySlug } from "@/lib/tools";
 import { absoluteUrl } from "@/lib/utils";
 import { Tool } from "@/types/tool";
-import { ArrowLeftIcon } from "lucide-react";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { WebApplication, WithContext } from "schema-dts";
 
@@ -106,20 +104,7 @@ const Page = async () => {
         ])}
       />
 
-      <div className="mb-4 flex items-center justify-between gap-4">
-        <Button
-          className="h-7 gap-2 border-none px-0 tracking-wider text-muted-foreground hover:text-foreground hover:no-underline text-sm"
-          variant="link"
-          size="sm"
-          nativeButton={false}
-          render={
-            <Link href="/tools">
-              <ArrowLeftIcon />
-              {dict.pages.tools.heading}
-            </Link>
-          }
-        />
-      </div>
+      <BackButton dict={dict} />
 
       <StringComparator
         title={tool.name}

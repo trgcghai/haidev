@@ -1,8 +1,8 @@
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import { PinIcon } from "lucide-react";
 import Image from "@/components/common/Image";
+import { LocalizedLink } from "@/components/common/LocalizedLink";
 
 export type BlogItemProps = {
   url: string;
@@ -22,7 +22,7 @@ export function BlogItem({
   index,
 }: BlogItemProps) {
   return (
-    <Link
+    <LocalizedLink
       href={url}
       className={cn(
         "flex flex-col gap-2 p-2 transition-[background-color] ease-out hover:bg-accent/30 rounded-xl",
@@ -58,6 +58,6 @@ export function BlogItem({
           </div>
         )}
       </div>
-    </Link>
+    </LocalizedLink>
   );
 }

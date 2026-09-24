@@ -15,6 +15,7 @@ import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { locales } from "@/constants/dictionary";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -63,6 +64,8 @@ export default async function RootLayout({
   children,
   params,
 }: LayoutProps<"/[lang]">) {
+  const dict = await getSafeDictionary();
+
   return (
     <html
       lang={(await params).lang}
@@ -108,7 +111,7 @@ export default async function RootLayout({
             </div>
           </TooltipProvider>
           <div className="fixed top-1/2 left-0 z-50 -translate-y-1/2 p-2 hidden xl:block">
-            <LineNavProvider />
+            <LineNavProvider dict={dict.lineNav} />
           </div>
           <Toaster position="top-center" />
           <Analytics />
