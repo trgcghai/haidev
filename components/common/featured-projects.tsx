@@ -1,11 +1,11 @@
 import ComesInGoesOutUnderline from "@/components/fancy/text/underline-comes-in-goes-out";
 import { FolderRoot } from "lucide-react";
-import Link from "next/link";
 import { truncate } from "lodash";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import { ROUTES } from "@/constants/config";
 import { getFeaturedProjects } from "@/lib/documents";
 import { getSafeDictionary } from "@/app/[lang]/dictionaries";
+import { LocalizedLink } from "@/components/common/LocalizedLink";
 
 const FeaturedProjects = async () => {
   const featuredProjects = await getFeaturedProjects();
@@ -38,14 +38,14 @@ const FeaturedProjects = async () => {
                 <p className="leading-relaxed text-base text-muted-foreground">
                   {truncate(project.metadata.description, { length: 110 })}
                   {".."}
-                  <Link
+                  <LocalizedLink
                     href={`/${ROUTES.PROJECTS.slug}/${project.slug}`}
                     className="text-primary hover:underline"
                   >
                     <ComesInGoesOutUnderline direction="left">
                       {`${dict.common.seeMore}`}
                     </ComesInGoesOutUnderline>
-                  </Link>
+                  </LocalizedLink>
                 </p>
               </div>
             </div>

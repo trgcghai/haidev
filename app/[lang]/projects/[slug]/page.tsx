@@ -1,5 +1,6 @@
 import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 import DocActions from "@/components/common/doc-actions";
+import { LocalizedLink } from "@/components/common/LocalizedLink";
 import Toc from "@/components/common/toc";
 import MDX from "@/components/mdx/MDX";
 import {
@@ -16,7 +17,6 @@ import { Doc } from "@/types/document";
 import { getTableOfContents } from "fumadocs-core/content/toc";
 import { ArrowLeftIcon } from "lucide-react";
 import { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SoftwareApplication, WithContext } from "schema-dts";
 
@@ -142,10 +142,10 @@ const Page = async ({ params }: PageProps<"/[lang]/projects/[slug]">) => {
           size="sm"
           nativeButton={false}
           render={
-            <Link href="/projects">
+            <LocalizedLink href="/projects">
               <ArrowLeftIcon />
               {dict.pages.projects.heading}
-            </Link>
+            </LocalizedLink>
           }
         />
 

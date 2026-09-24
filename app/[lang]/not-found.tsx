@@ -1,6 +1,6 @@
 import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 import { Button } from "@/components/ui/button";
-import { Home, Mail } from "lucide-react";
+import { Home } from "lucide-react";
 import Link from "next/link";
 
 export const metadata = {
@@ -27,15 +27,6 @@ export default async function NotFound() {
           <Link href="/" className="hover:text-primary flex items-center gap-2">
             <Home className="h-4 w-4" />
             {dict.notFound.home}
-          </Link>
-        </Button>
-        <Button variant="outline">
-          <Link
-            href="/#contact"
-            className="hover:text-primary flex items-center gap-2"
-          >
-            <Mail className="h-4 w-4" />
-            {dict.notFound.contact}
           </Link>
         </Button>
       </div>

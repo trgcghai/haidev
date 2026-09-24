@@ -16,6 +16,7 @@ import { CONFIG } from "@/constants/config";
 import { Menu } from "lucide-react";
 import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 import { LanguageSwitcher } from "@/components/common/language-switcher";
+import { LocalizedLink } from "@/components/common/LocalizedLink";
 
 const Header = async () => {
   const dict = await getSafeDictionary();
@@ -38,9 +39,12 @@ const Header = async () => {
             .filter((r) => r.header)
             .map((r) => (
               <Button variant="ghost" size="default" key={r.slug}>
-                <Link href={r.url} className="hover:text-primary text-sm">
+                <LocalizedLink
+                  href={r.url}
+                  className="hover:text-primary text-sm"
+                >
                   {dict.header[r.slug as keyof typeof dict.header]}
-                </Link>
+                </LocalizedLink>
               </Button>
             ))}
         </div>
@@ -98,12 +102,12 @@ const Header = async () => {
                         size="default"
                         className="justify-start"
                       >
-                        <Link
+                        <LocalizedLink
                           href={r.url}
                           className="hover:text-primary text-sm"
                         >
                           {dict.header[r.slug as keyof typeof dict.header]}
-                        </Link>
+                        </LocalizedLink>
                       </Button>
                     }
                   />

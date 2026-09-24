@@ -4,7 +4,6 @@ import { format } from "date-fns";
 import { Dictionary } from "@/app/[lang]/dictionaries";
 import { Locale } from "@/constants/dictionary";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
-import Link from "next/link";
 import {
   MetricsSeriesSkeleton,
   MetricsSummarySkeleton,
@@ -12,6 +11,7 @@ import {
 import MetricsSeries from "@/components/metrics/metrics-series";
 import MetricsSummary from "@/components/metrics/metrics-summary";
 import useInsights from "@/hooks/use-insights";
+import { LocalizedLink } from "@/components/common/LocalizedLink";
 
 interface MetricsBlockProps {
   dict: Dictionary;
@@ -23,14 +23,14 @@ export const MetricsBlock = ({ dict, lang }: MetricsBlockProps) => {
 
   return (
     <div className="">
-      <h2 id="metrics" className="flex items-center">
-        <Link href="/insights" className="flex items-center">
+      <h2 id="insights" className="flex items-center">
+        <LocalizedLink href="/insights" className="flex items-center">
           <LetterSwapForward
             label={`# ${dict.pages.insight.heading}`}
             reverse={true}
             className="text-lg md:text-2xl font-semibold w-fit text-primary"
           />
-        </Link>
+        </LocalizedLink>
         {!loading && !error && data && (
           <span className="ml-2 text-sm font-medium text-muted-foreground tracking-wide">
             ({format(new Date(data.startDate), "dd.MM")} -{" "}
