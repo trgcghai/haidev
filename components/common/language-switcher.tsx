@@ -46,7 +46,7 @@ export function LanguageSwitcher({
   }
 
   return (
-    <Select onValueChange={(value: Locale) => changeLanguage(value as Locale)}>
+    <Select onValueChange={(value) => changeLanguage(value as Locale)}>
       <SelectTrigger className={cn("capitalize min-w-28", triggerClassname)}>
         <SelectValue placeholder={fallback} />
       </SelectTrigger>
