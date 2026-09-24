@@ -2,16 +2,14 @@
 
 import { ModeToggler } from "@/components/common/mode-toggler";
 import { TryThisArrow } from "@/components/common/try-this-arrow";
+import { useIsMounted } from "@/hooks/use-is-mounted";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 
 const TryChangeTheme = ({ className }: { className?: string }) => {
   const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsMounted();
 
-  // eslint-disable-next-line react-hooks/set-state-in-effect
-  useEffect(() => setMounted(true), []);
   if (!mounted) return <p className="text-transparent">Loading...</p>;
 
   return (

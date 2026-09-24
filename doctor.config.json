@@ -1,0 +1,43 @@
+{
+  "$schema": "https://react.doctor/schema/config.json",
+  "ignore": {
+    "overrides": [
+      {
+        "files": [
+          "components/charts/**",
+          "components/chanhdai/**",
+          "components/fancy/**",
+          "components/ui/**"
+        ],
+        "rules": [
+          "react-doctor/effect-needs-cleanup",
+          "react-doctor/motion-imperative-animation-in-render",
+          "react-doctor/no-array-index-as-key",
+          "react-doctor/exhaustive-deps",
+          "react-doctor/prefer-use-effect-event",
+          "react-doctor/no-pass-live-state-to-parent",
+          "react-doctor/no-prop-callback-in-effect",
+          "react-doctor/no-derived-state",
+          "react-doctor/no-adjust-state-on-prop-change",
+          "react-doctor/no-derived-state-effect",
+          "react-doctor/no-pass-data-to-parent",
+          "react-doctor/no-locale-format-in-render",
+          "react-doctor/no-ref-current-in-render",
+          "react-doctor/jsx-no-constructed-context-values",
+          "react-doctor/prefer-tag-over-role",
+          "react-doctor/no-redundant-roles",
+          "react-doctor/no-giant-component",
+          "react-doctor/only-export-components",
+          "react-doctor/no-high-complexity-react-function",
+          "react-doctor/no-layout-property-animation",
+          "react-doctor/rerender-memo-before-early-return",
+          "react-doctor/rendering-hydration-no-flicker"
+        ]
+      },
+      {
+        "files": ["components/mdx/MDX.tsx", "components/providers/JsonLdScript.tsx"],
+        "rules": ["react-doctor/only-export-components"]
+      }
+    ]
+  }
+}

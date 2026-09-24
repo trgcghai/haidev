@@ -16,11 +16,6 @@ const Hero = async () => {
           />
         </h1>
         <RoleTyper />
-        {/* <div className="flex items-center gap-4 flex-col md:flex-row">
-          <TryChangeTheme dict={dict} />
-          <Separator orientation="vertical" className="hidden md:block" />
-          <TryStopBackgroundAnimation />
-        </div> */}
       </div>
     </section>
   );

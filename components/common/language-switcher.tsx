@@ -22,6 +22,12 @@ export function LanguageSwitcher({
   const pathname = usePathname();
   const segments = pathname.split("/");
   const currentLocale = segments[1] as Locale;
+  const selectedLocale = localeOptions.find((o) => o.value === currentLocale);
+  const fallback = selectedLocale
+    ? selectedLocale.label
+    : currentLocale == "en"
+      ? "Language"
+      : "Ngôn ngữ";
 
   function changeLanguage(locale: Locale) {
     const cloneSegments = [...segments];
@@ -42,11 +48,7 @@ export function LanguageSwitcher({
   return (
     <Select onValueChange={(value) => changeLanguage(value as Locale)}>
       <SelectTrigger className={cn("capitalize min-w-28", triggerClassname)}>
-        <SelectValue
-          placeholder={
-            localeOptions.find((o) => o.value === currentLocale)!.label
-          }
-        />
+        <SelectValue placeholder={fallback} />
       </SelectTrigger>
       <SelectContent className={cn("min-w-fit", contentClassname)}>
         {localeOptions.map((s) => (

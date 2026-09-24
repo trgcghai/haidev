@@ -37,8 +37,7 @@ export const metadata: Metadata = {
 };
 
 const Page = async () => {
-  const dict = await getSafeDictionary();
-  const lang = await rootLang();
+  const [dict, lang] = await Promise.all([getSafeDictionary(), rootLang()]);
 
   return (
     <>

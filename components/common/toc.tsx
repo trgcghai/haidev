@@ -1,6 +1,6 @@
 "use client";
 import { LineNav, LineNavItem } from "@/components/common/line-nav";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -10,7 +10,13 @@ import {
 import { TOCItemType } from "@/types/fumadocs-core";
 
 const Toc = ({ items, title }: { items: TOCItemType[]; title: string }) => {
-  const [activeHref, setActiveHref] = useState<string>(items[0].url);
+  const [activeHref, setActiveHref] = useState<string>();
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setActiveHref(items[0].url);
+  }, [items]);
+
   return (
     <>
       <Accordion defaultValue={["toc"]}>

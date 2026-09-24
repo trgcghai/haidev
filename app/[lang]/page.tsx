@@ -14,8 +14,7 @@ import { lang as rootLang } from "next/root-params";
 import { Locale } from "@/constants/dictionary";
 
 export default async function Home() {
-  const dict = await getSafeDictionary();
-  const lang = await rootLang();
+  const [dict, lang] = await Promise.all([getSafeDictionary(), rootLang()]);
 
   return (
     <>

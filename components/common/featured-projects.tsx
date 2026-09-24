@@ -1,6 +1,6 @@
 import ComesInGoesOutUnderline from "@/components/fancy/text/underline-comes-in-goes-out";
 import { FolderRoot } from "lucide-react";
-import { truncate } from "lodash";
+import truncate from "lodash/truncate";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 import { ROUTES } from "@/constants/config";
 import { getFeaturedProjects } from "@/lib/documents";
@@ -8,8 +8,10 @@ import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 import { LocalizedLink } from "@/components/common/LocalizedLink";
 
 const FeaturedProjects = async () => {
-  const featuredProjects = await getFeaturedProjects();
-  const dict = await getSafeDictionary();
+  const [dict, featuredProjects] = await Promise.all([
+    getSafeDictionary(),
+    getFeaturedProjects(),
+  ]);
 
   return (
     <div>

@@ -74,9 +74,7 @@ function getCollectionPageJsonLd(tools: Tool[]): WithContext<CollectionPage> {
 }
 
 const Page = async () => {
-  const dict = await getSafeDictionary();
-
-  const tools = await getAllTools();
+  const [dict, tools] = await Promise.all([getSafeDictionary(), getAllTools()]);
 
   return (
     <>
