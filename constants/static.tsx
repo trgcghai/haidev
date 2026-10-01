@@ -96,4 +96,36 @@ const findMeOnlineData: FindMeOnlineItem[] = [
   },
 ];
 
-export { aboutMeData, findMeOnlineData };
+const workExperienceDescriptions = [
+  {
+    company: "Apps Cyclone",
+    vi: `- Triển khai một trang marketing responsive từ Figma sang code bằng HTML semantic và React.
+- Xây dựng hệ thống xác thực ví cho một dApp trên mạng Sepolia bằng wagmi, viem và SIWE, hỗ trợ tự động đăng nhập, phiên đăng nhập có thời hạn, các route được bảo vệ và xử lý chính xác khi tài khoản hoặc mạng blockchain thay đổi.
+- Triển khai tính năng chuyển token với cơ chế ước tính gas và kiểm tra số dư không đủ; xây dựng tính năng mint NFT tương tác với smart contract, bao gồm mô phỏng giao dịch và phân tích lỗi revert; đồng thời triển khai tính năng tạo token ERC-20 thông qua factory contract.`,
+    en: `- Delivered a Figma-to-code responsive marketing page using sematic HTML and React.
+- Built wallet auth for a dApp on Sepolia using wagmi, viem and SIWE that provides auto sign-in, expiring sessions, protected routes, and correct handling of account/chain changes.
+- Implemented transfer token with gas estimation and insufficient-funds guards, NFT minting against contracts with simulation and revert parsing, and ERC-20 token creation through a factory contract.`,
+  },
+  {
+    company: "TMA Solutions",
+    vi: `- Cải thiện cơ chế RBAC của hệ thống quản lý dự án (PMS), sử dụng permission matrix để xác định quyền thực hiện các hành động thay vì chỉ phụ thuộc vào role.
+- Triển khai tính năng Meeting Notes cho PMS, sử dụng API AI nội bộ để tạo bản tóm tắt và transcript từ file âm thanh, đồng thời xử lý trạng thái loading và error.
+- Triển khai audit log lịch sử nhằm tăng khả năng truy vết và trách nhiệm đối với các task trong PMS bằng cách sử dụng middleware trên các endpoint liên quan.
+- Xây dựng tính năng tìm kiếm toàn cục với full-text search và độ trễ thấp, ghi nhận thời gian phản hồi khoảng 100ms nhờ sử dụng text index, đồng thời đảm bảo quyền truy cập đối với các resource.`,
+    en: `- Enhanced RBAC of the project management system (PMS), using permission matrix to detect the ability to perform the actions instead of depending solely on roles.
+- Implemented Meeting Notes features for the PMS, using interal AI API to generate summary and transcript from an audio file, handle loading and error state.
+- Implemented history audit log to enhance tracability and accountability for tasks in the PMS by using a middleware on the related endpoints.
+- Built a global search feature with full-text search and low latency with recorded response time ~ 100ms using text index while ensuring the permission to access to the resources.`,
+  },
+  {
+    company: "Industrial University of Ho Chi Minh City",
+    vi: `- Triển khai hệ thống xác thực và phân quyền cho CMS nội bộ bằng JWT Token và RBAC.
+- Tích hợp Cloudinary để quản lý các tệp media của CMS.
+- Tích hợp i18n cho hệ thống đa ngôn ngữ, hỗ trợ tiếng Anh và tiếng Việt cho cả nội dung tĩnh và nội dung động trong CMS.`,
+    en: `- Implemented authentication and authorization for an internal CMS, with JWT Token and RBAC.
+- Integrated cloudinary to manage media files of the CMS.
+- Integrated i18n for internalization, support English and Vietnamese for both static and dynamic content in the CMS.`,
+  },
+];
+
+export { aboutMeData, findMeOnlineData, workExperienceDescriptions };
