@@ -96,4 +96,36 @@ const findMeOnlineData: FindMeOnlineItem[] = [
   },
 ];
 
-export { aboutMeData, findMeOnlineData };
+const workExperienceDescriptions = [
+  {
+    company: "Apps Cyclone",
+    vi: `- Triển khai landing page responsive từ Figma sang code bằng HTML semantic và một ứng dụng React với các form được xác thực và trạng thái được lưu trữ.
+- Xây dựng xác thực ví cho một dApp trên Sepolia sử dụng wagmi/viem và SIWE: tự động đăng nhập, phiên làm việc hết hạn, các tuyến đường được bảo vệ và xử lý đúng các thay đổi về tài khoản/chuỗi.
+- Triển khai chức năng chuyển tiền với ước lượng gas và kiểm tra đủ số dư, mint NFT chống lại các hợp đồng với mô phỏng và phân tích revert, và tạo token ERC-20 thông qua hợp đồng factory.`,
+    en: `- Delivered a Figma-to-code responsive landing page in semantic HTML and a React app with validated forms and persisted state.
+- Built wallet auth for a dApp on Sepolia using wagmi/viem and SIWE: auto sign-in, expiring sessions, protected routes, and correct handling of account/chain changes.
+- Implemented transfer with gas estimation and insufficient-funds guards, NFT minting against contracts with simulation and revert parsing, and ERC-20 token creation through a factory contract.`,
+  },
+  {
+    company: "TMA Solutions",
+    vi: `- Nâng cao RBAC của hệ thống, sử dụng ma trận quyền để phát hiện khả năng thực hiện các hành động thay vì chỉ dựa vào vai trò.
+- Triển khai tính năng Meeting Notes, sử dụng API AI nội bộ để tạo tóm tắt và bản ghi từ tệp âm thanh, xử lý trạng thái tải và lỗi.
+- Triển khai nhật ký kiểm toán lịch sử để tăng khả năng truy xuất và trách nhiệm cho các tác vụ (tham khảo lịch sử tác vụ Jira) bằng cách sử dụng middleware trên các điểm cuối liên quan.
+- Xây dựng tính năng tìm kiếm toàn cầu với tìm kiếm toàn văn và độ trễ thấp với thời gian phản hồi đã ghi ~ 100ms bằng cách sử dụng chỉ mục văn bản đồng thời đảm bảo quyền truy cập vào các tài nguyên.`,
+    en: `- Enhanced RBAC of the system, using permission matrix to detect the ability to perform the actions instead of depending solely on roles.
+- Implemented Meeting Notes features, using interal AI API to generate summary and transcript from an audio file, handle loading and error state.
+- Implemented history audit log to enhance tracability and accountability for tasks (reference Jira task history) by using a middleware on the related endpoints.
+- Built a global search feature with full-text search and low latency with recorded response time ~ 100ms using text index while ensuring the permission to access to the resources.`,
+  },
+  {
+    company: "Industrial University of Ho Chi Minh City",
+    vi: `- Triển khai xác thực và ủy quyền cho CMS nội bộ, với JWT Token và RBAC.
+- Tích hợp cloudinary để quản lý các tệp media sử dụng bên trong trang web.
+- Tích hợp i18n cho nội địa hóa, hỗ trợ cả tiếng Anh và tiếng Việt cho cả nội dung tĩnh và nội dung động.`,
+    en: `- Implemented authentication and authorization for an internal CMS, with JWT Token and RBAC.
+- Integrated cloudinary to manage media files using inside the site.
+- Integrated i18n for internalization, support English and Vietnamese for both static content and dynamic content.`,
+  },
+];
+
+export { aboutMeData, findMeOnlineData, workExperienceDescriptions };

@@ -23,8 +23,18 @@
             "start": "09/2026",
             "end": "Hiện tại"
           },
-          "skills": ["React", "VueJS", "UI/UX Design", "Web Development", "Web3 Foundation", "Blockchain Development"],
-          "description": "Được đào tạo về phát triển Front-end, tập trung vào thiết kế UI/UX và phát triển web với React và VueJS. Tích lũy kinh nghiệm xây dựng các ứng dụng có tính khả dụng và hiệu năng cao."
+          "skills": [
+            "React",
+            "ShadcnUI",
+            "Tailwindcss",
+            "Tanstack Query",
+            "React Router",
+            "Web3",
+            "Blockchain",
+            "SIWE",
+            "Viem",
+            "Wagmi"
+          ]
         },
         {
           "role": "Full-Stack Developer",
@@ -34,8 +44,40 @@
             "start": "12/2025",
             "end": "04/2026"
           },
-          "skills": ["React", "React Router", "ShadcnUI", "Tailwindcss", "Tanstack Query", "ExpressJS", "S3", "MongoDB", "PostgreSQL", "Multi-tenant"],
-          "description": "Tham gia phát triển nền tảng quản lý dự án tích hợp AI. Phát triển các tính năng ở cả Front-end và Back-end, đồng thời phối hợp với các đội ngũ Mobile và QA-QC để xây dựng sản phẩm chất lượng cao."
+          "skills": [
+            "React",
+            "React Router",
+            "ShadcnUI",
+            "Tailwindcss",
+            "Tanstack Query",
+            "ExpressJS",
+            "S3",
+            "MongoDB",
+            "PostgreSQL",
+            "Multi-tenant"
+          ]
+        },
+        {
+          "role": "Full-Stack Developer",
+          "company": "Industrial University of Ho Chi Minh City",
+          "website": "https://iuh.edu.vn/",
+          "period": {
+            "start": "07/2025",
+            "end": "09/2025"
+          },
+          "skills": [
+            "React",
+            "React Router",
+            "ShadcnUI",
+            "Tailwindcss",
+            "Redux Toolkit",
+            "ExpressJS",
+            "NodeJS",
+            "MongoDB",
+            "JWT",
+            "i18n",
+            "Nginx"
+          ]
         }
       ]
     },
@@ -154,6 +196,6 @@
       "visitors": "Khách truy cập",
       "views": "Lượt xem",
       "comparedText": "so với khoảng thời gian trước đó."
-     }
+    }
   }
 }

@@ -4,9 +4,12 @@ import {
   WorkExperience,
 } from "@/components/chanhdai/work-experience";
 import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
+import { workExperienceDescriptions } from "@/constants/static";
+import { lang } from "next/root-params";
 
 const Experience = async () => {
   const dict = await getSafeDictionary();
+  const l = await lang();
 
   const MY_EXPERIENCE: ExperienceItemType[] = dict.root.experience.items.map(
     (item, index) => ({
@@ -21,7 +24,10 @@ const Experience = async () => {
             start: item.period.start,
             end: item.period.end ? item.period.end : undefined,
           },
-          description: item.description,
+          description:
+            workExperienceDescriptions[index][
+              l as keyof (typeof workExperienceDescriptions)[number]
+            ],
           isExpanded: true,
           skills: item.skills,
         },
