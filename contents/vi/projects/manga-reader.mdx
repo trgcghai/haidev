@@ -12,49 +12,31 @@ updatedAt: "2026-08-28"
 
 ## Tổng quan
 
-Manga Reader là một ứng dụng full-stack dùng để quản lý và đọc thư viện manga cá nhân ngay trên máy cục bộ. Dự án tập trung vào trải nghiệm ưu tiên hoạt động ngoại tuyến (offline-first), trong đó các tệp manga nằm trong tầm kiểm soát của người dùng và không mặc định đồng bộ lên dịch vụ đám mây.
-
-Ứng dụng được thiết kế để hỗ trợ các chức năng: khám phá thư viện, duyệt danh sách manga, đọc chương truyện, xử lý siêu dữ liệu (metadata) và lưu lại tiến trình đọc. Dự án được xây dựng theo mô hình phát triển cục bộ với các thành phần tách biệt gồm frontend, backend và các dịch vụ hỗ trợ.
+Là 1 FOSS để đọc manga và quản lý thư viện của bản thân. Mô hình self-host, mọi dữ liệu nằm trên máy của bạn. Các tính năng chính bao gồm đọc truyện, quản lý thư viện, tiến trình đọc, theo dõi tiến độ bộ truyện dựa vào các manga sites khác.
 
 ## Công nghệ sử dụng
 
 Dự án sử dụng kiến ​​trúc full-stack dựa trên TypeScript.
 
-| Lớp (Layer)        | Công nghệ                                   |
-| ------------------ | ------------------------------------------- |
-| Frontend           | TanStack Start, Vite, React                 |
-| Backend            | NestJS, TypeScript                          |
-| Cơ sở dữ liệu      | PostgreSQL                                  |
-| Bộ nhớ đệm (Cache) | Redis                                       |
-| Lưu trữ tài liệu   | MongoDB (dự kiến ​​sử dụng trong tương lai) |
-| Lưu trữ đối tượng  | MinIO (cho hình ảnh trang manga)            |
-| Điều phối cục bộ   | Docker Compose                              |
+- `Backend`: NestJS
+- `Frontend`: React, TanStack, ShadcnUI, TailwindCSS
+- `Storage`: MinIO
+- `Database & Caching`: PostgreSQL, Redis
+- `Packaging`: Docker compose
 
-Mã nguồn frontend nằm trong thư mục `frontend/` và backend nằm trong thư mục `backend/`. Tệp `docker-compose.yml` ở thư mục gốc được dùng để khởi chạy môi trường full-stack cục bộ.
+## Cách sử dụng
 
-## Tính năng
-
-Các khả năng hiện có và dự kiến ​​của dự án bao gồm:
-
-- Quản lý thư viện manga cục bộ.
-- Duyệt danh sách manga và các chương truyện.
-- Trải nghiệm frontend tập trung vào việc đọc truyện.
-- Quy trình xử lý siêu dữ liệu cho bộ truyện, chương, ngôn ngữ và nhóm dịch.
-- Lưu trữ và duy trì tiến trình đọc.
-- Phát triển cục bộ với tính năng hot reload thông qua Docker Compose.
-- Kiểm thử dựa trên dữ liệu mẫu (fixture-based tests) cho các chức năng khám phá, phân tích siêu dữ liệu và hành vi của trình đọc.
-
-Phạm vi sản phẩm tập trung vào hoạt động cục bộ (local-first). Các tính năng như xác thực người dùng, thu thập dữ liệu sử dụng (telemetry), đồng bộ đám mây và danh mục truyện trực tuyến (internet-backed catalogs) cố ý không được đưa vào phạm vi dự án, trừ khi định hướng dự án thay đổi. ## Cách chạy dự án
-
-Cách được khuyến nghị để chạy dự án là sử dụng Docker Compose từ thư mục gốc của kho mã nguồn:
+Cách được khuyến nghị là dùng Docker Compose từ thư mục gốc:
 
 ```bash
-docker compose up --build
+git clone https://github.com/trgcghai/Manga-Reader.git
 ```
 
-Lệnh này sẽ khởi động frontend, backend và các dịch vụ hỗ trợ để phát triển cục bộ.
+```bash
+docker compose up -d --build
+```
 
-Các URL cục bộ thường dùng:
+Bên dưới là các port mặc định của docker compose, bạn có thể tùy chỉnh port nếu nó trùng với port bạn đang sử dụng. Nếu bạn đã có sẵn MinIO, có thể sử dụng MinIO của bạn và tắt MinIO trong compose đi.
 
 | Dịch vụ       | URL                     |
 | ------------- | ----------------------- |
@@ -78,33 +60,6 @@ Frontend:
 cd frontend
 npm install
 npm run dev
-```
-
-Frontend yêu cầu backend phải khả dụng tại `http://localhost:3001`; tham số này có thể cấu hình thông qua biến `VITE_API_URL`.
-
-## Cách đóng góp
-
-Các đóng góp cần đảm bảo dự án duy trì trọng tâm vào việc đọc truyện tranh (manga) cục bộ một cách ổn định.
-
-Trước khi thay đổi mã nguồn:
-
-- Hãy đọc `README.md` và `AGENTS.md` để nắm thông tin về cấu trúc dự án và quy trình làm việc.
-- Để các tệp truyện tranh của người dùng ở bên ngoài kho mã nguồn.
-- Không chỉnh sửa thủ công các tệp được tạo tự động, chẳng hạn như `frontend/src/routeTree.gen.ts`.
-- Ưu tiên các thay đổi nhỏ, tập trung vào một vấn đề cụ thể và đi kèm với các bài kiểm thử (test) rõ ràng khi có thay đổi về hành vi.
-
-Các lệnh hữu ích:
-
-```bash
-cd backend && npm run test
-cd frontend && npm run test
-cd frontend && npm run check
-```
-
-Khi thêm các route (đường dẫn) cho frontend, hãy tạo lại cây route bằng lệnh:
-
-```bash
-cd frontend && npm run generate-routes
 ```
 
 ## Giấy phép
