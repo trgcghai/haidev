@@ -131,7 +131,8 @@
       "failedToCopyLink": "Không thể sao chép liên kết",
       "share": "Chia sẻ"
     },
-    "toc": "Mục lục"
+    "toc": "Mục lục",
+    "relatedBlogs": "Tìm đọc các bài viết liên quan"
   },
   "notFound": {
     "metadataTitle": "Không tìm thấy trang",

@@ -1,0 +1,75 @@
+---
+title: A03 Software Supply Chain Failures
+description: Security risks in the software supply chain and how to prevent them.
+keywords: OWASP, OWASP 2025, A03 OWASP, Software Supply Chain Failures
+tags: security, OWASP 2025
+group: OWASP 2025
+createdAt: 2026-10-14
+updatedAt: 2026-10-14
+---
+
+# A03: Software Supply Chain Failures
+
+## Definition
+
+Renamed from A06:2021 Vulnerable & Outdated Components, Software Supply Chain Failures refers to failures in securely using external dependencies, leading to widespread impacts.
+
+Not only direct dependencies, but nested dependencies can also become targets of attacks and cause damage.
+
+Attackers can exploit existing CVEs in dependencies and create an update containing malware or ransomware. When those dependencies are installed and executed on the system, attackers can compromise that system.
+
+## Causes
+
+Failing to check the versions of dependencies being used (both client side and server side) and failing to check CVEs related to the dependencies and nested dependencies used in the system.
+
+Failing to thoroughly examine the supply chains being used (dependencies, extensions, applications…..).
+
+Using outdated OS, dependencies, libraries, extensions, and applications that have already been exploited in attacks without applying security patches.
+
+Lacking a process to track version changes across the supply chains being used, including OS, applications, environments, dependencies, nested dependencies, and IDEs, to clearly identify which versions are in use, which CVEs affect those versions, and whether they contain vulnerabilities that can be easily exploited.
+
+Failing to strengthen system security with clearly defined access permissions and not applying the principle of least privilege when configuring access permissions.
+
+Applying system patches slowly, waiting for a period of time before patching instead of continuously monitoring and assessing the risks posed by vulnerabilities. This leaves the system exposed for an extended period.
+
+Insecure CI / CD processes.
+
+## Attack Scenarios
+
+1. A trusted vendor becomes infected with malware, causing numerous systems to be affected when they download dependencies from that vendor.
+2. A trusted vendor becomes infected with malware, but the malware only activates under certain specific conditions.
+
+## Prevention
+
+Reduce the attack surface by removing unused dependencies, libraries, extensions, and files.
+
+Create a Software Bill of Materials (SBOM) for the entire system.
+
+Monitor dependencies and nested dependencies on both the client side and server side.
+
+Monitor sources such as Common Vulnerabilities and Exposures (CVE), National Vulnerability Database (NVD), and Open Source Vulnerabilities (OSV) to stay informed about vulnerabilities that may affect the system and apply patches promptly.
+
+Select specific versions for dependencies and libraries and only update them when truly necessary.
+
+Only install software from trusted sources and prioritize digitally signed sources to ensure they have not been modified by third parties (A08 - Software or Data Integrity Failures).
+
+Avoid updating the entire system at once. Only update necessary components to make it easier to track changes.
+
+Improve the security of CI / CD processes.
+
+Establish a process to monitor changes to the following components:
+
+- CI / CD settings
+- Code repositories
+- Sandbox areas
+- IDEs
+- SBOM
+- Logging system and logs
+- 3rd party integrations
+- Artifact repositories
+- Container registries
+
+Strengthen security and access permissions for the following components by using MFA and IAM:
+
+- Repository (restrict permissions to modify repository settings, protect branches, and backups).
+- Server & CI / CD (separate permissions and implement multiple layers of protection to prevent the entire system from being affected when one layer is compromised, and apply the principle of least privilege to limit access in the event of an attack).

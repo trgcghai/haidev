@@ -38,6 +38,10 @@ export type DocMetadata = {
    */
   tags?: string;
   /**
+   * Optional group identifier for the post. Used to group related posts together in the UI.
+   */
+  group?: string;
+  /**
    * Post creation date as an ISO date string (e.g. YYYY-MM-DD). Used for sorting.
    */
   createdAt: string;

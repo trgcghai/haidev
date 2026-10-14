@@ -1,0 +1,75 @@
+---
+title: A03 Software Supply Chain Failures
+description: Những rủi ro bảo mật trong chuỗi cung ứng phần mềm và cách phòng ngừa.
+keywords: OWASP, OWASP 2025, A03 OWASP, Software Supply Chain Failures
+tags: security, OWASP 2025
+group: OWASP 2025
+createdAt: 2026-10-14
+updatedAt: 2026-10-14
+---
+
+# A03: Software Supply Chain Failures
+
+## Định nghĩa
+
+Được đổi tên từ A06:2021 Vulnerable & Outdated Components, Software Supply Chain Failures nói về thất bại trong quá trình sử dụng các dependencies bên ngoài một cách an toàn, dẫn đến bị ảnh hưởng hàng loạt.
+
+Không chỉ những dependencies trực tiếp, các nested dependencies cũng có khả năng trở thành nơi bị tấn công và gây ảnh hưởng.
+
+Attackers có thể lợi dụng các CVEs đang tồn tại ở các dependencies sẵn có, khai thác chúng và tạo ra một bản cập nhật có chứa malware, ransomware. Khi deps đó được cài đặt và chạy trên hệ thống, attackers có thể tấn công vào hệ thống đó.
+
+## Nguyên nhân
+
+Không kiểm tra phiên bản của các deps đang sử dụng (cả client side và server side) và không kiểm tra các CVEs liên quan tới các deps và nested deps đang sử dụng trong hệ thống.
+
+Không kiểm tra rõ ràng supply chains mình đang sử dụng (deps, extension, applications…..).
+
+Sử dụng những OS, deps, library, extension, applications bị lỗi thời, đã bị khai thác để tấn công nhưng không cập nhật bản vá.
+
+Không có quy trình theo dõi thay đổi phiên bản của supply chains đang sử dụng, bao gồm OS, applications, environments, deps, nested deps, IDEs để biết rõ đang sử dụng phiên bản nào, phiên bản đó có những CVEs nào và có những vulnerabilities nào dễ bị exploit hay không.
+
+Không tăng cường bảo mật trên hệ thống với sự phân chia quyền truy cập rõ ràng, không sử dụng cơ chế least privilege khi thực hiện setup quyền truy cập.
+
+Thực hiện vá hệ thống một cách chậm chạp, sau một khoảng thời gian mới patch thay vì theo dõi và đánh giá mức độ rủi ro mà các vulnerabilities mang lại. Điều này dẫn đến hệ thống bị expose trong một thời gian dài.
+
+Quy trình CI / CD thiếu bảo mật.
+
+## Viễn cảnh tấn công
+
+1. Một nhà cung cấp uy tín bị nhiễm malware, khiến hàng loạt hệ thống bị ảnh hưởng khi thực hiện download deps của nhà cung cấp đó.
+2. Một nhà cung cấp uy tín bị nhiễm malware, nhưng malware chỉ hoạt động dưới một điều kiện đặc biệt nào đó.
+
+## Cách phòng ngừa
+
+Giảm khả năng bị tấn công bằng cách xóa đi những deps, libs, exts, files không sử dụng.
+
+Tạo Software Bill of Materials (SBOM) cho toàn bộ hệ thống.
+
+Theo dõi deps và nested deps ở cả client side và server side.
+
+Theo dõi các nguồn Common Vulnerabilities and Exposures (CVE), National Vulnerability Database (NVD), Open Source Vulnerabilities (OSV) để biết thêm về các vulnerabilities mà hệ thống có thể mắc phải và thực hiện vá kịp thời.
+
+Phải chọn phiên bản cho deps và libs sẽ sử dụng và chỉ cập nhật khi thật sự cần thiết.
+
+Chỉ cài đặt từ nguồn đáng tin cậy và ưu tiên các nguồn có chữ ký số (signed) để đảm bảo chúng không bị chỉnh sửa bởi bên khác (A08 - Software or Data Integrity Failures).
+
+Không thực hiện cập nhật toàn bộ hệ thống cùng lúc, chỉ nên cập nhật những thứ cần thiết để dễ dàng theo dõi thay đổi.
+
+Cải thiện bảo mật của quy trình CI / CD.
+
+Nên có một quy trình theo dõi thay đổi các thành phần bên dưới:
+
+- CI / CD settings
+- Code repositories
+- Sandbox areas
+- IDEs
+- SBOM
+- Logging system and logs
+- 3rd party integrations
+- Artifact repositories
+- Container registries
+
+Tăng cường bảo mật và quyền truy cập của các thành phần bên dưới, sử dụng MFA và IAM:
+
+- Repository (hạn chế quyền chỉnh sửa cài đặt repo, bảo vệ branches, backups).
+- Server & CI / CD (phân chia quyền và bảo vệ nhiều tầng để không bị ảnh hưởng khi một tầng bị tấn công, áp dụng quyền tối thiểu để hạn chế khả năng truy cập khi bị tấn công).

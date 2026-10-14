@@ -4,7 +4,7 @@ import {
 } from "@/components/providers/JsonLdScript";
 import MDX from "@/components/mdx/MDX";
 import { JSON_LD_ID } from "@/constants/json-ld";
-import { getBlogPosts, getDocBySlug } from "@/lib/documents";
+import { getBlogPosts, getDocBySlug, getGroupedBlogs } from "@/lib/documents";
 import { absoluteUrl, formatDate } from "@/lib/utils";
 import { Doc } from "@/types/document";
 import { Metadata } from "next";
@@ -19,6 +19,8 @@ import DocActions from "@/components/common/doc-actions";
 import { CONFIG, ROUTES } from "@/constants/config";
 import { getSafeDictionary } from "@/app/[lang]/dictionaries";
 import { LocalizedLink } from "@/components/common/LocalizedLink";
+import { BlogItem } from "@/components/blogs/blog-item";
+import LetterSwapForward from "@/components/fancy/text/letter-swap-forward-anim";
 
 export async function generateStaticParams() {
   const docs = await getBlogPosts();
@@ -112,6 +114,8 @@ const Page = async ({ params }: PageProps<"/[lang]/blogs/[slug]">) => {
 
   const dict = await getSafeDictionary();
 
+  const grouped = await getGroupedBlogs(doc);
+
   return (
     <>
       <JsonLdScript data={getPageJsonLd(doc)} />
@@ -185,6 +189,34 @@ const Page = async ({ params }: PageProps<"/[lang]/blogs/[slug]">) => {
       </div>
 
       <MDX code={doc.content} />
+
+      {grouped && grouped.length > 0 && (
+        <section className="mt-12">
+          <h3 className="text-2xl font-bold text-primary" id="related-blogs">
+            <LetterSwapForward
+              label={dict.common.relatedBlogs}
+              reverse={true}
+              className="md:text-2xl font-bold md:w-fit text-[14px] w-full"
+            />
+          </h3>
+          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {grouped.map((blog, index) => (
+              <BlogItem
+                key={blog.slug}
+                index={index}
+                url={`/${ROUTES.BLOGS.slug}/${blog.slug}`}
+                title={blog.metadata.title}
+                pinned={blog.metadata.pinned}
+                createdAt={blog.metadata.createdAt}
+                coverUrl={
+                  blog.metadata.image ||
+                  `/images?title=${encodeURIComponent(blog.metadata.title)}&description=${encodeURIComponent(blog.metadata.description)}`
+                }
+              />
+            ))}
+          </div>
+        </section>
+      )}
     </>
   );
 };

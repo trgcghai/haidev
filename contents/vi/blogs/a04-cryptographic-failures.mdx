@@ -1,0 +1,54 @@
+---
+title: A04 Cryptographic Failures
+description: Tìm hiểu về cách các rủi ro mã hóa có thể ảnh hưởng đến hệ thống của bạn.
+keywords: OWASP, OWASP 2025, A04 OWASP, Cryptographic Failures
+tags: security, OWASP 2025
+group: OWASP 2025
+createdAt: 2026-10-14
+updatedAt: 2026-10-14
+---
+
+# A04: Cryptographic Failures
+
+## Định nghĩa
+
+Là top 4 trong OWASP 2025, Cryptographic Failures nói tới việc không xử lý mã hóa trong hệ thống, mã hóa không đủ hiệu quả, làm lộ key / secret mã hóa và các lỗi liên quan khác. Trong này có các CWEs thường gặp như:
+
+- CWE-327: Sử dụng thuật toán mã hóa cũ, lỗi thời, rủi ro, đã bị vô hiệu hóa.
+- CWE-331: Độ hỗn loạn (entropy) không hiệu quả.
+- CWE-1241: Sử dụng các thuật toán sinh số ngẫu nhiên dễ đoán.
+- CWE-338: Sử dụng các thuật toán sinh số ngẫu nhiên yếu.
+
+Việc mã hóa dữ liệu trong quá trình vận chuyển trên không gian mạng cũng như lưu trữ là cần thiết để đảm bảo tính toàn vẹn và riêng tư của dữ liệu.
+
+## Nguyên nhân
+
+Sử dụng các thuật toán mã hóa yếu, lỗi thời như MD5, SHA-1.
+
+Sử dụng các giao thức không bảo mật để truyền tải dữ liệu nhạy cảm (FTP, SMTP,…) thay vì HTTPS, SFTP,…
+
+Không sử dụng thuật toán hash để lưu trữ mà lưu dưới dạng clear text, hoặc sử dụng thuật toán hash yếu, không có các unique secret.
+
+Quản lý khóa yếu kém, thiếu quy trình xoay vòng khóa bảo mật, để lộ khóa trong source code, sử dụng lại một khóa nhiều lần.
+
+Không xác thực được certificate của server cũng như các bên liên quan.
+
+## Hậu quả
+
+Dữ liệu dễ dàng bị phá mã khi attacker truy cập vào, làm lộ thông tin nhạy cảm trong quá trình truyền tải.
+
+## Viễn cảnh tấn công
+
+Attackers có thể downgrade HTTPS xuống HTTP thông qua các mạng công cộng ở các trang web không sử dụng TLS ≥ 1.2 để chặn cookie hoặc request, xem nội dung cũng như đánh cắp danh tính của người dùng dựa vào thông tin trong cookie để thực hiện hành vi lừa đảo.
+
+## Cách phòng ngừa
+
+Phân loại các dữ liệu cần mã hóa và thực hiện mã hóa chúng hiệu quả, không lưu trữ các dữ liệu đó ở những nơi không cần thiết như distributed cache,…
+
+Sử dụng các thuật toán mã hóa hiện đại, well-known và widely used thay vì sử dụng các thuật toán mã hóa cũ hoặc tự xây dựng thuật toán mã hóa. Các thư viện được hàng triệu developers kiểm chứng và maintain nên được ưu tiên sử dụng.
+
+Sử dụng các giao thức bảo mật để truyền tải dữ liệu, chỉ sử dụng TLS ≥ 1.2 để tăng cường độ bảo mật thông tin.
+
+Xây dựng cơ chế xoay vòng key mã hóa hiệu quả, không hardcode, không sử dụng một khóa nhiều lần, không sử dụng các khóa dễ đoán.
+
+Sử dụng unique secret khi hash để đảm bảo hash đủ mạnh.

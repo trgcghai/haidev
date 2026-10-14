@@ -112,8 +112,27 @@ export async function getProjectPosts(lang?: string) {
   return getDocsByCategory(PROJECTS_CATEGORY, lang);
 }
 
+/** Get featured projects. */
 export async function getFeaturedProjects() {
   return getProjectPosts().then((docs) =>
     docs.filter((doc) => doc.metadata.featured),
+  );
+}
+
+/** Get grouped blogs. */
+export async function getGroupedBlogs(doc: Doc) {
+  if (!doc.metadata.group) {
+    return [];
+  }
+
+  return getBlogPosts().then((docs) =>
+    docs
+      .filter(
+        (d) =>
+          d.slug !== doc.slug &&
+          d.metadata.group &&
+          d.metadata.group === doc.metadata.group,
+      )
+      .slice(0, 3),
   );
 }

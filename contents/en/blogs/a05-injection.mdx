@@ -1,0 +1,39 @@
+---
+title: A05 Injection
+description: Injection vulnerabilities, how attackers exploit user inputs, and methods to prevent them.
+keywords: OWASP, OWASP 2025, A05 OWASP, Injection
+tags: security, OWASP 2025
+group: OWASP 2025
+createdAt: 2026-10-14
+updatedAt: 2026-10-14
+---
+
+# A05: Injection
+
+## Definition
+
+Injection is ranked fifth in OWASP 2025. This vulnerability occurs when user inputs are not properly sanitized, escaped, or validated before being used directly. This allows attackers to manipulate the system's behavior by providing specially crafted inputs.
+
+Common types of Injection include: SQL Injection, NoSQL Injection, LDAP Injection, OS Command Injection,…
+
+## Causes
+
+Directly executing queries constructed from user inputs without properly sanitizing or validating the input data.
+
+## Consequences
+
+The server's behavior can be altered and manipulated, potentially exposing user information from the database or executing OS commands, creating opportunities for further attacks.
+
+## Attack Scenarios
+
+1. **SQL Injection:** One of the most common types of Injection. By injecting special parameters into a query's WHERE clause, attackers can alter the behavior of an API, causing the system to return large amounts of unauthorized data or even delete the entire database.
+
+2. **OS Command Injection:** When a system executes OS commands passed to the server (usually Linux), attackers can exploit this to access files related to OS permissions (user lists, passwords), expose server ports to the outside world, and create opportunities for subsequent attacks.
+
+## Prevention
+
+Use existing frameworks and libraries to strengthen protection against Injection attacks (Spring Boot, TypeORM, Mongoose,…). These frameworks are widely used and maintained, so they typically undergo rigorous security testing to protect against such vulnerabilities.
+
+Always validate and sanitize user inputs, and escape special characters to prevent Injection. Parse and verify data types to ensure that the provided parameters meet the requirements of the query.
+
+Perform comprehensive testing, static code reviews, and penetration testing to ensure the system is sufficiently secure.

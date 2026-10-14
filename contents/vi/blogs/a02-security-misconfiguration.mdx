@@ -1,0 +1,55 @@
+---
+title: A02 Security Misconfiguration
+description: Cách mà cấu hình có thể ảnh hưởng tới hệ thống trong thực tế. Làm sao để hạn chế.
+keywords: OWASP, OWASP 2025, A02 OWASP, Security Misconfiguration
+tags: security, OWASP 2025
+group: OWASP 2025
+createdAt: 2026-10-14
+updatedAt: 2026-10-14
+---
+
+# A02: Security Misconfiguration
+
+## Định nghĩa
+
+Là top 2 trong OWASP 2025, Security Misconfiguration nói về lỗi do con người khi thực hiện cấu hình hệ thống cho applications, systems, cloud services… Từ đó để lộ ra những lỗ hổng bảo mật.
+
+## Nguyên nhân
+
+Thiếu việc tăng cường security trong bất kỳ thành phần nào của hệ thống, hoặc là thực hiện cấu hình permission không đúng cách trên các cloud services.
+
+Để lại các default credentials trên server.
+
+Cấu hình sai cách các thuộc tính bảo mật trong application systems, application framework.
+
+Không tắt những tính năng không cần thiết trên server (open dư ports….).
+
+Hiển thị lỗi quá chi tiết và cung cấp nhiều thông tin về hệ thống, server cho client.
+
+Server không gửi các security header hoặc là chỉ set value cho nó một cách lỏng lẻo.
+
+## Viễn cảnh tấn công
+
+1. Production vẫn còn các default credentials, atk có thể lợi dụng chúng để truy cập trái phép vào các ứng dụng trên production và chiếm quyền điều khiển (thường gặp ở các dashboard admin với password admin).
+2. Tính năng listing directory trên server không bị tắt, nếu attackers phát hiện ra điều này, họ có thể lợi dụng nó để tìm ra file server (đã build hoặc chưa build) (vd: file class của java) để thực hiện reverse engineer và tạo ra được file source code gốc để nghiên cứu và tìm cách tấn công sâu hơn.
+3. Cấu hình permission cho việc xem file trên S3 được public cho toàn internet, khiến cho ai có url cũng có thể truy cập vào để xem nội dung file, bị lộ ra các thông tin nhạy cảm.
+
+## Cách phòng ngừa
+
+Nên có task để thực hiện review lại các cấu hình bảo mật, permission trên server, system, application, cloud service.
+
+Có quy trình tự động quá setup môi trường, cấu hình cho các môi trường khác nhau như dev, staging, test, production. Việc tự động hóa để tối thiểu hóa công sức khi cần phải setup môi trường mới. Các cấu hình trong mỗi môi trường nên giống nhau, nhưng sử dụng các credentials khác nhau để đăng nhập và sử dụng. .
+
+Tắt hết những tính năng không cần thiết trên server / platform.
+
+Cài đặt value cho security header một cách chuẩn chỉnh.
+
+Có quy trình tự động để kiểm tra tính hiệu quả của các cấu hình bảo mật trong hệ thống, nếu không thể tự động, ít nhất nên có ai đó kiểm tra nó hằng năm một cách thủ công.
+
+Thêm vào một cái cấu hình trung tâm để không hiển thị lỗi quá chi tiết và nhiều thông tin về phía client.
+
+Sử dụng cơ chế liên kết danh tính, credentials ngắn hạn, role-based access của các hệ thống cung cấp thay vì hard code hoặc sử dụng secret, static key trong code base và file cấu hình.
+
+Thực hiện phân chia ranh giới bảo mật rõ ràng giữa các thành phần và các tenants trong hệ thống, đảm bảo tính cô lập khi thực hiện đưa lên production để giảm thiểu thiệt hại khi 1 thành phần bị tấn công không ảnh hưởng tới các thành phần khác.
+
+Sử dụng config security groups / access control lists của các cloud service để giới hạn quyền truy cập vào hệ thống chỉ đến từ các ip và port hợp lệ.
