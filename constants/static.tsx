@@ -99,32 +99,36 @@ const findMeOnlineData: FindMeOnlineItem[] = [
 const workExperienceDescriptions = [
   {
     company: "Apps Cyclone",
-    vi: `- Triển khai một trang marketing responsive từ Figma sang code bằng HTML semantic và React.
-- Xây dựng hệ thống xác thực ví cho một dApp trên mạng Sepolia bằng wagmi, viem và SIWE, hỗ trợ tự động đăng nhập, phiên đăng nhập có thời hạn, các route được bảo vệ và xử lý chính xác khi tài khoản hoặc mạng blockchain thay đổi.
-- Triển khai tính năng chuyển token với cơ chế ước tính gas và kiểm tra số dư không đủ; xây dựng tính năng mint NFT tương tác với smart contract, bao gồm mô phỏng giao dịch và phân tích lỗi revert; đồng thời triển khai tính năng tạo token ERC-20 thông qua factory contract.`,
-    en: `- Delivered a Figma-to-code responsive marketing page using sematic HTML and React.
-- Built wallet auth for a dApp on Sepolia using wagmi, viem and SIWE that provides auto sign-in, expiring sessions, protected routes, and correct handling of account/chain changes.
-- Implemented transfer token with gas estimation and insufficient-funds guards, NFT minting against contracts with simulation and revert parsing, and ERC-20 token creation through a factory contract.`,
+    vi: `- Xây dựng trang marketing responsive từ thiết kế Figma bằng React, hỗ trợ giao diện desktop và mobile.
+- Triển khai hệ thống xác thực ví an toàn cho dApp trên mạng Sepolia bằng wagmi, viem và SIWE.
+- Phát triển 3 chức năng blockchain cốt lõi gồm chuyển token, mint NFT và tạo token ERC-20 bằng wagmi và viem, tích hợp ước tính gas và kiểm tra số dư.`,
+    en: `- Built a responsive marketing page from Figma using React, supporting desktop and mobile layouts.
+- Implemented secure wallet authentication for a dApp on Sepolia using wagmi, viem, and SIWE.
+- Developed 3 core blockchain operations: token transfers, NFT minting, and ERC-20 token creation using wagmi and viem, with gas estimation and balance validation.`,
   },
   {
     company: "TMA Solutions",
-    vi: `- Cải thiện cơ chế RBAC của hệ thống quản lý dự án (PMS), sử dụng permission matrix để xác định quyền thực hiện các hành động thay vì chỉ phụ thuộc vào role.
-- Triển khai tính năng Meeting Notes cho PMS, sử dụng API AI nội bộ để tạo bản tóm tắt và transcript từ file âm thanh, đồng thời xử lý trạng thái loading và error.
-- Triển khai audit log lịch sử nhằm tăng khả năng truy vết và trách nhiệm đối với các task trong PMS bằng cách sử dụng middleware trên các endpoint liên quan.
-- Xây dựng tính năng tìm kiếm toàn cục với full-text search và độ trễ thấp, ghi nhận thời gian phản hồi khoảng 100ms nhờ sử dụng text index, đồng thời đảm bảo quyền truy cập đối với các resource.`,
-    en: `- Enhanced RBAC of the project management system (PMS), using permission matrix to detect the ability to perform the actions instead of depending solely on roles.
-- Implemented Meeting Notes features for the PMS, using interal AI API to generate summary and transcript from an audio file, handle loading and error state.
-- Implemented history audit log to enhance tracability and accountability for tasks in the PMS by using a middleware on the related endpoints.
-- Built a global search feature with full-text search and low latency with recorded response time ~ 100ms using text index while ensuring the permission to access to the resources.`,
+    vi: `- Nâng cấp cơ chế phân quyền của hệ thống quản lý dự án (PMS) từ RBAC sang PBAC, sử dụng permission matrix để kiểm soát quyền thực hiện các hành động.
+- Triển khai tính năng Meeting Notes tích hợp AI, tự động tạo bản tóm tắt và bản ghi lời nói từ tệp âm thanh, đồng thời xử lý trạng thái loading và error.
+- Xây dựng hệ thống audit log thông qua middleware trên các endpoint liên quan, tăng khả năng truy vết và trách nhiệm đối với các tác vụ trong PMS.
+- Phát triển tính năng tìm kiếm toàn cục bằng MongoDB full-text search và text indexes, đạt thời gian phản hồi khoảng 100ms.
+- Tối ưu thời gian phản hồi dữ liệu admin dashboard từ 3 giây xuống 200ms bằng cách khắc phục vấn đề N+1 query, cải thiện hiệu suất hệ thống.`,
+    en: `- Enhanced authorization in the project management system (PMS) from RBAC to PBAC using a permission matrix for action-level access control.
+- Implemented AI-powered Meeting Notes, generating summaries and transcripts from audio files with loading and error handling.
+- Built an audit logging system using middleware on relevant endpoints, improving task traceability and accountability in the PMS.
+- Developed global full-text search using MongoDB text indexes, achieving approximately 100ms response time.
+- Reduced admin dashboard response time from 3s to 200ms by resolving N+1 queries, improving system performance.`,
   },
   {
     company: "Industrial University of Ho Chi Minh City",
-    vi: `- Triển khai hệ thống xác thực và phân quyền cho CMS nội bộ bằng JWT Token và RBAC.
-- Tích hợp Cloudinary để quản lý các tệp media của CMS.
-- Tích hợp i18n cho hệ thống đa ngôn ngữ, hỗ trợ tiếng Anh và tiếng Việt cho cả nội dung tĩnh và nội dung động trong CMS.`,
-    en: `- Implemented authentication and authorization for an internal CMS, with JWT Token and RBAC.
-- Integrated cloudinary to manage media files of the CMS.
-- Integrated i18n for internalization, support English and Vietnamese for both static and dynamic content in the CMS.`,
+    vi: `- Xây dựng hệ thống CMS full-stack từ đầu đến cuối bằng React, React Router, Express.js và MongoDB, tích hợp các quy trình frontend và backend.
+- Triển khai xác thực JWT và phân quyền RBAC, bảo vệ các endpoint của CMS bằng quyền truy cập dựa trên vai trò.
+- Tích hợp Cloudinary để quản lý tập trung việc tải lên, lưu trữ và quản lý tệp media.
+- Triển khai i18n cho nội dung tĩnh và động, hỗ trợ 2 ngôn ngữ tiếng Anh và tiếng Việt.`,
+    en: `- Built an end-to-end full-stack CMS using React, React Router, Express.js, and MongoDB, integrating frontend and backend workflows.
+- Implemented JWT authentication and RBAC, securing CMS endpoints with role-based permissions.
+- Integrated Cloudinary for centralized media uploads, storage, and management.
+- Implemented i18n for static and dynamic content, supporting 2 languages: English and Vietnamese.`,
   },
 ];
 
