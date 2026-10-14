@@ -131,7 +131,8 @@
       "failedToCopyLink": "Failed to copy link",
       "share": "Share"
     },
-    "toc": "Table of Contents"
+    "toc": "Table of Contents",
+    "relatedBlogs": "Find related blog posts"
   },
   "notFound": {
     "metadataTitle": "Page Not Found",
