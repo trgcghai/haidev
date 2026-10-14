@@ -1,0 +1,55 @@
+---
+title: A02 Security Misconfiguration
+description: How configuration can affect systems in practice. How to mitigate it.
+keywords: OWASP, OWASP 2025, A02 OWASP, Security Misconfiguration
+tags: security, OWASP 2025
+group: OWASP 2025
+createdAt: 2026-10-14
+updatedAt: 2026-10-14
+---
+
+# A02: Security Misconfiguration
+
+## Definition
+
+Ranked second in OWASP 2025, Security Misconfiguration refers to errors caused by humans when configuring applications, systems, cloud services… thereby exposing security vulnerabilities.
+
+## Causes
+
+Lack of security hardening in any component of the system, or improperly configured permissions on cloud services.
+
+Leaving default credentials on the server.
+
+Improperly configuring security properties in application systems and application frameworks.
+
+Failing to disable unnecessary features on the server (leaving unnecessary ports open….).
+
+Displaying overly detailed errors and providing too much information about the system and server to the client.
+
+The server does not send security headers or sets their values too loosely.
+
+## Attack Scenarios
+
+1. Production still uses default credentials. Attackers can exploit them to gain unauthorized access to applications in production and take control (commonly seen in admin dashboards with the password "admin").
+2. Directory listing is not disabled on the server. If attackers discover this, they can exploit it to find server files (built or unbuilt) (e.g., Java class files), perform reverse engineering, and reconstruct the original source code to study it and find ways to launch further attacks.
+3. File access permissions on S3 are configured to be public to the entire internet, allowing anyone with the URL to access and view file contents, exposing sensitive information.
+
+## Prevention
+
+There should be tasks to review security configurations and permissions on servers, systems, applications, and cloud services.
+
+Establish an automated process for setting up environments and configuring different environments such as dev, staging, test, and production. Automation helps minimize the effort required when setting up a new environment. Configurations across environments should be similar, but they should use different credentials for authentication and access.
+
+Disable all unnecessary features on the server / platform.
+
+Set security header values properly.
+
+Establish an automated process to verify the effectiveness of security configurations in the system. If automation is not possible, at least have someone manually review them annually.
+
+Add a centralized configuration to prevent overly detailed errors and excessive information from being displayed to the client.
+
+Use identity federation, short-lived credentials, and role-based access mechanisms provided by systems instead of hardcoding or using secrets and static keys in the codebase and configuration files.
+
+Establish clear security boundaries between components and tenants in the system, ensuring isolation when deploying to production to minimize damage if one component is compromised and prevent it from affecting other components.
+
+Use security groups / access control lists provided by cloud services to restrict access to the system to valid IP addresses and ports only.

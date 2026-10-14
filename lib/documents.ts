@@ -126,11 +126,13 @@ export async function getGroupedBlogs(doc: Doc) {
   }
 
   return getBlogPosts().then((docs) =>
-    docs.filter(
-      (d) =>
-        d.slug !== doc.slug &&
-        d.metadata.group &&
-        d.metadata.group === doc.metadata.group,
-    ),
+    docs
+      .filter(
+        (d) =>
+          d.slug !== doc.slug &&
+          d.metadata.group &&
+          d.metadata.group === doc.metadata.group,
+      )
+      .slice(0, 3),
   );
 }

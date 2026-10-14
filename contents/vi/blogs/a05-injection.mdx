@@ -1,0 +1,39 @@
+---
+title: A05 Injection
+description: Các lỗ hổng Injection, cách attackers khai thác input người dùng và phương pháp phòng ngừa.
+keywords: OWASP, OWASP 2025, A05 OWASP, Injection
+tags: security, OWASP 2025
+group: OWASP 2025
+createdAt: 2026-10-14
+updatedAt: 2026-10-14
+---
+
+# A05: Injection
+
+## Định nghĩa
+
+Injection là top 5 trong OWASP 2025, mô tả rằng lỗi này xảy ra khi các input đầu vào từ người dùng không được sanitize, escape, validate một cách rõ ràng mà được sử dụng trực tiếp. Điều này dẫn đến việc attackers có thể thực hiện các hành vi thao túng hệ thống theo ý muốn bằng cách truyền vào các input đặc biệt.
+
+Các loại Injection phổ biến bao gồm: SQL Injection, NoSQL Injection, LDAP Injection, OS Command Injection,…
+
+## Nguyên nhân
+
+Thực hiện trực tiếp các câu query từ input người dùng mà không thực hiện sanitize, validate dữ liệu đầu vào.
+
+## Hậu quả
+
+Hành vi của server có thể bị thay đổi và thao túng, dẫn đến việc làm lộ thông tin người dùng từ database hoặc thực thi các OS command, mở ra cơ hội cho các cuộc tấn công khác.
+
+## Viễn cảnh tấn công
+
+1. **SQL Injection:** Là một trong những hình thức Injection phổ biến nhất. Bằng cách truyền vào câu truy vấn với điều kiện WHERE chứa các tham số đặc biệt, attackers có thể thay đổi hành vi của API, khiến hệ thống trả về hàng loạt dữ liệu không được phép truy cập hoặc thậm chí xóa toàn bộ database.
+
+2. **OS Command Injection:** Khi hệ thống thực thi các OS command được truyền vào server (thường là Linux), attackers có thể lợi dụng để truy cập các file liên quan đến quyền truy cập của OS (danh sách users, passwords), mở các port của server ra bên ngoài và tạo cơ hội cho những cuộc tấn công tiếp theo.
+
+## Cách phòng ngừa
+
+Sử dụng các frameworks và libraries sẵn có để tăng cường khả năng bảo vệ trước các cuộc tấn công Injection (Spring Boot, TypeORM, Mongoose,…). Các frameworks này được maintain và sử dụng rộng rãi nên thường có quy trình kiểm tra nghiêm ngặt về khả năng phòng chống các lỗ hổng bảo mật.
+
+Luôn validate, sanitize input người dùng, escape các ký tự đặc biệt để phòng ngừa Injection. Parse và kiểm tra kiểu dữ liệu để đảm bảo các tham số truyền vào đúng với yêu cầu của câu truy vấn.
+
+Thực hiện testing đầy đủ, static code review và penetration testing để đảm bảo hệ thống đủ an toàn.

@@ -1,0 +1,54 @@
+---
+title: A04 Cryptographic Failures
+description: Understand how cryptographic vulnerabilities can affect your system and how to avoid them.
+keywords: OWASP, OWASP 2025, A04 OWASP, Cryptographic Failures
+tags: security, OWASP 2025
+group: OWASP 2025
+createdAt: 2026-10-14
+updatedAt: 2026-10-14
+---
+
+# A04: Cryptographic Failures
+
+## Definition
+
+Ranked fourth in OWASP 2025, Cryptographic Failures refers to the failure to implement encryption in a system, insufficient encryption, exposure of encryption keys / secrets, and other related issues. Common CWEs in this category include:
+
+- CWE-327: Use of outdated, risky, or broken cryptographic algorithms.
+- CWE-331: Insufficient entropy.
+- CWE-1241: Use of predictable random number generation algorithms.
+- CWE-338: Use of weak random number generation algorithms.
+
+Encrypting data both during transmission over networks and while stored is essential to ensure data integrity and privacy.
+
+## Causes
+
+Using weak, outdated cryptographic algorithms such as MD5 and SHA-1.
+
+Using insecure protocols to transmit sensitive data (FTP, SMTP,…) instead of HTTPS, SFTP,…
+
+Failing to use hashing algorithms for data storage and instead storing data in clear text, or using weak hashing algorithms without unique secrets.
+
+Poor key management, lacking a proper key rotation process, exposing keys in source code, and reusing the same key multiple times.
+
+Failing to validate the certificates of servers and other involved parties.
+
+## Consequences
+
+Data can be easily decrypted when attackers gain access to it, exposing sensitive information during transmission.
+
+## Attack Scenarios
+
+1. Attackers can downgrade HTTPS to HTTP over public networks on websites that do not use TLS ≥ 1.2, allowing them to intercept cookies or requests, inspect their contents, and steal users' identities based on information stored in cookies to carry out fraudulent activities.
+
+## Prevention
+
+Classify data that requires encryption and encrypt it effectively. Avoid storing such data in unnecessary locations, such as distributed caches,…
+
+Use modern, well-known, and widely used cryptographic algorithms instead of outdated algorithms or developing custom encryption algorithms. Prioritize libraries that have been verified and maintained by millions of developers.
+
+Use secure protocols for data transmission, and only use TLS ≥ 1.2 to strengthen information security.
+
+Establish an effective encryption key rotation mechanism. Avoid hardcoding keys, reusing the same key multiple times, or using easily predictable keys.
+
+Use unique secrets when hashing to ensure sufficiently strong hashes.
