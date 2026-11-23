@@ -173,6 +173,14 @@
       "comparison": "So sánh",
       "emptyState": "Nhập hai chuỗi để so sánh.",
       "index": "Vị trí:"
+    },
+    "url-sanitizer": {
+      "label": "Nhập URLs (mỗi URL một dòng):",
+      "placeholder": "Nhập URLs ở đây, mỗi URL một dòng, tối đa 10 URLs.",
+      "cancel": "Hủy",
+      "process": "Xử lý",
+      "clear": "Xóa",
+      "openAll": "Mở tất cả"
     }
   },
   "pages": {

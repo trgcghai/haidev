@@ -87,8 +87,8 @@ const Page = async () => {
             href: "/",
           },
           {
-            name: "Projects",
-            href: "/projects",
+            name: "Tools",
+            href: "/tools",
           },
         ])}
       />

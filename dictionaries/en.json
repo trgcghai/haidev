@@ -173,6 +173,14 @@
       "comparison": "Comparison",
       "emptyState": "Enter two strings to compare them.",
       "index": "Index:"
+    },
+    "url-sanitizer": {
+      "label": "Enter URLs (one per line):",
+      "placeholder": "Enter URLs here, one per line, maximum 10 URLs.",
+      "cancel": "Cancel",
+      "process": "Process",
+      "clear": "Clear",
+      "openAll": "Open all"
     }
   },
   "pages": {
