@@ -77,11 +77,11 @@ export default function StringComparator({
       <div>
         <h1
           data-slot="doc-title"
-          className="text-3xl font-semibold text-primary line-clamp-2 text-ellipsis"
+          className="text-2xl font-semibold text-primary line-clamp-2 text-ellipsis"
         >
           {title}
         </h1>
-        <p className="mt-2 text-muted-foreground">{description}</p>
+        <p className="mt-2 text-muted-foreground text-sm">{description}</p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
