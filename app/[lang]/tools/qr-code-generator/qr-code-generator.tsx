@@ -52,11 +52,11 @@ const QrCodeGenerator = ({
       <div>
         <h1
           data-slot="doc-title"
-          className="text-3xl font-semibold text-primary line-clamp-2 text-ellipsis"
+          className="text-2xl font-semibold text-primary line-clamp-2 text-ellipsis"
         >
           {title}
         </h1>
-        <p className="mt-2 text-muted-foreground">{description}</p>
+        <p className="mt-2 text-muted-foreground text-sm">{description}</p>
       </div>
 
       <div className="grid md:grid-cols-3 grid-cols-1 md:gap-8 gap-12">
