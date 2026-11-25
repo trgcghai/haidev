@@ -1,13 +1,10 @@
 "use client";
-import { LinkMetadata } from "@/app/(api)/api/url/metadata/route";
 import { Dictionary } from "@/app/[lang]/dictionaries";
 import { sanitizeUrl } from "@/app/[lang]/tools/url-sanitizer/url-sanitizer-util";
-import Image from "@/components/common/Image";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import useMetadataUrl from "@/hooks/use-metadata-url";
-import { ExternalLink, Loader2, X } from "lucide-react";
+import { ExternalLink, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -20,8 +17,7 @@ interface UrlSanitizerProps {
 
 const UrlSanitizer = ({ title, description, dict }: UrlSanitizerProps) => {
   const [inputUrls, setInputUrls] = useState("");
-  const [metadataUrls, setMetadataUrls] = useState<LinkMetadata[]>([]);
-  const { isLoading, fetchMetadata } = useMetadataUrl();
+  const [sanitizedUrls, setSanitizedUrls] = useState<string[]>([]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.split("\n").length > 10) {
@@ -45,16 +41,12 @@ const UrlSanitizer = ({ title, description, dict }: UrlSanitizerProps) => {
       .filter((result) => result.success)
       .map((result) => result.sanitized);
 
-    const data = await fetchMetadata(sanitized as string[]);
-
-    if (data) {
-      setMetadataUrls(data);
-    }
+    setSanitizedUrls(sanitized as string[]);
   };
 
   const handleOpenAllUrls = () => {
-    metadataUrls.forEach((md) => {
-      window.open(md.url, "_blank", "noopener,noreferrer");
+    sanitizedUrls.forEach((url) => {
+      window.open(url, "_blank", "noopener,noreferrer");
     });
   };
 
@@ -86,72 +78,39 @@ const UrlSanitizer = ({ title, description, dict }: UrlSanitizerProps) => {
           />
         </div>
         <div className="mt-4 flex gap-2 justify-end">
-          <Button
-            variant="outline"
-            onClick={() => setInputUrls("")}
-            disabled={isLoading}
-          >
+          <Button variant="outline" onClick={() => setInputUrls("")}>
             {dict.cancel}
           </Button>
-          <Button
-            onClick={handleSanitizeUrls}
-            disabled={isLoading}
-            className="min-w-12"
-          >
-            {isLoading ? <Loader2 className="animate-spin" /> : dict.process}
+          <Button onClick={handleSanitizeUrls} className="min-w-12">
+            {dict.process}
           </Button>
         </div>
       </section>
 
-      {metadataUrls.length > 0 && (
+      {sanitizedUrls.length > 0 && (
         <section>
           <div className="flex items-center justify-start gap-2 mb-4">
             <Button variant="default" onClick={handleOpenAllUrls}>
               <ExternalLink className="size-4" aria-hidden="true" />
               {dict.openAll}
             </Button>
-            <Button variant="destructive" onClick={() => setMetadataUrls([])}>
+            <Button variant="destructive" onClick={() => setSanitizedUrls([])}>
               <X className="size-4" aria-hidden="true" />
               {dict.clear}
             </Button>
           </div>
           <div className="space-y-2">
-            {metadataUrls.map((md, index) => (
+            {sanitizedUrls.map((url, index) => (
               <Link
-                key={md.url + index}
+                key={url + index}
                 className="flex p-2 gap-2 rounded-lg border border-border"
-                href={md.url}
+                href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                title={md.title ?? md.siteName ?? md.url}
               >
-                <div className="relative aspect-video h-30">
-                  <Image
-                    alt={md.title ?? "No title"}
-                    src={
-                      md.image ??
-                      (md.title &&
-                        md.description &&
-                        `/images?title=${encodeURIComponent(md.title)}`) ??
-                      ""
-                    }
-                    imageLoading="eager"
-                    unoptimized
-                    className="rounded-md"
-                  />
-                </div>
-
-                <article className="flex flex-col gap-2 justify-center">
-                  <h4 className="font-semibold">
-                    {md.title ?? md.siteName ?? "No title"}
-                  </h4>
-                  <p className="text-sm text-muted-foreground line-clamp-2 text-ellipsis">
-                    {md.description ?? "No description available."}
-                  </p>
-                  <p className="text-primary hover:underline break-all underline-offset-4! text-sm">
-                    {md.url}
-                  </p>
-                </article>
+                <p className="text-primary hover:underline break-all underline-offset-4! text-sm">
+                  {url}
+                </p>
               </Link>
             ))}
           </div>
