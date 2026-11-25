@@ -1,5 +1,5 @@
 import { Tool } from "@/types/tool";
-import { KeySquareIcon, QrCodeIcon, ShellIcon } from "lucide-react";
+import { KeySquareIcon, LinkIcon, QrCodeIcon, ShellIcon } from "lucide-react";
 
 export const enRegistries: Tool[] = [
   {
@@ -57,6 +57,24 @@ export const enRegistries: Tool[] = [
     createdAt: "2026-09-09",
     updatedAt: "2026-09-09",
   },
+  {
+    name: "URL sanitizer",
+    description:
+      "Clean, sanitize and remove invalid characters from URLs to ensure they are accessible.",
+    slug: "url-sanitizer",
+    category: "General",
+    keywords: [
+      "url sanitizer",
+      "url cleaner",
+      "url validation",
+      "link sanitizer",
+      "link sanitization",
+      "link cleaner tool",
+    ],
+    icon: LinkIcon,
+    createdAt: "2026-11-18",
+    updatedAt: "2026-11-18",
+  },
 ];
 
 export const viRegistries: Tool[] = [
@@ -109,6 +127,25 @@ export const viRegistries: Tool[] = [
     icon: QrCodeIcon,
     createdAt: "2026-09-09",
     updatedAt: "2026-09-09",
+  },
+  {
+    name: "Công cụ làm sạch URL",
+    description:
+      "Làm sạch, loại bỏ các ký tự không hợp lệ khỏi URL để đảm bảo chúng có thể truy cập được.",
+    slug: "url-sanitizer",
+    category: "Tổng hợp",
+    keywords: [
+      "làm sạch url",
+      "làm sạch liên kết",
+      "xác thực url",
+      "xác thực liên kết",
+      "công cụ làm sạch url",
+      "công cụ làm sạch liên kết",
+      "công cụ làm sạch link",
+    ],
+    icon: LinkIcon,
+    createdAt: "2026-11-18",
+    updatedAt: "2026-11-18",
   },
 ];
 
